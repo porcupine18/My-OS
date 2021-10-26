@@ -117,7 +117,7 @@ void PageTable::handle_fault(REGS* _r)
    Console::puts("      Start -->\n");
 
    // make new Table page if it doesn't exist
-   if( ((unsigned long)pde_of_vaddr & 1) == 0){ // check Access bit = least significant bit in PDE
+   if( ( *pde_of_vaddr & 1) == 0){ // check Access bit = least significant bit in PDE
 
       Console::puts("      Making Table page-->\n");
 
