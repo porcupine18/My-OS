@@ -7,7 +7,7 @@ GCC_OPTIONS = -m32 -nostdlib -fno-builtin -nostartfiles -nodefaultlibs -fno-exce
 all: kernel.bin
 
 clean:
-	rm -f *.bin
+	rm -f *.bin 
 
 start.o: start.asm gdt_low.asm idt_low.asm irq_low.asm
 	$(AS) -f elf -o start.o start.asm
