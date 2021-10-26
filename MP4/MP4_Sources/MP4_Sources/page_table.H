@@ -70,8 +70,8 @@ public:
 	void free_page(unsigned long _page_no);
 	/* If page is valid, release frame and mark page invalid. */
 
-	static unsigned long* PageTable::PTE_address(unsigned long addr);
-	static unsigned long* PageTable::PDE_address(unsigned long addr);
+	static unsigned long* PTE_address(unsigned long addr);
+	static unsigned long* PDE_address(unsigned long addr);
 
 };
 
