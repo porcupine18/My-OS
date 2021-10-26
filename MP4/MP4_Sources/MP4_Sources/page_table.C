@@ -136,7 +136,7 @@ void PageTable::handle_fault(REGS* _r)
       unsigned long iter_vaddr = 0;
       unsigned long* new_ptp_vaddr = page_address(*pde_of_vaddr); // getting vaddr of ptp for iteration
 
-      Console::puts("   PDE :\n"); print_array_long(&new_pde_value);
+            //Console::puts("   PDE :\n"); print_array_long(&new_pde_value);
 
       for(int i = 0; i < ENTRIES_PER_PAGE; i++){
          new_ptp_vaddr[i] = (iter_vaddr) | 4;
@@ -159,7 +159,7 @@ void PageTable::handle_fault(REGS* _r)
    // init PTE in table page
    *pte_of_vaddr = new_pte_value;
 
-   Console::puts("   PTE :\n"); print_array_long(&new_pte_value);
+         //Console::puts("   PTE :\n"); print_array_long(&new_pte_value);
 
    Console::puts("+++++++++++++++++++ Handled  page fault +++++++++++++++++++\n");
 
