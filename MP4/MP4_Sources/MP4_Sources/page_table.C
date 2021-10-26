@@ -106,7 +106,7 @@ void PageTable::handle_fault(REGS* _r)
 
    unsigned long virtual_address = read_cr2(); // 32 bit virtual address that caused fault
 
-   Console::puts("   fault addr= 0d"); Console::putui((unsigned int)(virtual_address)); Console::puts("\n");
+         //Console::puts("   fault addr= 0d"); Console::putui((unsigned int)(virtual_address)); Console::puts("\n");
 
    /*_______ get PTE and PDE of vddr that faulted _______*/
    unsigned long* pde_of_vaddr = PDE_address(virtual_address); // logical address of PDE for vaddress that page faulted
@@ -114,17 +114,17 @@ void PageTable::handle_fault(REGS* _r)
 
    /*_______ alloc new memory for page fault _______*/
 
-   Console::puts("      Start -->\n");
+         //Console::puts("      Start -->\n");
 
    // make new Table page if it doesn't exist
    if( ( *pde_of_vaddr & 1) == 0){ // check Access bit = least significant bit in PDE
 
-      Console::puts("      Making Table page-->\n");
+            //Console::puts("      Making Table page-->\n");
 
       // get new Table page from kernel pool
       unsigned long new_ptp_frame_num_phy = current_page_table->process_mem_pool->get_frames(1);
 
-      Console::puts("      new PTP frame num phy = "); Console::putui((unsigned int)(new_ptp_frame_num_phy)); Console::puts("\n");
+            //Console::puts("      new PTP frame num phy = "); Console::putui((unsigned int)(new_ptp_frame_num_phy)); Console::puts("\n");
 
       unsigned long* new_ptp_addr_phy = (unsigned long*) (new_ptp_frame_num_phy * PAGE_SIZE);
 
@@ -145,12 +145,12 @@ void PageTable::handle_fault(REGS* _r)
 
    }
    
-   Console::puts("      Making Memory page-->\n");
+         //Console::puts("      Making Memory page-->\n");
 
    //get new frame for memory
    unsigned long memory_frame_num = current_page_table->process_mem_pool->get_frames(1); 
 
-   Console::puts("      memory frame num = "); Console::putui((unsigned int)(memory_frame_num)); Console::puts("\n");
+         //Console::puts("      memory frame num = "); Console::putui((unsigned int)(memory_frame_num)); Console::puts("\n");
 
    // make new PTE for Page Table page
    unsigned long new_pte_value = memory_frame_num << 12;
