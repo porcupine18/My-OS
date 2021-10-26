@@ -106,17 +106,25 @@ void PageTable::handle_fault(REGS* _r)
 
    unsigned long virtual_address = read_cr2(); // 32 bit virtual address that caused fault
 
+   Console::puts("   fault addr= 0d"); Console::putui((unsigned int)(virtual_address)); Console::puts("\n");
+
    /*_______ get PTE and PDE of vddr that faulted _______*/
    unsigned long* pde_of_vaddr = PDE_address(virtual_address); // logical address of PDE for vaddress that page faulted
    unsigned long* pte_of_vaddr = PTE_address(virtual_address); // logical address of PTE for vaddress that page faulted
 
    /*_______ alloc new memory for page fault _______*/
 
+   Console::puts("      Start -->\n");
+
    // make new Table page if it doesn't exist
    if( ((unsigned long)pde_of_vaddr & 1) == 0){ // check Access bit = least significant bit in PDE
 
+      Console::puts("      Making Table page-->\n");
+
       // get new Table page from kernel pool
       unsigned long new_ptp_frame_num_phy = current_page_table->process_mem_pool->get_frames(1);
+
+      Console::puts("      new PTP frame num phy = "); Console::putui((unsigned int)(new_ptp_frame_num_phy)); Console::puts("\n");
 
       unsigned long* new_ptp_addr_phy = (unsigned long*) (new_ptp_frame_num_phy * PAGE_SIZE);
 
@@ -128,6 +136,8 @@ void PageTable::handle_fault(REGS* _r)
       unsigned long iter_vaddr = 0;
       unsigned long* new_ptp_vaddr = page_address(*pde_of_vaddr); // getting vaddr of ptp for iteration
 
+      Console::puts("   PDE :\n"); print_array_long(&new_pde_value);
+
       for(int i = 0; i < ENTRIES_PER_PAGE; i++){
          new_ptp_vaddr[i] = (iter_vaddr) | 4;
          iter_vaddr += 4096;
@@ -135,8 +145,12 @@ void PageTable::handle_fault(REGS* _r)
 
    }
    
+   Console::puts("      Making Memory page-->\n");
+
    //get new frame for memory
    unsigned long memory_frame_num = current_page_table->process_mem_pool->get_frames(1); 
+
+   Console::puts("      memory frame num = "); Console::putui((unsigned int)(memory_frame_num)); Console::puts("\n");
 
    // make new PTE for Page Table page
    unsigned long new_pte_value = memory_frame_num << 12;
@@ -144,6 +158,8 @@ void PageTable::handle_fault(REGS* _r)
 
    // init PTE in table page
    *pte_of_vaddr = new_pte_value;
+
+   Console::puts("   PTE :\n"); print_array_long(&new_pte_value);
 
    Console::puts("+++++++++++++++++++ Handled  page fault +++++++++++++++++++\n");
 
