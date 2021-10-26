@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "simple_keyboard.C": "cpp",
+        "paging_low.H": "cpp",
+        "page_table.C": "cpp",
+        "kernel.C": "cpp",
+        "cont_frame_pool.C": "cpp",
+        "machine.C": "cpp",
+        "stdlib.h": "c",
+        "console.C": "cpp",
+        "gdt.C": "cpp",
+        "idt.H": "cpp"
+    }
+}
