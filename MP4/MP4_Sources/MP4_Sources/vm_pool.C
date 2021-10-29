@@ -31,6 +31,9 @@ VMPool::VMPool(unsigned long  _base_address,
 
             Console::puts("         -> in constructor\n");
 
+    /*_______ register new VMPool_______*/
+    this->_page_table->register_pool(this);
+    
     /*_______initialize instance variables_______*/
     this->_base_address = _base_address;
     this->_size         = _size;
@@ -72,8 +75,7 @@ VMPool::VMPool(unsigned long  _base_address,
                 Console::puts("         -> first alloc list value init\n");
 
 
-    /*_______ register new VMPool_______*/
-    this->_page_table->register_pool(this);
+
     
     Console::puts("+++++++++++++++++ Constructed  new VMPool +++++++++++++++++\n");
 }
