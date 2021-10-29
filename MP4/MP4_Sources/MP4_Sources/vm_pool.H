@@ -42,8 +42,8 @@ public:
    
    VMPool* next; // next VMPool in linked list of VMPools
 
-   static const unsigned int PAGE_SIZE        = PageTable::PAGE_SIZE;  			//in bytes
-   static const unsigned int ENTRIES_PER_PAGE = PageTable::ENTRIES_PER_PAGE;  //in entries
+   static const unsigned int PAGE_SIZE        = 4096;  			//in bytes
+   static const unsigned int ENTRIES_PER_PAGE = 1024;  //in entries
 
    VMPool(unsigned long  _base_address,
           unsigned long  _size,
