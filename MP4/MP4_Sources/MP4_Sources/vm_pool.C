@@ -126,6 +126,7 @@ void VMPool::release(unsigned long _start_address) {
 
 bool VMPool::is_legitimate(unsigned long _address) {
 
+                Console::puts("         -> is_legitimate: ");Console::puti((unsigned int) this->_base_address);Console::puts("\n");
                 Console::puts("         -> is_legitimate: ");Console::puti((unsigned int) _address);Console::puts("\n");
 
     // if address belongs to free/alloc lists' region
