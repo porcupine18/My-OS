@@ -33,12 +33,14 @@ VMPool::VMPool(unsigned long  _base_address,
 
     /*_______ register new VMPool_______*/
     this->_page_table->register_pool(this);
+            Console::puts("         -> registered VMPool in linked list\n");
 
     /*_______initialize instance variables_______*/
     this->_base_address = _base_address;
     this->_size         = _size;
     this->_frame_pool   = _frame_pool;
     this->_page_table   = _page_table;
+            Console::puts("         -> constructor: base_address = ");Console::puti(this->_base_address);Console::puts("\n");
             Console::puts("         -> initialized instance variables\n");
 
 
