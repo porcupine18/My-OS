@@ -120,7 +120,7 @@ void PageTable::handle_fault(REGS* _r)
 
    /*_______ check if virtual address is legitimate for any of the VMPools _______*/
    // iterating through linkedlist of VMPools
-   /*
+   
    VMPool* curr = vm_pool_head;
    bool vaddr_legit = false;
    while(curr->next != NULL){
@@ -130,7 +130,7 @@ void PageTable::handle_fault(REGS* _r)
    }
    
    assert(vaddr_legit); // kernel aborting
-   */
+   
    /*_______ get PTE and PDE of vddr that faulted _______*/
    unsigned long* pde_of_vaddr = PDE_address(virtual_address); // logical address of PDE for vaddress that page faulted
    unsigned long* pte_of_vaddr = PTE_address(virtual_address); // logical address of PTE for vaddress that page faulted
