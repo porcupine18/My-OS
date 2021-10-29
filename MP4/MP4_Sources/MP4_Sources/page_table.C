@@ -128,9 +128,9 @@ void PageTable::handle_fault(REGS* _r)
          vaddr_legit = true;
       }
    }
-   */
+   
    assert(vaddr_legit); // kernel aborting
-
+   */
    /*_______ get PTE and PDE of vddr that faulted _______*/
    unsigned long* pde_of_vaddr = PDE_address(virtual_address); // logical address of PDE for vaddress that page faulted
    unsigned long* pte_of_vaddr = PTE_address(virtual_address); // logical address of PTE for vaddress that page faulted
