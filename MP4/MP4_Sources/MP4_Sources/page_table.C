@@ -54,7 +54,7 @@ PageTable::PageTable()
 {  
    /*_______get frames from kernel pool_______*/
    // getting physical address from process mem pool
-   unsigned long* page_dir_ptr   = (unsigned long*) (this->process_mem_pool->get_frames(1) * PAGE_SIZE);    // 1 frame for 1 Directory page requested
+   unsigned long* page_dir_ptr      = (unsigned long*) (this->process_mem_pool->get_frames(1) * PAGE_SIZE);    // 1 frame for 1 Directory page requested
    unsigned long* page_table_pg_ptr = (unsigned long*) (this->process_mem_pool->get_frames(1) * PAGE_SIZE);    // 1 frame for 1 Table page requested
 
    
@@ -120,6 +120,7 @@ void PageTable::handle_fault(REGS* _r)
 
    /*_______ check if virtual address is legitimate for any of the VMPools _______*/
    // iterating through linkedlist of VMPools
+   /*
    VMPool* curr = vm_pool_head;
    bool vaddr_legit = false;
    while(curr->next != NULL){
@@ -127,7 +128,7 @@ void PageTable::handle_fault(REGS* _r)
          vaddr_legit = true;
       }
    }
-
+   */
    assert(vaddr_legit); // kernel aborting
 
    /*_______ get PTE and PDE of vddr that faulted _______*/
