@@ -25,9 +25,26 @@ class PageTable;
 /* CLASS: VMPool -----------------------------------------------------------*/
 class VMPool { /* Virtual Memory Pool */
 private:
-   /* -- DEFINE YOUR VIRTUAL MEMORY POOL DATA STRUCTURE(s) HERE. */
+
+   unsigned long* freelist_start_arr;
+   unsigned long* freelist_end_arr;
+
+   unsigned long* alloclist_start_arr;
+   unsigned long* alloclist_end_arr;
+    
+
+   unsigned long  _base_address;
+   unsigned long  _size;
+   ContFramePool *_frame_pool;
+   PageTable     *_page_table;
 
 public:
+   
+   VMPool* next; // next VMPool in linked list of VMPools
+
+   static const unsigned int PAGE_SIZE        = PageTable::PAGE_SIZE;  			//in bytes
+   static const unsigned int ENTRIES_PER_PAGE = PageTable::ENTRIES_PER_PAGE;  //in entries
+
    VMPool(unsigned long  _base_address,
           unsigned long  _size,
           ContFramePool *_frame_pool,

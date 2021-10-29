@@ -125,8 +125,7 @@ public:
     void pool_release_frames(unsigned long _first_frame_no);
     
     bool contains(unsigned long _frame_no);
-    
-    
+
     static unsigned long needed_info_frames(unsigned long _n_frames);
     /*
      Returns the number of frames needed to manage a frame pool of size _n_frames.

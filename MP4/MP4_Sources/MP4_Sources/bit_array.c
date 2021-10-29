@@ -4,7 +4,7 @@
 #define WORK_BUSY 1
  
 #define SIZE (40) /* amount of bits */
-#define ARRAY_SIZE(x) (x/8 + (x%8 > 0 ? 1: 0))     // KAP this looks wrong   #define ARRAY_SIZE(x) (x/8+((x%8)))
+#define ARRAY_SIZE(x) (x/8 + (x%8 > 0 ? 1: 0))   //#define ARRAY_SIZE(x) (x/8+((x%8)))
  
 char get_bit(unsigned char *array, int index);
 
