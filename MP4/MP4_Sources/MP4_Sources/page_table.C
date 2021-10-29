@@ -15,6 +15,8 @@
 #include "page_table.H"
 
 /* DATA STRUCTURES ---------------------------------------------------------*/
+static VMPool* vm_pool_head; // head of linkedlist of VMPools
+static VMPool* vm_pool_tail; // tail of linkedlist of VMPools
 
 PageTable*     PageTable::current_page_table = NULL;
 unsigned int   PageTable::paging_enabled     = 0;
