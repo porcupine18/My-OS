@@ -29,20 +29,26 @@ VMPool::VMPool(unsigned long  _base_address,
                ContFramePool *_frame_pool,
                PageTable     *_page_table) {
 
+            Console::puts("         -> in constructor\n");
     /*_______initialize instance variables_______*/
     this->_base_address = _base_address;
     this->_size         = _size;
     this->_frame_pool   = _frame_pool;
     this->_page_table   = _page_table;
+            Console::puts("         -> initialized instance variables\n");
+
 
     /*_______create free and alloc lists and initialze the lists_______*/
     
     // get pointers for each of the arrays
     this->freelist_start_arr = (unsigned long*) this->_base_address;
     this->freelist_end_arr   = (unsigned long*) this->_base_address + (PAGE_SIZE/2);
+                Console::puts("         -> initialized free list addr\n");
 
     this->alloclist_start_arr = (unsigned long*) this->_base_address + PAGE_SIZE;
     this->alloclist_end_arr   = (unsigned long*) this->_base_address + (PAGE_SIZE+PAGE_SIZE/2);
+                Console::puts("         -> initialized alloc list addr\n");
+
 
     //initialize arrays
     
@@ -53,12 +59,16 @@ VMPool::VMPool(unsigned long  _base_address,
         alloclist_start_arr [i] = NULL;
         alloclist_end_arr   [i] = NULL;
     }
-    
+                Console::puts("         -> cleaned lists\n");
+
+
     freelist_start_arr[0] = this->_base_address + (2*PAGE_SIZE);
     freelist_end_arr[0]   = this->_base_address + this->_size -1;
+                Console::puts("         -> first free list value init\n");
 
     alloclist_start_arr[0] = this->_base_address;
     alloclist_end_arr[0]   = this->_base_address + (2*PAGE_SIZE) - 1;
+                Console::puts("         -> first alloc list value init\n");
 
 
     /*_______ register new VMPool_______*/

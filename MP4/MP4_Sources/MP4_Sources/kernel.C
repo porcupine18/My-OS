@@ -215,8 +215,8 @@ int main() {
     /* -- INITIALIZE THE TWO VIRTUAL MEMORY PAGE POOLS -- */
 
     /* -- MOST OF WHAT WE NEED IS SETUP. THE KERNEL CAN START. */
-
-    Console::puts("=====Test Start=====\n");
+        
+    Console::puts("\n\n============================= Test Start ============================\n\n");
 
     /* BY DEFAULT WE TEST THE PAGE TABLE IN MAPPED MEMORY!
        (COMMENT OUT THE FOLLOWING LINE TO TEST THE VM Pools! */
