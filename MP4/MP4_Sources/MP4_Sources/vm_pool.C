@@ -53,14 +53,12 @@ VMPool::VMPool(unsigned long  _base_address,
     //initialize arrays
     
     // setting all elements to 0
-    /*
     for (unsigned int i = 0; i < 512; i++){
         freelist_start_arr  [i] = NULL;
         freelist_end_arr    [i] = NULL;
         alloclist_start_arr [i] = NULL;
         alloclist_end_arr   [i] = NULL;
     }
-    */
                 Console::puts("         -> cleaned lists\n");
 
 
@@ -128,6 +126,16 @@ void VMPool::release(unsigned long _start_address) {
 
 bool VMPool::is_legitimate(unsigned long _address) {
 
+                Console::puts("         -> is_legitimate: ");Console::puti(_address);Console::puts("\n");
+
+    // if address belongs to free/alloc lists' region
+    if((this->_base_address <= _address) && ((this->_base_address + 2*PAGE_SIZE) > _address)){
+                Console::puts("++++++++++++++++ is_legitimate: Free/Alloc ++++++++++++++++\n");
+                
+        return true; // validating first 2 pages
+    }
+
+
     // if address is even in the region
     if( (this->_base_address+(2*PAGE_SIZE) <= _address) && ((this->_base_address + this->_size) > _address) ){
         unsigned int idx = 0;
@@ -137,23 +145,18 @@ bool VMPool::is_legitimate(unsigned long _address) {
         
             // found region where address belongs to
             if((_address >= this->alloclist_start_arr[idx]) && (_address < this->alloclist_end_arr[idx])){
-                Console::puts("+++++++++++++++++ Legitimate address found! +++++++++++++++\n");
-                
+                Console::puts("+++++++++++++++++++ is_legitimate: VMPool +++++++++++++++++\n");
                 return true;
             }
             idx++;
         }
-        Console::puts("++++++++++++++ Legitimate address NOT found  ++++++++++++++\n");
+        Console::puts("+++++++++++++++++++ is_legitimate: VMPool +++++++++++++++++\n");
+        Console::puts("++++++++++++++++ is_legitimate: not found1 ++++++++++++++++\n");
         return false;
     }
 
-    // if address belongs to free/alloc lists' region
-    if((this->_base_address <= _address) && ((this->_base_address + 2*PAGE_SIZE) > _address)){
-        Console::puts("++++++++++++++++ Free/Alloc list validated ++++++++++++++++\n");
-        return true; // validating first 2 pages
-    }
 
-    Console::puts("+++++++++++++++ Illegitimate address passed +++++++++++++++\n");
+    Console::puts("++++++++++++++++ is_legitimate: not found2 ++++++++++++++++\n");
     return false;
 }
 
