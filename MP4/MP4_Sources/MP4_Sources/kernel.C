@@ -216,11 +216,11 @@ int main() {
 
     /* -- MOST OF WHAT WE NEED IS SETUP. THE KERNEL CAN START. */
 
-    Console::puts("Hello World!\n");
+    Console::puts("=====Test Start=====\n");
 
     /* BY DEFAULT WE TEST THE PAGE TABLE IN MAPPED MEMORY!
        (COMMENT OUT THE FOLLOWING LINE TO TEST THE VM Pools! */
-#define _TEST_PAGE_TABLE_
+//#define _TEST_PAGE_TABLE_
 
 #ifdef _TEST_PAGE_TABLE_
 
@@ -234,9 +234,11 @@ int main() {
     /* -- CREATE THE VM POOLS. */
 
     /* ---- We define the code pool to be a 256MB segment starting at virtual address 512MB -- */
+    Console::puts(">>>>>>>>>> Making code VMPool <<<<<<<<<<\n");
     VMPool code_pool(512 MB, 256 MB, &process_mem_pool, &pt1);
 
     /* ---- We define a 256MB heap that starts at 1GB in virtual memory. -- */
+    Console::puts(">>>>>>>>>> Making heap VMPool <<<<<<<<<<\n");
     VMPool heap_pool(1 GB, 256 MB, &process_mem_pool, &pt1);
     
     /* -- NOW THE POOLS HAVE BEEN CREATED. */
