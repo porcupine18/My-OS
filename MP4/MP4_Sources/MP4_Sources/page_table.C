@@ -123,10 +123,11 @@ void PageTable::handle_fault(REGS* _r)
    
    VMPool* curr = vm_pool_head;
    bool vaddr_legit = false;
-   while(curr->next != NULL){
+   while(curr != NULL){
       if(curr->next->is_legitimate(virtual_address)){
          vaddr_legit = true;
       }
+      curr = curr->next;
    }
    
    assert(vaddr_legit); // kernel aborting
