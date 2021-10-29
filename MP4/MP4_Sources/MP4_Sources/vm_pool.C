@@ -30,6 +30,9 @@ VMPool::VMPool(unsigned long  _base_address,
                PageTable     *_page_table) {
 
             Console::puts("         -> in constructor\n");
+            Console::puts("         -> constructor: base_address=");Console::puti((unsigned int) this->_base_address);Console::puts("\n");
+
+
     /*_______initialize instance variables_______*/
     this->_base_address = _base_address;
     this->_size         = _size;
@@ -126,8 +129,8 @@ void VMPool::release(unsigned long _start_address) {
 
 bool VMPool::is_legitimate(unsigned long _address) {
 
-                Console::puts("         1 -> is_legitimate: ");Console::puti((unsigned int) this->_base_address);Console::puts("\n");
-                Console::puts("         2 -> is_legitimate: ");Console::puti((unsigned int) _address);Console::puts("\n");
+                Console::puts("         -> is_legitimate: base_address     =");Console::puti((unsigned int) this->_base_address);Console::puts("\n");
+                Console::puts("         -> is_legitimate: checking address =");Console::puti((unsigned int) _address);Console::puts("\n");
 
     // if address belongs to free/alloc lists' region
     if((this->_base_address <= _address) && ((this->_base_address + 2*PAGE_SIZE) > _address)){
@@ -136,7 +139,7 @@ bool VMPool::is_legitimate(unsigned long _address) {
         return true; // validating first 2 pages
     }
 
-                Console::puts("         3 -> is_legitimate: not in Free/Alloc\n");
+                Console::puts("         -> is_legitimate: not in Free/Alloc\n");
 
     // if address is even in the region
     if( (this->_base_address+(2*PAGE_SIZE) <= _address) && ((this->_base_address + this->_size) > _address) ){
