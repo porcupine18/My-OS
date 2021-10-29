@@ -122,13 +122,9 @@ void PageTable::handle_fault(REGS* _r)
    // iterating through linkedlist of VMPools
    
    VMPool* curr = vm_pool_head;
-   
-   Console::puts("      -> handle_fault: vm_pool_head = ");Console::puti((unsigned int)vm_pool_head);Console::puts("\n");
-   Console::puts("      -> handle_fault: base_address = ");Console::puti((unsigned int)vm_pool_head->_base_address);Console::puts("\n");
-   
    bool vaddr_legit = false;
    while(curr != NULL){
-      if(curr->next->is_legitimate(virtual_address)){
+      if(curr->is_legitimate(virtual_address)){
          vaddr_legit = true;
       }
       curr = curr->next;
