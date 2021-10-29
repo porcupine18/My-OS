@@ -53,12 +53,14 @@ VMPool::VMPool(unsigned long  _base_address,
     //initialize arrays
     
     // setting all elements to 0
+    /*
     for (unsigned int i = 0; i < 512; i++){
         freelist_start_arr  [i] = NULL;
         freelist_end_arr    [i] = NULL;
         alloclist_start_arr [i] = NULL;
         alloclist_end_arr   [i] = NULL;
     }
+    */
                 Console::puts("         -> cleaned lists\n");
 
 
