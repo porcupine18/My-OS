@@ -31,10 +31,6 @@ VMPool::VMPool(unsigned long  _base_address,
 
             Console::puts("         -> in constructor\n");
 
-    /*_______ register new VMPool_______*/
-    this->_page_table->register_pool(this);
-            Console::puts("         -> registered VMPool in linked list\n");
-
     /*_______initialize instance variables_______*/
     this->_base_address = _base_address;
     this->_size         = _size;
@@ -43,6 +39,9 @@ VMPool::VMPool(unsigned long  _base_address,
             Console::puts("         -> constructor: base_address = ");Console::puti(this->_base_address);Console::puts("\n");
             Console::puts("         -> initialized instance variables\n");
 
+    /*_______ register new VMPool_______*/
+    this->_page_table->register_pool(this);
+            Console::puts("         -> registered VMPool in linked list\n");
 
     /*_______create free and alloc lists and initialze the lists_______*/
     
@@ -131,7 +130,7 @@ void VMPool::release(unsigned long _start_address) {
 
 bool VMPool::is_legitimate(unsigned long _address) {
 
-                Console::puts("         -> is_legitimate: base_address     =");Console::puti((unsigned int) this);Console::puts("\n");
+                Console::puts("         -> is_legitimate: base_address     =");Console::puti(this->_base_address);Console::puts("\n");
                 Console::puts("         -> is_legitimate: checking address =");Console::puti(_address);Console::puts("\n");
 
     // if address belongs to free/alloc lists' region

@@ -195,7 +195,7 @@ void PageTable::register_pool(VMPool * _vm_pool)
       vm_pool_tail = _vm_pool;
    }
 
-   Console::puts("     ++++++++++ Registered new VM pool ++++++++++\n");
+   Console::puts("         ++++++++++ Registered new VM pool ++++++++++\n");
 }
 
 void PageTable::free_page(unsigned long _page_no) {
