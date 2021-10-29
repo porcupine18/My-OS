@@ -126,7 +126,7 @@ void VMPool::release(unsigned long _start_address) {
 
 bool VMPool::is_legitimate(unsigned long _address) {
 
-                Console::puts("         -> is_legitimate: ");Console::puti(_address);Console::puts("\n");
+                Console::puts("         -> is_legitimate: ");Console::puti((unsigned int) _address);Console::puts("\n");
 
     // if address belongs to free/alloc lists' region
     if((this->_base_address <= _address) && ((this->_base_address + 2*PAGE_SIZE) > _address)){
@@ -135,6 +135,7 @@ bool VMPool::is_legitimate(unsigned long _address) {
         return true; // validating first 2 pages
     }
 
+                Console::puts("         -> is_legitimate: not in Free/Alloc\n");
 
     // if address is even in the region
     if( (this->_base_address+(2*PAGE_SIZE) <= _address) && ((this->_base_address + this->_size) > _address) ){
