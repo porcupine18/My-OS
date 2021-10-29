@@ -33,7 +33,6 @@ private:
    unsigned long* alloclist_end_arr;
     
 
-   unsigned long  _base_address;
    unsigned long  _size;
    ContFramePool *_frame_pool;
    PageTable     *_page_table;
@@ -42,6 +41,7 @@ public:
    
    VMPool* next; // next VMPool in linked list of VMPools
 
+   unsigned long  _base_address;
    static const unsigned int PAGE_SIZE        = 4096;  			//in bytes
    static const unsigned int ENTRIES_PER_PAGE = 1024;  //in entries
 
