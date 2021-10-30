@@ -125,7 +125,7 @@ void PageTable::handle_fault(REGS* _r)
    int i = 0;
 
    while(curr != NULL){
-
+      i++;
       Console::puts("         -> VMPool #=");Console::puti(i);Console::puts(" : ");Console::puti((unsigned int)curr);Console::puts(" \n");
       
       if(curr->is_legitimate(virtual_address)){
@@ -201,7 +201,6 @@ void PageTable::register_pool(VMPool * _vm_pool){
    }
 
    else{
-      
       vm_pool_tail->next = _vm_pool;
       vm_pool_tail = _vm_pool;
    }
