@@ -82,9 +82,7 @@ VMPool::VMPool(unsigned long  _base_address,
                 Console::puts("         -> initialized free and alloc lists\n");
 
 
-
-    
-    Console::puts("+++++++++++++++++ Constructed  new VMPool +++++++++++++++++\n");
+    Console::puts("     ~~~~~~~~~~~~~~~~~ Constructed new VMPool ~~~~~~~~~~~~~~~~~\n");    
 }
 
 unsigned long VMPool::allocate(unsigned long _size) {
@@ -142,7 +140,7 @@ bool VMPool::is_legitimate(unsigned long _address) {
 
     // if address belongs to free/alloc lists' region
     if((this->_base_address <= _address) && ((this->_base_address + 2*PAGE_SIZE) > _address)){
-                Console::puts("         -> is_legitimate: DONE (in Free/Alloc)\n");
+                Console::puts("     ~~~~~~~~~~~ is_legitimate: DONE (in Free/Alloc)~~~~~~~~~~~\n");
                 
         return true; // validating first 2 pages
     }
@@ -158,17 +156,16 @@ bool VMPool::is_legitimate(unsigned long _address) {
         
             // found region where address belongs to
             if((_address >= this->alloclist_start_arr[idx]) && (_address < this->alloclist_end_arr[idx])){
-                Console::puts("         -> is_legitimate: DONE (in a VMPool)\n");
+                Console::puts("     ~~~~~~~~~~~ is_legitimate: DONE (in a VMPool)  ~~~~~~~~~~~\n");
                 return true;
             }
             idx++;
         }
-        Console::puts("         -> is_legitimate: FAILED (in a VMPool)\n");
+        Console::puts("     ~~~~~~~~~~~ is_legitimate: FAILED (in a VMPool) ~~~~~~~~~~\n");
         return false;
     }
 
-
-    Console::puts("         -> is_legitimate: FAILED\n");
+    Console::puts("     ~~~~~~~~~~~~~~~~~ is_legitimate: FAILED  ~~~~~~~~~~~~~~~~~\n");
     return false;
 }
 
