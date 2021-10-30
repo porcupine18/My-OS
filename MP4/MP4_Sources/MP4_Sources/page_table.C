@@ -183,7 +183,7 @@ void PageTable::handle_fault(REGS* _r)
    // make new PTE for Page Table page
    unsigned long* new_mem_addr_phy = (unsigned long*) (memory_frame_num * PAGE_SIZE);
    unsigned long new_pte_value = ((unsigned long)new_mem_addr_phy) | 3;
-            Console::puts("         -> handle_fault: PTE :"); print_array_long(&new_pte_value);
+            Console::puts("         -> handle_fault: PTE = "); print_array_long(&new_pte_value);
 
    // init PTE in table page
    *pte_of_vaddr = new_pte_value;
@@ -220,7 +220,7 @@ void PageTable::free_page(unsigned long _page_no) {
 
    unsigned long vaddr = _page_no << 12; 
    unsigned long* pte_of_vaddr = PTE_address(vaddr);
-         Console::puts("         -> free_page: PTE :"); print_array_long(pte_of_vaddr);
+         Console::puts("         -> free_page: old PTE ="); print_array_long(pte_of_vaddr);
 
 
    unsigned long frame_to_free = *pte_of_vaddr >> 12;
@@ -229,6 +229,10 @@ void PageTable::free_page(unsigned long _page_no) {
          Console::puts("         -> free_page: Freeing valid frame no= ");Console::puti(frame_to_free);Console::puts("\n");
       this->process_mem_pool->release_frames(frame_to_free);
    }
+
+   * pte_of_vaddr = PTE_address(vaddr);
+   Console::puts("         -> free_page: new PTE = "); print_array_long(pte_of_vaddr);
+
 
    Console::puts("         -> free_page: DONE!\n");
 }
