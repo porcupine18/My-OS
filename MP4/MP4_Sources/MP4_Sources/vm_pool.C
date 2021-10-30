@@ -40,8 +40,8 @@ VMPool::VMPool(unsigned long  _base_address,
     this->_size         = _size;
     this->_frame_pool   = _frame_pool;
     this->_page_table   = _page_table;
-            Console::puts("         -> constructor: base_address            = ");Console::puti(this->_base_address);Console::puts("\n");
-            Console::puts("         -> constructor: size                    = ");Console::puti(this->_size);Console::puts("\n");
+            Console::puts("         -> constructor: base_address    = ");Console::puti(this->_base_address);Console::puts("\n");
+            Console::puts("         -> constructor: size            = ");Console::puti(this->_size);Console::puts("\n");
             Console::puts("         -> initialized instance variables\n");
 
     /*_______create free and alloc lists and initialze the lists_______*/
