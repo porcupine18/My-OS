@@ -168,7 +168,7 @@ void VMPool::release(unsigned long _start_address) {
 
         this->_page_table->free_page(curr_page_release_start_addr >> 12);
 
-        curr_page_release_start_addr += PAGE_SIZE -1 ;
+        curr_page_release_start_addr += PAGE_SIZE ;
     }
 
     Console::puts("             ~~~~~~~~~~~~~~~~~~~~~ release: DONE  ~~~~~~~~~~~~~~~~~~~~~\n");
