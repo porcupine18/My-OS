@@ -126,6 +126,7 @@ unsigned long VMPool::allocate(unsigned long _size) {
             while(j<512){
                 Console::puts("     -> allocate:     Alloc[");Console::puti(j);Console::puts("] = ");Console::puti((unsigned int)this->alloclist_start_arr[j]);Console::puts(" -> "); Console::puti((unsigned int)this->alloclist_end_arr[j]);Console::puts("\n");
                 if(this->freelist_start_arr[j] == 0 && this->freelist_end_arr[j] == 0){
+                        Console::puts("     -> allocate: found which index to add to is j=");Console::puti(j);Console::puts("\n");
                     break;
                 }
                 j++;
