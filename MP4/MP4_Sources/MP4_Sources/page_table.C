@@ -137,22 +137,22 @@ void PageTable::handle_fault(REGS* _r)
 
    /*_______ alloc new memory for page fault _______*/
 
-            Console::puts("      Start -->\n");
+            //Console::puts("      Start -->\n");
 
    // make new Table page if it doesn't exist
    if( (*pde_of_vaddr & 1) == 0){ // check Access bit = least significant bit in PDE
-            Console::puts("      Making Table page-->\n");
+            //Console::puts("      Making Table page-->\n");
 
       // get new Table page from kernel pool
       unsigned long new_ptp_frame_num_phy = current_page_table->process_mem_pool->get_frames(1);
-            Console::puts("      new PTP frame num phy = "); Console::putui((unsigned int)(new_ptp_frame_num_phy)); Console::puts("\n");
+            //Console::puts("      new PTP frame num phy = "); Console::putui((unsigned int)(new_ptp_frame_num_phy)); Console::puts("\n");
 
       unsigned long* new_ptp_addr_phy = (unsigned long*) (new_ptp_frame_num_phy * PAGE_SIZE);
 
       // init pde and set in directory
       unsigned long new_pde_value = ((unsigned long)new_ptp_addr_phy) | 3;
       *pde_of_vaddr = new_pde_value;
-            Console::puts("   PDE :\n"); print_array_long(&new_pde_value);
+            //Console::puts("   PDE :\n"); print_array_long(&new_pde_value);
 
       // init all entries in new Page Table page
 
@@ -164,11 +164,11 @@ void PageTable::handle_fault(REGS* _r)
       }   
 
    }
-            Console::puts("      Making Memory page-->\n");
+            //Console::puts("      Making Memory page-->\n");
 
    //get new frame for memory
    unsigned long memory_frame_num = current_page_table->process_mem_pool->get_frames(1); 
-            Console::puts("      memory frame num = "); Console::putui((unsigned int)(memory_frame_num)); Console::puts("\n");
+            //Console::puts("      memory frame num = "); Console::putui((unsigned int)(memory_frame_num)); Console::puts("\n");
 
    // make new PTE for Page Table page
    unsigned long new_pte_value = memory_frame_num << 12;
@@ -176,7 +176,7 @@ void PageTable::handle_fault(REGS* _r)
 
    // init PTE in table page
    *pte_of_vaddr = new_pte_value;
-            Console::puts("   PTE :\n"); print_array_long(&new_pte_value);
+            //Console::puts("   PTE :\n"); print_array_long(&new_pte_value);
 
    Console::puts("+++++++++++++++++++ Handled  page fault +++++++++++++++++++\n");
 
