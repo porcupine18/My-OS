@@ -145,7 +145,7 @@ unsigned long VMPool::allocate(unsigned long _size) {
 
 void VMPool::release(unsigned long _start_address) {
 
-    Console::puts("     -> release: start addr= ");Console::puti(_start_address);Console::puts("] = ");
+    Console::puts("     -> release: start addr= ");Console::puti(_start_address);Console::puts("\n");
 
     unsigned int idx = 0;
 
