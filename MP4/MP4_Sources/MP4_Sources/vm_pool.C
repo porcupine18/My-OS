@@ -48,17 +48,17 @@ VMPool::VMPool(unsigned long  _base_address,
     // get pointers for each of the arrays
     this->freelist_start_arr = (unsigned long*) this->_base_address;
     this->freelist_end_arr   = (unsigned long*) (this->_base_address + (PAGE_SIZE/2));
-                Console::puts("         -> initialized free list addr\n");
+                //Console::puts("         -> initialized free list addr\n");
 
     this->alloclist_start_arr = (unsigned long*) (this->_base_address + PAGE_SIZE);
     this->alloclist_end_arr   = (unsigned long*) (this->_base_address + (PAGE_SIZE+PAGE_SIZE/2));
-                Console::puts("         -> initialized alloc list addr\n");
+                //Console::puts("         -> initialized alloc list addr\n");
 
 
-                Console::puts("         -> constructor: freelist_start_arr  = ");Console::puti((unsigned int)this->freelist_start_arr);Console::puts("\n");
-                Console::puts("         -> constructor: freelist_end_arr    = ");Console::puti((unsigned int)this->freelist_end_arr);Console::puts("\n");                
-                Console::puts("         -> constructor: alloclist_start_arr = ");Console::puti((unsigned int)this->alloclist_start_arr);Console::puts("\n");
-                Console::puts("         -> constructor: alloclist_end_arr   = ");Console::puti((unsigned int)this->alloclist_end_arr);Console::puts("\n");
+                Console::puts("         -> constructor: freelist_start_arr  = ");Console::puti((unsigned int)this->freelist_start_arr);Console::puts(" + 512 = ");Console::puti((unsigned int)(this->freelist_start_arr) + 512);Console::puts("\n");
+                Console::puts("         -> constructor: freelist_end_arr    = ");Console::puti((unsigned int)this->freelist_end_arr);Console::puts(" + 512 = ");Console::puti((unsigned int)(this->freelist_end_arr) + 512);Console::puts("\n");Console::puts("\n");                
+                Console::puts("         -> constructor: alloclist_start_arr = ");Console::puti((unsigned int)this->alloclist_start_arr);Console::puts(" + 512 = ");Console::puti((unsigned int)(this->alloclist_start_arr) + 512);Console::puts("\n");Console::puts("\n");                
+                Console::puts("         -> constructor: alloclist_end_arr   = ");Console::puti((unsigned int)this->alloclist_end_arr);Console::puts(" + 512 = ");Console::puti((unsigned int)(this->alloclist_end_arr) + 512);Console::puts("\n");Console::puts("\n"); 
 
 
 
