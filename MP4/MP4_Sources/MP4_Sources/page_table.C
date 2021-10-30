@@ -139,7 +139,7 @@ void PageTable::handle_fault(REGS* _r)
             Console::puts("         -> handle_fault: Going to assert legitimate vaddr -->\n");
 
 
-   assert(vaddr_legit); // kernel aborting
+   assert(vaddr_legit); // ker1nel aborting
 
             Console::puts("         -> handle_fault: Done with assert -->\n");
 
