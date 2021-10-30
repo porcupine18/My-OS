@@ -156,7 +156,7 @@ void PageTable::handle_fault(REGS* _r)
 
       // init all entries in new Page Table page
       unsigned long iter_vaddr = 0;
-      unsigned long* new_ptp_vaddr = (*pde_of_vaddr>>22)& 0xFFFFF000; // getting vaddr of ptp for iteration
+      unsigned long* new_ptp_vaddr =(unsigned long*) ((*pde_of_vaddr>>22) & 0xFFFFF000); // getting vaddr of ptp for iteration
 
       for(int i = 0; i < ENTRIES_PER_PAGE; i++){
          new_ptp_vaddr[i] = (iter_vaddr) | 4;
