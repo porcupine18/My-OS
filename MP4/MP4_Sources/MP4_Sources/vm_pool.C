@@ -31,6 +31,10 @@ VMPool::VMPool(unsigned long  _base_address,
 
             Console::puts("         -> in constructor\n");
 
+    /*_______ register new VMPool_______*/
+    this->_page_table->register_pool(this);
+            Console::puts("         -> registered VMPool in linked list\n");
+
     /*_______initialize instance variables_______*/
     this->_base_address = _base_address;
     this->_size         = _size;
@@ -40,12 +44,7 @@ VMPool::VMPool(unsigned long  _base_address,
             Console::puts("         -> constructor: size                    = ");Console::puti(this->_size);Console::puts("\n");
             Console::puts("         -> initialized instance variables\n");
 
-    /*_______ register new VMPool_______*/
-    this->_page_table->register_pool(this);
-            Console::puts("         -> registered VMPool in linked list\n");
-
     /*_______create free and alloc lists and initialze the lists_______*/
-    
     // get pointers for each of the arrays
     this->freelist_start_arr = (unsigned long*) this->_base_address;
     this->freelist_end_arr   = (unsigned long*) (this->_base_address + (PAGE_SIZE/2));
