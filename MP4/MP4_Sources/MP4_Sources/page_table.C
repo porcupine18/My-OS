@@ -232,7 +232,7 @@ void PageTable::free_page(unsigned long _page_no) {
 
    *pte_of_vaddr = *pte_of_vaddr >> 2;
    *pte_of_vaddr = *pte_of_vaddr << 2;   
-
+         Console::puts("         -> free_page: new PTE ="); print_array_long(pte_of_vaddr);
 
    Console::puts("         -> free_page: DONE!\n");
 }
