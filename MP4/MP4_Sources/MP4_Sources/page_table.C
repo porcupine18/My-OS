@@ -120,7 +120,6 @@ void PageTable::handle_fault(REGS* _r)
 
    /*_______ check if virtual address is legitimate for any of the VMPools _______*/
    // iterating through linkedlist of VMPools
-   
    VMPool* curr = vm_pool_head;
    bool vaddr_legit = false;
    while(curr != NULL){
@@ -153,11 +152,11 @@ void PageTable::handle_fault(REGS* _r)
       // init pde and set in directory
       unsigned long new_pde_value = ((unsigned long)new_ptp_addr_phy) | 3;
       *pde_of_vaddr = new_pde_value;
+            Console::puts("   PDE :\n"); print_array_long(&new_pde_value);
 
       // init all entries in new Page Table page
       unsigned long iter_vaddr = 0;
       unsigned long* new_ptp_vaddr = page_address(*pde_of_vaddr); // getting vaddr of ptp for iteration
-            Console::puts("   PDE :\n"); print_array_long(&new_pde_value);
 
       for(int i = 0; i < ENTRIES_PER_PAGE; i++){
          new_ptp_vaddr[i] = (iter_vaddr) | 4;
@@ -188,6 +187,7 @@ void PageTable::register_pool(VMPool * _vm_pool)
 {
    if(vm_pool_head == NULL){
       vm_pool_head = _vm_pool;
+      _vm_pool->next = NULL;
    }
    else{
       _vm_pool->next = NULL;
