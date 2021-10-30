@@ -226,7 +226,7 @@ unsigned long* PageTable::PTE_address(unsigned long addr){
    
    tmp_addr = tmp_addr >> 12;
    tmp_addr = tmp_addr << 2;
-   tmp_addr = tmp_addr | 0xFFC00000; // 1024 : X : Y
+   tmp_addr = tmp_addr | 0xFFC00000; // 1023 : X : Y
    
    return (unsigned long*) tmp_addr;
 }
@@ -237,7 +237,7 @@ unsigned long* PageTable::PDE_address(unsigned long addr){
    unsigned long  tmp_addr = addr;
 
    tmp_addr = tmp_addr >> 20;
-   tmp_addr = tmp_addr | 0xFFFFF000; // 1024 : 1024 : X 
+   tmp_addr = tmp_addr | 0xFFFFF000; // 1023 : 1023 : X 
    tmp_addr = tmp_addr >> 2;
    tmp_addr = tmp_addr << 2; 
 

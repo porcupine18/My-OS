@@ -239,7 +239,7 @@ int main() {
 
     /* ---- We define a 256MB heap that starts at 1GB in virtual memory. -- */
     Console::puts("\n\n\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Making heap VMPool <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
-    VMPool heap_pool(1 GB, 256 MB, &process_mem_pool, &pt1);
+    VMPool heap_pool(1026 MB, 256 MB, &process_mem_pool, &pt1);
     
     /* -- NOW THE POOLS HAVE BEEN CREATED. */
     Console::puts(">>>>>>>>>>>>>>>>>>>>>>>> VM Pools successfully created! <<<<<<<<<<<<<<<<<<<<<<<\n");
