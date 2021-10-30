@@ -123,7 +123,11 @@ void PageTable::handle_fault(REGS* _r)
    
    VMPool* curr = vm_pool_head;
    bool vaddr_legit = false;
+
+   int i = 0;
+
    while(curr != NULL){
+         Console::puts("i=");Console::puti(i);Console::puts("\n");
       if(curr->is_legitimate(virtual_address)){
          vaddr_legit = true;
       }
