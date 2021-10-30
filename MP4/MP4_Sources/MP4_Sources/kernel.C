@@ -252,7 +252,7 @@ int main() {
     Console::puts("Testing the memory allocation on code_pool...\n");
     //GenerateVMPoolMemoryReferences(&code_pool, 50, 100);
     Console::puts("Testing the memory allocation on heap_pool...\n");
-    GenerateVMPoolMemoryReferences(&heap_pool, 50, 100);
+    //GenerateVMPoolMemoryReferences(&heap_pool, 50, 100);
 
 #endif
 
