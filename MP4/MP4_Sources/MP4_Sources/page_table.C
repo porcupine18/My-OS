@@ -157,10 +157,11 @@ void PageTable::handle_fault(REGS* _r)
       // init all entries in new Page Table page
 
       //unsigned long* new_ptp_vaddr =(unsigned long*) (*pde_of_vaddr>>22) & 0xFFFFF000; // getting vaddr of ptp for iteration
+      //unsigned long* new_ptp_vaddr = (unsigned long*) ((new_ptp_frame_num_phy << 12) | 0xFFC00000); // getting vaddr of ptp for iteration
 
-      /*
-      unsigned long* new_ptp_vaddr = (unsigned long*) ((new_ptp_frame_num_phy << 12) | 0xFFC00000); // getting vaddr of ptp for iteration
- 
+      unsigned long* new_ptp_vaddr = (unsigned long*) ((*pde_of_vaddr << 22) | 0xFFC00000); // getting vaddr of ptp for iteration
+
+
       unsigned long iter_vaddr = 0;
       for(int i = 0; i < ENTRIES_PER_PAGE; i++){
          Console::puts("      i = "); Console::putui((unsigned int)(i)); Console::puts("\n");
@@ -169,7 +170,7 @@ void PageTable::handle_fault(REGS* _r)
       }   
 
       Console::puts("     lol3\n");
-      */
+
    }
             Console::puts("      Making Memory page-->\n");
 
