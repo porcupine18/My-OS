@@ -197,9 +197,11 @@ void PageTable::register_pool(VMPool * _vm_pool){
 
    if(vm_pool_head == NULL){
       vm_pool_head = _vm_pool;
+      vm_pool_tail = _vm_pool;
    }
 
    else{
+      
       vm_pool_tail->next = _vm_pool;
       vm_pool_tail = _vm_pool;
    }
