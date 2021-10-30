@@ -182,7 +182,7 @@ void PageTable::handle_fault(REGS* _r)
    // make new PTE for Page Table page
    unsigned long* new_mem_addr_phy = (unsigned long*) (memory_frame_num * PAGE_SIZE);
    unsigned long new_pte_value = ((unsigned long)new_mem_addr_phy) | 3;
-            Console::puts("         -> handle_fault: PTE :\n"); print_array_long(&new_pte_value);
+            Console::puts("         -> handle_fault: PTE :"); print_array_long(&new_pte_value);
 
    // init PTE in table page
    *pte_of_vaddr = new_pte_value;
