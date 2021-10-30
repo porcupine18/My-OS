@@ -161,7 +161,7 @@ void PageTable::handle_fault(REGS* _r)
       // init pde and set in directory
       unsigned long new_pde_value = ((unsigned long)new_ptp_addr_phy) | 3;
       *pde_of_vaddr = new_pde_value;
-            Console::puts("            -> handle_fault: PDE :\n"); print_array_long(&new_pde_value);
+            Console::puts("            -> handle_fault: PDE :"); print_array_long(&new_pde_value);
 
       // init all entries in new Page Table page
 
@@ -279,7 +279,7 @@ unsigned long offset_twelve_bits(unsigned long v_addr){
 
 void print_array_long(unsigned long* buf)
 {
-    Console::puts("----------------");
+    Console::puts("->");
     unsigned long memory = *buf;
     for (unsigned long i = 0; i < 32; i++)
     {
@@ -291,6 +291,6 @@ void print_array_long(unsigned long* buf)
         
 
     }
-    Console::puts("----------------\n");
+    Console::puts("<-\n");
 
 }
