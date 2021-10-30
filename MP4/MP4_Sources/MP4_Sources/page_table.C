@@ -170,7 +170,7 @@ void PageTable::handle_fault(REGS* _r)
       unsigned long* new_ptp_vaddr = (unsigned long*) ((*pde_of_vaddr << 22) | 0xFFC00000); // getting vaddr of ptp for iteration
       unsigned long iter_vaddr = 0;
       for(int i = 0; i < ENTRIES_PER_PAGE; i++){
-         new_ptp_vaddr[i] = (iter_vaddr) | 6;
+         new_ptp_vaddr[i] = (iter_vaddr) | 4;
          iter_vaddr += 4096;
       }   
 
@@ -182,8 +182,8 @@ void PageTable::handle_fault(REGS* _r)
             Console::puts("      memory frame num = "); Console::putui((unsigned int)(memory_frame_num)); Console::puts("\n");
 
    // make new PTE for Page Table page
-   unsigned long new_pte_value = memory_frame_num << 12;
-   new_pte_value = new_pte_value | 3;
+   unsigned long* new_mem_addr_phy = (unsigned long*) (memory_frame_num * PAGE_SIZE);
+   unsigned long new_pte_value = ((unsigned long)new_mem_addr_phy) | 3;
             Console::puts("   PTE :\n"); print_array_long(&new_pte_value);
 
    // init PTE in table page
