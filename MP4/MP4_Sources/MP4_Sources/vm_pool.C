@@ -143,8 +143,9 @@ unsigned long VMPool::allocate(unsigned long _size) {
 }
 
 void VMPool::release(unsigned long _start_address) {
-    assert(false);
-    Console::puts("Released region of memory.\n");
+    //assert(false);
+    //Console::puts("Released region of memory.\n");
+    Console::puts("Release skipped\n");
 }
 
 bool VMPool::is_legitimate(unsigned long _address) {
