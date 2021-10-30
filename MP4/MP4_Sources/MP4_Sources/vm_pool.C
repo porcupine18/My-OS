@@ -58,6 +58,9 @@ VMPool::VMPool(unsigned long  _base_address,
 
                 Console::puts("         -> constructor: freelist_start_arr  = ");Console::puti((unsigned int)this->freelist_start_arr);Console::puts("\n");
                 Console::puts("         -> constructor: freelist_end_arr    = ");Console::puti((unsigned int)this->freelist_end_arr);Console::puts("\n");
+                
+                Console::puts("         -> constructor: freelist_end_arr    = ");Console::puti(this->_base_address + (PAGE_SIZE/2));Console::puts("\n");
+                
                 Console::puts("         -> constructor: alloclist_start_arr = ");Console::puti((unsigned int)this->alloclist_start_arr);Console::puts("\n");
                 Console::puts("         -> constructor: alloclist_end_arr   = ");Console::puti((unsigned int)this->alloclist_end_arr);Console::puts("\n");
 
