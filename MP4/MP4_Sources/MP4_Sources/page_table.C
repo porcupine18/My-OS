@@ -216,25 +216,25 @@ void PageTable::register_pool(VMPool * _vm_pool){
 
 void PageTable::free_page(unsigned long _page_no) {
 
-   Console::puts("         -> free_page: To free page no=");Console::puti(_page_no);Console::puts("\n");
+   Console::puts("            -> free_page: To free page no=");Console::puti(_page_no);Console::puts("\n");
 
    unsigned long vaddr = _page_no << 12; 
    unsigned long* pte_of_vaddr = PTE_address(vaddr);
-         Console::puts("         -> free_page: old PTE ="); print_array_long(pte_of_vaddr);
+         Console::puts("            -> free_page: old PTE ="); print_array_long(pte_of_vaddr);
 
 
    unsigned long frame_to_free = *pte_of_vaddr >> 12;
 
    if(*pte_of_vaddr & 1){
-         Console::puts("         -> free_page: Freeing valid frame no= ");Console::puti(frame_to_free);Console::puts("\n");
+         Console::puts("            -> free_page: Freeing valid frame no= ");Console::puti(frame_to_free);Console::puts("\n");
       this->process_mem_pool->release_frames(frame_to_free);
    }
 
    *pte_of_vaddr = *pte_of_vaddr >> 2;
    *pte_of_vaddr = *pte_of_vaddr << 2;   
-         Console::puts("         -> free_page: new PTE ="); print_array_long(pte_of_vaddr);
+         Console::puts("            -> free_page: new PTE ="); print_array_long(pte_of_vaddr);
 
-   Console::puts("         -> free_page: DONE!\n");
+   Console::puts("            -> free_page: DONE!\n");
 }
 
 // find PTE of a logical address
