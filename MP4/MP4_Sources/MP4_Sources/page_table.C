@@ -184,10 +184,10 @@ void PageTable::handle_fault(REGS* _r)
    // make new PTE for Page Table page
    unsigned long new_pte_value = memory_frame_num << 12;
    new_pte_value = new_pte_value | 3;
+            Console::puts("   PTE :\n"); print_array_long(&new_pte_value);
 
    // init PTE in table page
    *pte_of_vaddr = new_pte_value;
-            Console::puts("   PTE :\n"); print_array_long(&new_pte_value);
 
    Console::puts("      +++++++++++++++++++ Handled  page fault +++++++++++++++++++\n");
 
