@@ -111,7 +111,7 @@ unsigned long VMPool::allocate(unsigned long _size) {
 
             // find right index in alloc list to insert new region
             j = 0; 
-            while(this->freelist_start_arr[j] == 0 && this->freelist_end_arr[j] == 0){
+            while(this->freelist_start_arr[j] != 0 && this->freelist_end_arr[j] != 0){
                 j++;
             }
             
