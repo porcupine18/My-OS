@@ -223,7 +223,7 @@ void PageTable::free_page(unsigned long _page_no) {
          Console::puts("         -> free_page: PTE :"); print_array_long(pte_of_vaddr);
 
 
-   unsigned long frame_to_free = pte_of_vaddr >> 12;
+   unsigned long frame_to_free = *pte_of_vaddr >> 12;
 
    if((unsigned long)pte_of_vaddr & 1){
          Console::puts("         -> free_page: Freeing valid frame no= ");Console::puti(frame_to_free);Console::puts("\n");
