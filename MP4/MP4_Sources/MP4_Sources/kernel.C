@@ -239,7 +239,7 @@ int main() {
 
     /* ---- We define a 256MB heap that starts at 1GB in virtual memory. -- */
     Console::puts("\n\n\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Making heap VMPool <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
-    //VMPool heap_pool(256 MB, 256 MB, &process_mem_pool, &pt1);
+    VMPool heap_pool(256 MB, 256 MB, &process_mem_pool, &pt1);
     
     /* -- NOW THE POOLS HAVE BEEN CREATED. */
     Console::puts(">>>>>>>>>>>>>>>>>>>>>>>> VM Pools successfully created! <<<<<<<<<<<<<<<<<<<<<<<\n");
@@ -250,9 +250,9 @@ int main() {
     Console::puts("of the VM Pool memory allocator.\n");
     Console::puts("Please be patient...\n");
     Console::puts("Testing the memory allocation on code_pool...\n");
-    GenerateVMPoolMemoryReferences(&code_pool, 4, 100);
+    GenerateVMPoolMemoryReferences(&code_pool, 50, 100);
     Console::puts("Testing the memory allocation on heap_pool...\n");
-    //GenerateVMPoolMemoryReferences(&heap_pool, 50, 100);
+    GenerateVMPoolMemoryReferences(&heap_pool, 50, 100);
 
 #endif
 
