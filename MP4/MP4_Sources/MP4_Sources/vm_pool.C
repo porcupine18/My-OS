@@ -115,7 +115,9 @@ unsigned long VMPool::allocate(unsigned long _size) {
                 Console::puts("     -> allocate:     Alloc[");Console::puti(j);Console::puts("] = ");Console::puti((unsigned int)this->alloclist_start_arr[j]);Console::puts(" -> "); Console::puti((unsigned int)this->alloclist_end_arr[j]);Console::puts("\n");
                 j++;
             }
-            
+                
+                Console::puts("     -> allocate:     Alloc[");Console::puti(j);Console::puts("] = ");Console::puti((unsigned int)this->alloclist_start_arr[j]);Console::puts(" -> "); Console::puti((unsigned int)this->alloclist_end_arr[j]);Console::puts("\n");
+
             this->alloclist_start_arr[j] = this->freelist_start_arr[idx];
             this->alloclist_end_arr[j]   = this->freelist_start_arr[idx] + (pages_to_alloc * PAGE_SIZE) - 1;
 
