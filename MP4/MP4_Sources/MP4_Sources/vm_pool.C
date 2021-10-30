@@ -144,9 +144,34 @@ unsigned long VMPool::allocate(unsigned long _size) {
 }
 
 void VMPool::release(unsigned long _start_address) {
-    //assert(false);
-    //Console::puts("Released region of memory.\n");
-    Console::puts("Release skipped\n");
+
+    Console::puts("     -> release: start\n");
+
+    unsigned int idx = 0;
+
+    while(idx<512 && this->alloclist_start_arr[idx] != _start_address){
+        idx++;
+    }
+
+    if(idx==512){
+        Console::puts("             ~~~~~~~~~~~~~~~~~ release: address not allocated ~~~~~~~~~~~~~~~~~\n");
+        return;
+    }
+
+    Console::puts("     -> release: found Alloc[");Console::puti(idx);Console::puts("] = ");Console::puti((unsigned int)this->alloclist_start_arr[idx]);Console::puts(" -> "); Console::puti((unsigned int)this->alloclist_end_arr[idx]);Console::puts("\n");
+
+    unsigned long curr_page_release_start_addr = _start_address;
+
+    while(curr_page_release_start_addr != this->alloclist_end_arr[idx]){
+
+        Console::puts("     -> release: releasing page addr = ");Console::puti(curr_page_release_start_addr);Console::puts("\n");
+
+        this->_page_table->free_page(curr_page_release_start_addr >> 12);
+
+        curr_page_release_start_addr += PAGE_SIZE;
+    }
+
+    Console::puts("             ~~~~~~~~~~~~~~~~~~~~~ release: DONE  ~~~~~~~~~~~~~~~~~~~~~\n");
 }
 
 bool VMPool::is_legitimate(unsigned long _address) {

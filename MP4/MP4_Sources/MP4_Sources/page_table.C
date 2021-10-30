@@ -215,8 +215,20 @@ void PageTable::register_pool(VMPool * _vm_pool){
 }
 
 void PageTable::free_page(unsigned long _page_no) {
-   assert(false);
-   Console::puts("freed page\n");
+
+   Console::puts("         -> free_page: To free page no=\n");Console::puti(_page_no);Console::puts("\n");
+
+   unsigned long vaddr = _page_no << 12; 
+   unsigned long pte_of_vaddr = (unsigned long)PTE_address(vaddr);
+
+   unsigned long frame_to_free = pte_of_vaddr >> 12;
+
+   if((unsigned long)pte_of_vaddr & 1){
+         Console::puts("         -> free_page: Freeing valid frame no= ");Console::puti(frame_to_free);Console::puts("\n");
+      this->process_mem_pool->release_frames(frame_to_free);
+   }
+
+   Console::puts("         -> free_page: DONE!\n");
 }
 
 // find PTE of a logical address
