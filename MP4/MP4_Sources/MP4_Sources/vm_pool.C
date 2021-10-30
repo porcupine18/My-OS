@@ -139,7 +139,9 @@ unsigned long VMPool::allocate(unsigned long _size) {
         Console::puts("     -> allocate: Done! Returning valid free region\n");
         return this->alloclist_start_arr[j];
     }
-    
+}
+
+void VMPool::release(unsigned long _start_address) {
     assert(false);
     Console::puts("Released region of memory.\n");
 }
