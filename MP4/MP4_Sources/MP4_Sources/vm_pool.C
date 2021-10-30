@@ -111,7 +111,11 @@ unsigned long VMPool::allocate(unsigned long _size) {
                 Console::puts("     -> allocate: ^^^^^found^^^^^\n");
 
             // find right index in alloc list to insert new region
-            j = 10;
+            j = 0; 
+
+            while(j<512 && !(this->freelist_start_arr[j] == 0 && this->freelist_end_arr[j] == 0)){
+                j++;
+            }
 
                 Console::puts("     -> allocate: use Alloc[");Console::puti(j);Console::puts("] = ");Console::puti((unsigned int)this->alloclist_start_arr[j]);Console::puts(" -> "); Console::puti((unsigned int)this->alloclist_end_arr[j]);Console::puts("\n");
 
@@ -123,7 +127,7 @@ unsigned long VMPool::allocate(unsigned long _size) {
 
             Console::puts("     -> allocate: now Alloc[");Console::puti(j);Console::puts("] = ");Console::puti((unsigned int)this->alloclist_start_arr[j]);Console::puts(" -> "); Console::puti((unsigned int)this->alloclist_end_arr[j]);Console::puts("\n");
             Console::puts("     -> allocate: now Free [");Console::puti(idx);Console::puts("] = ");Console::puti((unsigned int)this->freelist_start_arr[idx]);Console::puts(" -> "); Console::puti((unsigned int)this->freelist_end_arr[idx]);Console::puts("\n");
-            
+
         }
 
         idx++;
