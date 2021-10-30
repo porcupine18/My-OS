@@ -189,8 +189,10 @@ void PageTable::handle_fault(REGS* _r)
    return;
 }                                
 
-void PageTable::register_pool(VMPool * _vm_pool)
-{
+void PageTable::register_pool(VMPool * _vm_pool){
+
+   Console::puts("         -> register_pool: start\n");
+
    _vm_pool->next = NULL;
 
    if(vm_pool_head == NULL){
