@@ -65,7 +65,7 @@ PageTable::PageTable()
    page_dir_ptr[0] = ((unsigned long)page_table_pg_ptr) | 3; // first PDE points to first PTP and valid
 
    for(i = 1; i < ENTRIES_PER_PAGE; i++){
-      page_dir_ptr[i] = 2; // other PDEs are supervisor level
+      page_dir_ptr[i] = 2; 
    };
 
    page_dir_ptr[ENTRIES_PER_PAGE - 1] = ((unsigned long)page_dir_ptr) | 3; // last PDE points to itself and valid
