@@ -116,7 +116,7 @@ void PageTable::handle_fault(REGS* _r)
 {
 
    unsigned long virtual_address = read_cr2(); // 32 bit virtual address that caused fault
-         Console::puts("   fault addr= 0d"); Console::putui((unsigned int)(virtual_address)); Console::puts("\n");
+         Console::puts("         -> handle_fault: fault addr= 0d"); Console::putui((unsigned int)(virtual_address)); Console::puts("\n");
 
    /*_______ check if virtual address is legitimate for any of the VMPools _______*/
    // iterating through linkedlist of VMPools
@@ -125,7 +125,7 @@ void PageTable::handle_fault(REGS* _r)
    int i = 0;
 
    while(curr != NULL){
-      Console::puts("         -> VMPool #=");Console::puti(i);Console::puts(" : ");Console::puti((unsigned int)curr);Console::puts(" \n");
+      Console::puts("         -> handle_fault: VMPool #=");Console::puti(i);Console::puts(" : ");Console::puti((unsigned int)curr);Console::puts(" \n");
       
       if(curr->is_legitimate(virtual_address)){
          vaddr_legit = true;
@@ -135,12 +135,12 @@ void PageTable::handle_fault(REGS* _r)
       i++;
    }
 
-            Console::puts("      Going to assert legitimate vaddr -->\n");
+            Console::puts("         -> handle_fault: Going to assert legitimate vaddr -->\n");
 
 
    assert(vaddr_legit); // kernel aborting
 
-            Console::puts("      Done with assert -->\n");
+            Console::puts("         -> handle_fault: Done with assert -->\n");
 
    /*_______ get PTE and PDE of vddr that faulted _______*/
    unsigned long* pde_of_vaddr = PDE_address(virtual_address); // logical address of PDE for vaddress that page faulted
@@ -148,22 +148,20 @@ void PageTable::handle_fault(REGS* _r)
 
    /*_______ alloc new memory for page fault _______*/
 
-            Console::puts("      Start -->\n");
-
    // make new Table page if it doesn't exist
    if( (*pde_of_vaddr & 1) == 0){ // check Access bit = least significant bit in PDE
-            Console::puts("      Making Table page-->\n");
+            Console::puts("            -> handle_fault: Making Table page-->\n");
 
       // get new Table page from kernel pool
       unsigned long new_ptp_frame_num_phy = current_page_table->process_mem_pool->get_frames(1);
-            Console::puts("      new PTP frame num phy = "); Console::putui((unsigned int)(new_ptp_frame_num_phy)); Console::puts("\n");
+            Console::puts("            -> handle_fault: new PTP frame num phy = "); Console::putui((unsigned int)(new_ptp_frame_num_phy)); Console::puts("\n");
 
       unsigned long* new_ptp_addr_phy = (unsigned long*) (new_ptp_frame_num_phy * PAGE_SIZE);
 
       // init pde and set in directory
       unsigned long new_pde_value = ((unsigned long)new_ptp_addr_phy) | 3;
       *pde_of_vaddr = new_pde_value;
-            Console::puts("   PDE :\n"); print_array_long(&new_pde_value);
+            Console::puts("            -> handle_fault: PDE :\n"); print_array_long(&new_pde_value);
 
       // init all entries in new Page Table page
 
@@ -175,21 +173,21 @@ void PageTable::handle_fault(REGS* _r)
       }   
 
    }
-            Console::puts("      Making Memory page-->\n");
+            Console::puts("         -> handle_fault: Making Memory page-->\n");
 
    //get new frame for memory
    unsigned long memory_frame_num = current_page_table->process_mem_pool->get_frames(1); 
-            Console::puts("      memory frame num = "); Console::putui((unsigned int)(memory_frame_num)); Console::puts("\n");
+            Console::puts("         -> handle_fault: memory frame num = "); Console::putui((unsigned int)(memory_frame_num)); Console::puts("\n");
 
    // make new PTE for Page Table page
    unsigned long* new_mem_addr_phy = (unsigned long*) (memory_frame_num * PAGE_SIZE);
    unsigned long new_pte_value = ((unsigned long)new_mem_addr_phy) | 3;
-            Console::puts("   PTE :\n"); print_array_long(&new_pte_value);
+            Console::puts("         -> handle_fault: PTE :\n"); print_array_long(&new_pte_value);
 
    // init PTE in table page
    *pte_of_vaddr = new_pte_value;
 
-   Console::puts("      +++++++++++++++++++ Handled  page fault +++++++++++++++++++\n");
+   Console::puts("         +++++++++++++++++++ Handled  page fault +++++++++++++++++++\n");
 
    return;
 }                                
