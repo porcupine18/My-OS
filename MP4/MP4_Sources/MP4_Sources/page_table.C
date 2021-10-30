@@ -45,7 +45,7 @@ void PageTable::init_paging(ContFramePool * _kernel_mem_pool,
    process_mem_pool = _process_mem_pool;
    shared_size = shared_size;
 
-   Console::puts("++++++++++++++++ Initialized Paging System ++++++++++++++++\n");
+   Console::puts("\n++++++++++++++++ Initialized Paging System ++++++++++++++++\n");
 }
 
 // constructor for enabling paging (initializes the page directory page and page table pages)
@@ -86,7 +86,7 @@ PageTable::PageTable()
    /*_______initialize page_directory to frame of Page Directory_______*/
    this->page_directory = page_dir_ptr;
 
-   Console::puts("++++++++++++++ Constructed Page Table object ++++++++++++++\n");
+   Console::puts("\n++++++++++++++ Constructed Page Table object ++++++++++++++\n");
 }
 
 
@@ -97,7 +97,7 @@ void PageTable::load()
    current_page_table = this;
    write_cr3((unsigned long)(this->page_directory));
 
-   Console::puts("++++++++++++++++++++ Loaded page table ++++++++++++++++++++\n");
+   Console::puts("\n++++++++++++++++++++ Loaded page table ++++++++++++++++++++\n");
 }
 
 // set paging flags
@@ -108,7 +108,7 @@ void PageTable::enable_paging()
    paging_enabled = 1;
    write_cr0(read_cr0() | 0x80000000);
 
-   Console::puts("+++++++++++++++++++++ Enabled  paging +++++++++++++++++++++\n");
+   Console::puts("\n+++++++++++++++++++++ Enabled  paging +++++++++++++++++++++\n");
 }
 
 // handles page faults, if page doesn't exist gets page from memory
@@ -178,7 +178,7 @@ void PageTable::handle_fault(REGS* _r)
    *pte_of_vaddr = new_pte_value;
             //Console::puts("   PTE :\n"); print_array_long(&new_pte_value);
 
-   Console::puts("+++++++++++++++++++ Handled  page fault +++++++++++++++++++\n");
+   Console::puts("      +++++++++++++++++++ Handled  page fault +++++++++++++++++++\n");
 
    return;
 }                                
@@ -195,7 +195,7 @@ void PageTable::register_pool(VMPool * _vm_pool)
       vm_pool_tail = _vm_pool;
    }
 
-   Console::puts("         ++++++++++ Registered new VM pool ++++++++++\n");
+   Console::puts("      ++++++++++ Registered new VM pool ++++++++++\n");
 }
 
 void PageTable::free_page(unsigned long _page_no) {
