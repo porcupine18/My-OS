@@ -66,8 +66,6 @@ VMPool::VMPool(unsigned long  _base_address,
     //initialize arrays
     
     // setting all elements to 0
-
-    /*
     for (unsigned int i = 0; i < 512; i++){
         freelist_start_arr  [i] = NULL;
         freelist_end_arr    [i] = NULL;
@@ -75,19 +73,13 @@ VMPool::VMPool(unsigned long  _base_address,
         alloclist_end_arr   [i] = NULL;
     }
                 Console::puts("         -> cleaned lists\n");
-    */
-
+    
     freelist_start_arr[0] = this->_base_address + (2*PAGE_SIZE);
-                Console::puts("         -> first free list value init start\n");
-
     freelist_end_arr[0]   = this->_base_address + this->_size -1;
-                Console::puts("         -> first free list value init end\n");
 
     alloclist_start_arr[0] = this->_base_address;
-                Console::puts("         -> first alloc list value init start\n");
-
     alloclist_end_arr[0]   = this->_base_address + (2*PAGE_SIZE) - 1;
-                Console::puts("         -> first alloc list value init end\n");
+                Console::puts("         -> initialized free and alloc lists\n");
 
 
 
