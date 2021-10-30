@@ -187,7 +187,7 @@ void PageTable::handle_fault(REGS* _r)
             Console::puts("   PTE :\n"); print_array_long(&new_pte_value);
 
    // init PTE in table page
-   *pte_of_vaddr = new_pte_value;
+   *PTE_address(virtual_address) = new_pte_value;
 
    Console::puts("      +++++++++++++++++++ Handled  page fault +++++++++++++++++++\n");
 
