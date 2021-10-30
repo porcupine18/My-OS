@@ -55,10 +55,10 @@ VMPool::VMPool(unsigned long  _base_address,
                 //Console::puts("         -> initialized alloc list addr\n");
 
 
-                Console::puts("         -> constructor: freelist_start_arr  = ");Console::puti((unsigned int)this->freelist_start_arr);Console::puts(" + 512 = ");Console::puti((unsigned int)(this->freelist_start_arr) + 2047);Console::puts("\n");
-                Console::puts("         -> constructor: freelist_end_arr    = ");Console::puti((unsigned int)this->freelist_end_arr);Console::puts(" + 512 = ");Console::puti((unsigned int)(this->freelist_end_arr) + 2047);Console::puts("\n");
-                Console::puts("         -> constructor: alloclist_start_arr = ");Console::puti((unsigned int)this->alloclist_start_arr);Console::puts(" + 512 = ");Console::puti((unsigned int)(this->alloclist_start_arr) + 2047);Console::puts("\n");
-                Console::puts("         -> constructor: alloclist_end_arr   = ");Console::puti((unsigned int)this->alloclist_end_arr);Console::puts(" + 512 = ");Console::puti((unsigned int)(this->alloclist_end_arr) + 2047);Console::puts("\n");
+                Console::puts("         -> constructor: freelist_start_arr  = ");Console::puti((unsigned int)this->freelist_start_arr);Console::puts(" + 511 = ");Console::puti((unsigned int)(this->freelist_start_arr) + 2047);Console::puts("\n");
+                Console::puts("         -> constructor: freelist_end_arr    = ");Console::puti((unsigned int)this->freelist_end_arr);Console::puts(" + 511 = ");Console::puti((unsigned int)(this->freelist_end_arr) + 2047);Console::puts("\n");
+                Console::puts("         -> constructor: alloclist_start_arr = ");Console::puti((unsigned int)this->alloclist_start_arr);Console::puts(" + 511 = ");Console::puti((unsigned int)(this->alloclist_start_arr) + 2047);Console::puts("\n");
+                Console::puts("         -> constructor: alloclist_end_arr   = ");Console::puti((unsigned int)this->alloclist_end_arr);Console::puts(" + 511 = ");Console::puti((unsigned int)(this->alloclist_end_arr) + 2047);Console::puts("\n");
 
 
 
@@ -79,7 +79,9 @@ VMPool::VMPool(unsigned long  _base_address,
     alloclist_start_arr[0] = this->_base_address;
     alloclist_end_arr[0]   = this->_base_address + (2*PAGE_SIZE) - 1;
                 Console::puts("         -> initialized free and alloc lists\n");
-
+                
+                Console::puts("         -> constructor: Free [0] = ");Console::puti((unsigned int)this->freelist_start_arr[0]);Console::puts(" ->"); Console::puti((unsigned int)this->freelist_end_arr[0]);Console::puts("\n");
+                Console::puts("         -> constructor: Alloc[0] = ");Console::puti((unsigned int)this->alloclist_start_arr[0]);Console::puts(" ->"); Console::puti((unsigned int)this->alloclist_end_arr[0]);Console::puts("\n");
 
     Console::puts("     ~~~~~~~~~~~~~~~~~ Constructed new VMPool ~~~~~~~~~~~~~~~~~\n");    
 }
