@@ -55,6 +55,13 @@ VMPool::VMPool(unsigned long  _base_address,
                 Console::puts("         -> initialized alloc list addr\n");
 
 
+                Console::puts("         -> constructor: freelist_start_arr  = ");Console::puti((unsigned int)this->freelist_start_arr);Console::puts("\n");
+                Console::puts("         -> constructor: freelist_end_arr    = ");Console::puti((unsigned int)this->freelist_end_arr);Console::puts("\n");
+                Console::puts("         -> constructor: alloclist_start_arr = ");Console::puti((unsigned int)this->alloclist_start_arr);Console::puts("\n");
+                Console::puts("         -> constructor: alloclist_end_arr   = ");Console::puti((unsigned int)this->alloclist_end_arr);Console::puts("\n");
+
+
+
     //initialize arrays
     
     // setting all elements to 0
