@@ -195,20 +195,17 @@ void Console::putch(const char _c){
 
 /* Uses the above routine to output a string... */
 void Console::puts(const char * _s) {
-    /*
+    
     for (int i = 0; i < strlen(_s); i++) {
         putch(_s[i]);
     }
-    */
 }
 
 void Console::puti(const int _n) {
-    /*
     char foostr[15];
 
     int2str(_n, foostr);
     puts(foostr);
-    */
 }
 
 void Console::putui(const unsigned int _n) {
