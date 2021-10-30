@@ -88,8 +88,11 @@ VMPool::VMPool(unsigned long  _base_address,
 
 unsigned long VMPool::allocate(unsigned long _size) {
 
+            Console::puts("     -> allocate: start\n");
+
     /*_______ convert size to pages (ceiling) _______*/
     unsigned int pages_to_alloc = _size/PAGE_SIZE + (_size%PAGE_SIZE != 0);
+            Console::puts("     -> allocate: pages_to_alloc = ");Console::puti(pages_to_alloc);Console::puts("\n");
 
     /*_______ initialize free and alloc lists _______*/
     bool found_free_region = false;
@@ -99,9 +102,12 @@ unsigned long VMPool::allocate(unsigned long _size) {
     // check all non-empty free list elements
     while( !((this->freelist_start_arr[idx]==0) && (this->freelist_end_arr[idx]==0)) && idx<512){
 
+                Console::puts("     -> allocate:    Free [");Console::puti(idx);Console::puts("] = ");Console::puti((unsigned int)this->freelist_start_arr[idx]);Console::puts(" ->"); Console::puti((unsigned int)this->freelist_end_arr[idx]);Console::puts("\n");
+
         // found area in free list to use
         if( ((this->freelist_end_arr[idx] - this->freelist_start_arr[idx])/PAGE_SIZE) > pages_to_alloc ){
             found_free_region = true;
+                Console::puts("     -> allocate: ^^^^^found^^^^^\n");
 
             // find right index in alloc list to insert new region
             j = 0; 
@@ -109,30 +115,35 @@ unsigned long VMPool::allocate(unsigned long _size) {
                 j++;
             }
             
+            Console::puts("     -> allocate:    Alloc[");Console::puti(j);Console::puts("] = ");Console::puti((unsigned int)this->alloclist_start_arr[j]);Console::puts(" ->"); Console::puti((unsigned int)this->alloclist_end_arr[j]);Console::puts("\n");
+
             this->alloclist_start_arr[j] = this->freelist_start_arr[idx];
             this->alloclist_end_arr[j]   = this->freelist_start_arr[idx] + (pages_to_alloc * PAGE_SIZE) - 1;
 
             // take off memory from found region
             this->freelist_start_arr[idx] = this->freelist_start_arr[idx] + (pages_to_alloc * PAGE_SIZE);
 
+            Console::puts("     -> allocate: now Alloc[");Console::puti(j);Console::puts("] = ");Console::puti((unsigned int)this->alloclist_start_arr[j]);Console::puts(" ->"); Console::puti((unsigned int)this->alloclist_end_arr[j]);Console::puts("\n");
+            Console::puts("     -> allocate: now Free [");Console::puti(idx);Console::puts("] = ");Console::puti((unsigned int)this->freelist_start_arr[idx]);Console::puts(" ->"); Console::puti((unsigned int)this->freelist_end_arr[idx]);Console::puts("\n");
+
         }
 
         idx++;
     }
 
-    if(found_free_region == false)
+    if(found_free_region == false){
+        Console::puts("     -> allocate: NO VALID FREE REGION FOUND\n");
         return 0;
-    else
+    }
+    else{
+        Console::puts("     -> allocate: Done! Returning valid free region\n");
         return this->alloclist_start_arr[j];
+    }
     
-
-}
-/*
-void VMPool::release(unsigned long _start_address) {
     assert(false);
     Console::puts("Released region of memory.\n");
 }
-*/
+
 bool VMPool::is_legitimate(unsigned long _address) {
 
                 Console::puts("             -> is_legitimate: base_address     =");Console::puti((unsigned int)this->_base_address);Console::puts("\n");

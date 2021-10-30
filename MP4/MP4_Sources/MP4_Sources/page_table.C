@@ -214,8 +214,8 @@ void PageTable::register_pool(VMPool * _vm_pool){
 }
 
 void PageTable::free_page(unsigned long _page_no) {
-    assert(false);
-    Console::puts("freed page\n");
+   assert(false);
+   Console::puts("freed page\n");
 }
 
 // find PTE of a logical address
