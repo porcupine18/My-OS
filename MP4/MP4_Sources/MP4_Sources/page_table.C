@@ -122,10 +122,16 @@ void PageTable::handle_fault(REGS* _r)
    // iterating through linkedlist of VMPools
    VMPool* curr = vm_pool_head;
    bool vaddr_legit = false;
+   int i = 0;
+
    while(curr != NULL){
+
+      Console::puts("         -> VMPool #=");Console::puti(i);Console::puts(" : ");Console::puti((unsigned int)curr);Console::puts(" \n");
+      
       if(curr->is_legitimate(virtual_address)){
          vaddr_legit = true;
       }
+
       curr = curr->next;
    }
    
@@ -185,15 +191,18 @@ void PageTable::handle_fault(REGS* _r)
 
 void PageTable::register_pool(VMPool * _vm_pool)
 {
+   _vm_pool->next = NULL;
+
    if(vm_pool_head == NULL){
       vm_pool_head = _vm_pool;
-      _vm_pool->next = NULL;
    }
+
    else{
-      _vm_pool->next = NULL;
       vm_pool_tail->next = _vm_pool;
       vm_pool_tail = _vm_pool;
    }
+
+   Console::puts("         new VMPool element = ");Console::puti((unsigned int)_vm_pool);Console::puts("\n");
 
    Console::puts("      ++++++++++ Registered new VM pool ++++++++++\n");
 }
