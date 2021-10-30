@@ -216,7 +216,7 @@ void PageTable::register_pool(VMPool * _vm_pool){
 
 void PageTable::free_page(unsigned long _page_no) {
 
-   Console::puts("         -> free_page: To free page no=\n");Console::puti(_page_no);Console::puts("\n");
+   Console::puts("         -> free_page: To free page no=");Console::puti(_page_no);Console::puts("\n");
 
    unsigned long vaddr = _page_no << 12; 
    unsigned long pte_of_vaddr = (unsigned long)PTE_address(vaddr);
