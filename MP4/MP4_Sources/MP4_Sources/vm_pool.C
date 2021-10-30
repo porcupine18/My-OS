@@ -95,7 +95,9 @@ unsigned long VMPool::allocate(unsigned long _size) {
             Console::puts("     -> allocate: pages_to_alloc = ");Console::puti(pages_to_alloc);Console::puts("\n");
 
     /*_______ initialize free and alloc lists _______*/
-    bool found_free_region = false;
+    bool found_free_region_free = false;
+    bool found_free_region_alloc = false;
+
     unsigned int idx = 0;
     
     unsigned int j = 0; 
@@ -106,16 +108,19 @@ unsigned long VMPool::allocate(unsigned long _size) {
 
         // found area in free list to use
         if( ((this->freelist_end_arr[idx] - this->freelist_start_arr[idx])/PAGE_SIZE) > pages_to_alloc ){
-            found_free_region = true;
+            found_free_region_free = true;
                 Console::puts("     -> allocate: ^^^^^found^^^^^\n");
 
             // find right index in alloc list to insert new region
             j = 0; 
-            while(this->freelist_start_arr[j] != 0 && this->freelist_end_arr[j] != 0){
+            while(!(this->freelist_start_arr[j] == 0 && this->freelist_end_arr[j] == 0) && j<512){
                 Console::puts("     -> allocate:     Alloc[");Console::puti(j);Console::puts("] = ");Console::puti((unsigned int)this->alloclist_start_arr[j]);Console::puts(" -> "); Console::puti((unsigned int)this->alloclist_end_arr[j]);Console::puts("\n");
+                found_free_region_alloc = true;
                 j++;
             }
-                
+            
+            assert(found_free_region_alloc)
+            
                 Console::puts("     -> allocate:     Alloc[");Console::puti(j);Console::puts("] = ");Console::puti((unsigned int)this->alloclist_start_arr[j]);Console::puts(" -> "); Console::puti((unsigned int)this->alloclist_end_arr[j]);Console::puts("\n");
 
             this->alloclist_start_arr[j] = this->freelist_start_arr[idx];
@@ -132,7 +137,7 @@ unsigned long VMPool::allocate(unsigned long _size) {
         idx++;
     }
 
-    if(found_free_region == false){
+    if(found_free_region_free == false){
         Console::puts("     -> allocate: NO VALID FREE REGION FOUND\n");
         return 0;
     }
