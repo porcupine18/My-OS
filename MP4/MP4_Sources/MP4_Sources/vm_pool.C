@@ -162,13 +162,13 @@ void VMPool::release(unsigned long _start_address) {
 
     unsigned long curr_page_release_start_addr = _start_address;
 
-    while(curr_page_release_start_addr != this->alloclist_end_arr[idx]){
+    while(curr_page_release_start_addr >= this->alloclist_end_arr[idx]){
 
         Console::puts("     -> release: releasing page addr = ");Console::puti(curr_page_release_start_addr);Console::puts("\n");
 
         this->_page_table->free_page(curr_page_release_start_addr >> 12);
 
-        curr_page_release_start_addr += PAGE_SIZE;
+        curr_page_release_start_addr += PAGE_SIZE ;
     }
 
     Console::puts("             ~~~~~~~~~~~~~~~~~~~~~ release: DONE  ~~~~~~~~~~~~~~~~~~~~~\n");
