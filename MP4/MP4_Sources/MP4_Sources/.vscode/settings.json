@@ -4,6 +4,7 @@
         "vm_pool.C": "cpp",
         "cont_frame_pool.C": "cpp",
         "kernel.C": "cpp",
-        "page_table (copy).C": "cpp"
+        "page_table (copy).C": "cpp",
+        "console.C": "cpp"
     }
 }
