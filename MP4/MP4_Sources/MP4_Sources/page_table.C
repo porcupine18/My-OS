@@ -78,7 +78,7 @@ PageTable::PageTable()
 
    for(i = 0; i < ENTRIES_PER_PAGE; i++){
       
-      page_table_ptr_tmp[i] = (0) | 3;
+      page_table_ptr_tmp[i] = (virtual_address) | 3;
 
       virtual_address = virtual_address + 4096;
    }   
@@ -155,12 +155,12 @@ void PageTable::handle_fault(REGS* _r)
             Console::puts("   PDE :\n"); print_array_long(&new_pde_value);
 
       // init all entries in new Page Table page
+      unsigned long* new_ptp_vaddr = (unsigned long*) ((new_ptp_frame_num_phy << 12) | 0xFFC00000); // getting vaddr of ptp for iteration
+ 
       unsigned long iter_vaddr = 0;
 
-      //unsigned long* new_ptp_vaddr =(unsigned long*) (*pde_of_vaddr>>22) & 0xFFFFF000; // getting vaddr of ptp for iteration
-      unsigned long* new_ptp_vaddr = (unsigned long*) ((new_ptp_frame_num_phy << 12) | 0xFFC00000); // getting vaddr of ptp for iteration
-
       for(int i = 0; i < ENTRIES_PER_PAGE; i++){
+         Console::puts("      i = "); Console::putui((unsigned int)(i)); Console::puts("\n");
          new_ptp_vaddr[i] = (iter_vaddr) | 4;
          iter_vaddr += 4096;
       }   
