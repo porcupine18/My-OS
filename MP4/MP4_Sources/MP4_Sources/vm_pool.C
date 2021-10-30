@@ -120,7 +120,7 @@ unsigned long VMPool::allocate(unsigned long _size) {
                 j++;
             }
             */
-           
+
             j = 0; 
 
             while(j<512){
@@ -131,8 +131,7 @@ unsigned long VMPool::allocate(unsigned long _size) {
                 j++;
             }
 
-            j++;
-            
+                Console::puts("     -> allocate:     Alloc[");Console::puti(j+1);Console::puts("] = ");Console::puti((unsigned int)this->alloclist_start_arr[j+1]);Console::puts(" -> "); Console::puti((unsigned int)this->alloclist_end_arr[j]);Console::puts("\n");            
                 Console::puts("     -> allocate:     Alloc[");Console::puti(j);Console::puts("] = ");Console::puti((unsigned int)this->alloclist_start_arr[j]);Console::puts(" -> "); Console::puti((unsigned int)this->alloclist_end_arr[j]);Console::puts("\n");
 
             this->alloclist_start_arr[j] = this->freelist_start_arr[idx];
