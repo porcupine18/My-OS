@@ -158,13 +158,13 @@ void VMPool::release(unsigned long _start_address) {
         return;
     }
 
-    Console::puts("     -> release: found Alloc[");Console::puti(idx);Console::puts("] = ");Console::puti((unsigned int)this->alloclist_start_arr[idx]);Console::puts(" -> "); Console::puti((unsigned int)this->alloclist_end_arr[idx]);Console::puts("\n");
+    Console::puts("         -> release: found Alloc[");Console::puti(idx);Console::puts("] = ");Console::puti((unsigned int)this->alloclist_start_arr[idx]);Console::puts(" -> "); Console::puti((unsigned int)this->alloclist_end_arr[idx]);Console::puts("\n");
 
     unsigned long curr_page_release_start_addr = _start_address;
 
     while(curr_page_release_start_addr >= this->alloclist_end_arr[idx]){
 
-        Console::puts("     -> release: releasing page addr = ");Console::puti(curr_page_release_start_addr);Console::puts("\n");
+        Console::puts("         -> release: releasing page addr = ");Console::puti(curr_page_release_start_addr);Console::puts("\n");
 
         this->_page_table->free_page(curr_page_release_start_addr >> 12);
 
