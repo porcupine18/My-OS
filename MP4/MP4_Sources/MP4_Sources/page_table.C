@@ -219,8 +219,8 @@ void PageTable::free_page(unsigned long _page_no) {
    Console::puts("         -> free_page: To free page no=");Console::puti(_page_no);Console::puts("\n");
 
    unsigned long vaddr = _page_no << 12; 
-   unsigned long pte_of_vaddr = (unsigned long)PTE_address(vaddr);
-         Console::puts("         -> free_page: PTE :"); print_array_long(*pte_of_vaddr);
+   unsigned long* pte_of_vaddr = PTE_address(vaddr);
+         Console::puts("         -> free_page: PTE :"); print_array_long(pte_of_vaddr);
 
 
    unsigned long frame_to_free = pte_of_vaddr >> 12;
