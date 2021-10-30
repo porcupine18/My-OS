@@ -116,7 +116,8 @@ unsigned long VMPool::allocate(unsigned long _size) {
             while(j<512 && !(this->freelist_start_arr[j] == 0 && this->freelist_end_arr[j] == 0)){
                 j++;
             }
-
+            j++;
+            
                 Console::puts("     -> allocate: use Alloc[");Console::puti(j);Console::puts("] = ");Console::puti((unsigned int)this->alloclist_start_arr[j]);Console::puts(" -> "); Console::puti((unsigned int)this->alloclist_end_arr[j]);Console::puts("\n");
 
             this->alloclist_start_arr[j] = this->freelist_start_arr[idx];
