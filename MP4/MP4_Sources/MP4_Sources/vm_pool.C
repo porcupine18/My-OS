@@ -150,6 +150,7 @@ void VMPool::release(unsigned long _start_address) {
     unsigned int idx = 0;
 
     while(idx<512 && this->alloclist_start_arr[idx] != _start_address){
+        Console::puts("         -> release:       Alloc[");Console::puti(idx);Console::puts("] = ");Console::puti((unsigned int)this->alloclist_start_arr[idx]);Console::puts(" -> "); Console::puti((unsigned int)this->alloclist_end_arr[idx]);Console::puts("\n");
         idx++;
     }
 
@@ -174,7 +175,7 @@ void VMPool::release(unsigned long _start_address) {
     unsigned int j =0;
 
     while(j<512 && !(this->freelist_start_arr[j]==0 && (this->freelist_end_arr[j]==0))){
-        Console::puts("         -> release:     Free [");Console::puti(j);Console::puts("] = ");Console::puti((unsigned int)this->freelist_start_arr[j]);Console::puts(" -> "); Console::puti((unsigned int)this->freelist_end_arr[j]);Console::puts("\n");
+        Console::puts("         -> release:       Free [");Console::puti(j);Console::puts("] = ");Console::puti((unsigned int)this->freelist_start_arr[j]);Console::puts(" -> "); Console::puti((unsigned int)this->freelist_end_arr[j]);Console::puts("\n");
         j++;
     }
 
@@ -186,7 +187,7 @@ void VMPool::release(unsigned long _start_address) {
     this->freelist_start_arr[j] = _start_address;
     this->freelist_end_arr[j]   = this->alloclist_end_arr[idx];
 
-    Console::puts("         -> release: new Free [");Console::puti(j);Console::puts("] = ");Console::puti((unsigned int)this->freelist_start_arr[j]);Console::puts(" -> "); Console::puti((unsigned int)this->freelist_end_arr[j]);Console::puts("\n");
+    Console::puts("         -> release:   new Free [");Console::puti(j);Console::puts("] = ");Console::puti((unsigned int)this->freelist_start_arr[j]);Console::puts(" -> "); Console::puti((unsigned int)this->freelist_end_arr[j]);Console::puts("\n");
 
 
     Console::puts("             ~~~~~~~~~~~~~~~~~~~~~ release: DONE  ~~~~~~~~~~~~~~~~~~~~~\n");
