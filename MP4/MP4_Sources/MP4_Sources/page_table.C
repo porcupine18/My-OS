@@ -125,7 +125,6 @@ void PageTable::handle_fault(REGS* _r)
    int i = 0;
 
    while(curr != NULL){
-      i++;
       Console::puts("         -> VMPool #=");Console::puti(i);Console::puts(" : ");Console::puti((unsigned int)curr);Console::puts(" \n");
       
       if(curr->is_legitimate(virtual_address)){
@@ -133,6 +132,7 @@ void PageTable::handle_fault(REGS* _r)
       }
 
       curr = curr->next;
+      i++;
    }
    
    assert(vaddr_legit); // kernel aborting
