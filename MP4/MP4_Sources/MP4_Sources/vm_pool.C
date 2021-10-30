@@ -48,19 +48,16 @@ VMPool::VMPool(unsigned long  _base_address,
     
     // get pointers for each of the arrays
     this->freelist_start_arr = (unsigned long*) this->_base_address;
-    this->freelist_end_arr   = (unsigned long*) this->_base_address + (PAGE_SIZE/2);
+    this->freelist_end_arr   = (unsigned long*) (this->_base_address + (PAGE_SIZE/2));
                 Console::puts("         -> initialized free list addr\n");
 
-    this->alloclist_start_arr = (unsigned long*) this->_base_address + PAGE_SIZE;
-    this->alloclist_end_arr   = (unsigned long*) this->_base_address + (PAGE_SIZE+PAGE_SIZE/2);
+    this->alloclist_start_arr = (unsigned long*) (this->_base_address + PAGE_SIZE);
+    this->alloclist_end_arr   = (unsigned long*) (this->_base_address + (PAGE_SIZE+PAGE_SIZE/2));
                 Console::puts("         -> initialized alloc list addr\n");
 
 
                 Console::puts("         -> constructor: freelist_start_arr  = ");Console::puti((unsigned int)this->freelist_start_arr);Console::puts("\n");
-                Console::puts("         -> constructor: freelist_end_arr    = ");Console::puti((unsigned int)this->freelist_end_arr);Console::puts("\n");
-                
-                Console::puts("         -> constructor: freelist_end_arr    = ");Console::puti(this->_base_address + (PAGE_SIZE/2));Console::puts("\n");
-                
+                Console::puts("         -> constructor: freelist_end_arr    = ");Console::puti((unsigned int)this->freelist_end_arr);Console::puts("\n");                
                 Console::puts("         -> constructor: alloclist_start_arr = ");Console::puti((unsigned int)this->alloclist_start_arr);Console::puts("\n");
                 Console::puts("         -> constructor: alloclist_end_arr   = ");Console::puti((unsigned int)this->alloclist_end_arr);Console::puts("\n");
 
@@ -148,8 +145,6 @@ void VMPool::release(unsigned long _start_address) {
 bool VMPool::is_legitimate(unsigned long _address) {
 
                 Console::puts("         -> is_legitimate: base_address     =");Console::puti((unsigned int)this->_base_address);Console::puts("\n");
-                Console::puts("         -> is_legitimate: first check end  =");Console::puti((unsigned int)(this->_base_address + PAGE_SIZE*2));Console::puts("\n");
-                Console::puts("         -> is_legitimate: size             =");Console::puti((unsigned int)this->_size);Console::puts("\n");
                 Console::puts("         -> is_legitimate: checking address =");Console::puti((unsigned int)_address);Console::puts("\n");
 
     // if address belongs to free/alloc lists' region
