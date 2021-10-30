@@ -137,7 +137,7 @@ unsigned long VMPool::allocate(unsigned long _size) {
         return 0;
     }
     else{
-        Console::puts("     -> allocate: Done! Returning valid free region\n");
+        Console::puts("     -> allocate: Done! Returning valid alloc start address\n");
         return this->alloclist_start_arr[j];
     }
 }

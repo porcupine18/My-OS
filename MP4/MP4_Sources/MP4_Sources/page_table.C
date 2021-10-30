@@ -129,6 +129,7 @@ void PageTable::handle_fault(REGS* _r)
       
       if(curr->is_legitimate(virtual_address)){
          vaddr_legit = true;
+         break;
       }
 
       curr = curr->next;
