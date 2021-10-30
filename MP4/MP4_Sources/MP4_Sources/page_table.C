@@ -230,8 +230,8 @@ void PageTable::free_page(unsigned long _page_no) {
       this->process_mem_pool->release_frames(frame_to_free);
    }
 
-   pte_of_vaddr = PTE_address(vaddr);
-   Console::puts("         -> free_page: new PTE = "); print_array_long(pte_of_vaddr);
+   *pte_of_vaddr = *pte_of_vaddr >> 2;
+   *pte_of_vaddr = *pte_of_vaddr << 2;   
 
 
    Console::puts("         -> free_page: DONE!\n");
