@@ -102,7 +102,7 @@ unsigned long VMPool::allocate(unsigned long _size) {
     // check all non-empty free list elements
     while( !((this->freelist_start_arr[idx]==0) && (this->freelist_end_arr[idx]==0)) && idx<512){
 
-                Console::puts("     -> allocate:     Free [");Console::puti(idx);Console::puts("] = ");Console::puti((unsigned int)this->freelist_start_arr[idx]);Console::puts(" ->"); Console::puti((unsigned int)this->freelist_end_arr[idx]);Console::puts("\n");
+                Console::puts("     -> allocate:     Free [");Console::puti(idx);Console::puts("] = ");Console::puti((unsigned int)this->freelist_start_arr[idx]);Console::puts(" -> "); Console::puti((unsigned int)this->freelist_end_arr[idx]);Console::puts("\n");
 
         // found area in free list to use
         if( ((this->freelist_end_arr[idx] - this->freelist_start_arr[idx])/PAGE_SIZE) > pages_to_alloc ){
@@ -122,8 +122,8 @@ unsigned long VMPool::allocate(unsigned long _size) {
             // take off memory from found region
             this->freelist_start_arr[idx] = this->freelist_start_arr[idx] + (pages_to_alloc * PAGE_SIZE);
 
-            Console::puts("     -> allocate: now Alloc[");Console::puti(j);Console::puts("] = ");Console::puti((unsigned int)this->alloclist_start_arr[j]);Console::puts(" ->"); Console::puti((unsigned int)this->alloclist_end_arr[j]);Console::puts("\n");
-            Console::puts("     -> allocate: now Free [");Console::puti(idx);Console::puts("] = ");Console::puti((unsigned int)this->freelist_start_arr[idx]);Console::puts(" ->"); Console::puti((unsigned int)this->freelist_end_arr[idx]);Console::puts("\n");
+            Console::puts("     -> allocate: now Alloc[");Console::puti(j);Console::puts("] = ");Console::puti((unsigned int)this->alloclist_start_arr[j]);Console::puts(" -> "); Console::puti((unsigned int)this->alloclist_end_arr[j]);Console::puts("\n");
+            Console::puts("     -> allocate: now Free [");Console::puti(idx);Console::puts("] = ");Console::puti((unsigned int)this->freelist_start_arr[idx]);Console::puts(" -> "); Console::puti((unsigned int)this->freelist_end_arr[idx]);Console::puts("\n");
 
         }
 
