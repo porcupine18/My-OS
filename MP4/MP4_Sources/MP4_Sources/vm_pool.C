@@ -131,8 +131,10 @@ unsigned long VMPool::allocate(unsigned long _size) {
                 j++;
             }
 
-                Console::puts("     -> allocate:     Alloc[");Console::puti(j+1);Console::puts("] = ");Console::puti((unsigned int)this->alloclist_start_arr[j+1]);Console::puts(" -> "); Console::puti((unsigned int)this->alloclist_end_arr[j]);Console::puts("\n");            
                 Console::puts("     -> allocate:     Alloc[");Console::puti(j);Console::puts("] = ");Console::puti((unsigned int)this->alloclist_start_arr[j]);Console::puts(" -> "); Console::puti((unsigned int)this->alloclist_end_arr[j]);Console::puts("\n");
+                Console::puts("     -> allocate:     Alloc[");Console::puti(j+1);Console::puts("] = ");Console::puti((unsigned int)this->alloclist_start_arr[j+1]);Console::puts(" -> "); Console::puti((unsigned int)this->alloclist_end_arr[j+1]);Console::puts("\n");            
+                Console::puts("     -> allocate:     Alloc[");Console::puti(j+2);Console::puts("] = ");Console::puti((unsigned int)this->alloclist_start_arr[j+2]);Console::puts(" -> "); Console::puti((unsigned int)this->alloclist_end_arr[j+2]);Console::puts("\n");            
+
 
             this->alloclist_start_arr[j] = this->freelist_start_arr[idx];
             this->alloclist_end_arr[j]   = this->freelist_start_arr[idx] + (pages_to_alloc * PAGE_SIZE) - 1;
