@@ -218,6 +218,7 @@ bool VMPool::is_legitimate(unsigned long _address) {
         
             // found region where address belongs to
             if((_address >= this->alloclist_start_arr[idx]) && (_address < this->alloclist_end_arr[idx])){
+                Console::puts("         -> release: found Alloc[");Console::puti(idx);Console::puts("] = ");Console::puti((unsigned int)this->alloclist_start_arr[idx]);Console::puts(" -> "); Console::puti((unsigned int)this->alloclist_end_arr[idx]);Console::puts("\n");
                 Console::puts("             ~~~~~~~~~~~ is_legitimate: DONE (in a VMPool)  ~~~~~~~~~~~\n");
                 return true;
             }
