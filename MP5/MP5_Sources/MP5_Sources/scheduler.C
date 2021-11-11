@@ -53,6 +53,8 @@ void Scheduler::yield(){
 
 void Scheduler::resume(Thread * _thread) {
 
+  Console::puts("     -> resume: start\n");
+
   _thread->next = NULL;
 
   Thread* curr = this->ready_head;
@@ -71,14 +73,12 @@ void Scheduler::resume(Thread * _thread) {
 
   this->ready_tail->next = _thread;
   this->ready_tail = _thread;
-  this->ready_tail = _thread;
-
 
   Console::puts("++++++++++++++++ Added thread to ready ++++++++++++++++\n");
 }
 
 void Scheduler::add(Thread * _thread) {
-  
+  Console::puts("     -> add: start\n");
   resume(_thread);
 }
 
