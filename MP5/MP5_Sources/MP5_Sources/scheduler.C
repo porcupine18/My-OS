@@ -37,26 +37,13 @@ Scheduler::Scheduler() {
 
 void Scheduler::yield(){
 
-        Console::puts("     -> yield: start\n");
-
-  
   Thread* curr = Thread::CurrentThread();
-
-
-  // /*__________ assert and pop current from ready __________*/
-  assert(curr == this->ready_head);
-  this->ready_head = curr->next;
-
-         Console::puts("     -> yield: asserted and popped curr\n");  
-
-  // /*__________ dispatch to next __________*/
-  
-        Console::puts("     -> yield: going to dispatch\n");  
 
   if(curr->next == NULL){
     Thread::dispatch_to(curr);
   }
   else{
+    this->ready_head = curr->next;
     Thread::dispatch_to(curr->next);    
   }
   
