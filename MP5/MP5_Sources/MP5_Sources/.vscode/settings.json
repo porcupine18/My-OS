@@ -5,6 +5,7 @@
         "mem_pool.C": "cpp",
         "frame_pool.C": "cpp",
         "exceptions.C": "cpp",
-        "scheduler.C": "cpp"
+        "scheduler.C": "cpp",
+        "console.C": "cpp"
     }
 }

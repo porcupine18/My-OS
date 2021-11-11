@@ -76,12 +76,15 @@ private:
   static int csr_x;                   /* position of cursor              */
   static int csr_y;
   static unsigned short * textmemptr; /* text pointer */
+  static bool redirect_output; 
 public:
   
   /* -- INITIALIZER (we have no constructor, there is no memory mgmt yet.) */
   static void init(unsigned char _fore_color = WHITE, 
                    unsigned char _back_color = BLACK);
   
+  static void output_redirection(bool _on_off);
+ 
   static void scroll();
 
   static void move_cursor();
