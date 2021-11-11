@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "kernel.C": "cpp",
+        "thread.C": "cpp",
+        "mem_pool.C": "cpp",
+        "frame_pool.C": "cpp",
+        "exceptions.C": "cpp",
+        "scheduler.C": "cpp"
+    }
+}
