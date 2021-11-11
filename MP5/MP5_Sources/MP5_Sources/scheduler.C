@@ -53,7 +53,7 @@ void Scheduler::yield(){
 
 void Scheduler::resume(Thread * _thread) {
 
-  Console::puts("     -> resume: start\n");
+        Console::puts("     -> resume: start\n");
 
   _thread->next = NULL;
 
@@ -63,13 +63,18 @@ void Scheduler::resume(Thread * _thread) {
   }
   Console::puts("\n");  
 
+
   if(this->ready_head == NULL){
-    
+
+    Console::puts("     -> resume: first element adding\n");
+
     this->ready_head = _thread;
     this->ready_tail = _thread;
 
     return;
   }
+
+  Console::puts("     -> resume: adding to end\n");
 
   this->ready_tail->next = _thread;
   this->ready_tail = _thread;
