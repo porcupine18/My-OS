@@ -305,8 +305,8 @@ int main() {
 
     /* WE ADD thread2 - thread4 TO THE READY QUEUE OF THE SCHEDULER. */
 
-    SYSTEM_SCHEDULER->add(thread2);
-    SYSTEM_SCHEDULER->add(thread3);
+    //SYSTEM_SCHEDULER->add(thread2);
+    //SYSTEM_SCHEDULER->add(thread3);
     //SYSTEM_SCHEDULER->add(thread4);
 
 #endif
