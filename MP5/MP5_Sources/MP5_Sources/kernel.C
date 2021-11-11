@@ -184,8 +184,6 @@ void fun3() {
     Console::puts("Thread:<"); Console::puti((int)Thread::CurrentThread()); Console::puts(">="); Console::puti(Thread::CurrentThread()->ThreadId()); Console::puts("\n");
     Console::puts("FUN 3 INVOKED!\n");
 
-    assert(false);
-
     for(int j = 0;; j++) {
         Console::puts("FUN 3 IN BURST["); Console::puti(j); Console::puts("]");
         for (int i = 0; i < 10; i++) {
@@ -198,6 +196,8 @@ void fun3() {
 void fun4() {
     Console::puts("Thread:<"); Console::puti((int)Thread::CurrentThread()); Console::puts(">="); Console::puti(Thread::CurrentThread()->ThreadId()); Console::puts("\n");
     Console::puts("FUN 4 INVOKED!\n");
+
+    assert(false);
 
     for(int j = 0;; j++) {
         Console::puts("FUN 4 IN BURST["); Console::puti(j); Console::puts("]");
@@ -311,7 +311,7 @@ int main() {
 
     SYSTEM_SCHEDULER->add(thread2);
     SYSTEM_SCHEDULER->add(thread3);
-    //SYSTEM_SCHEDULER->add(thread4);
+    SYSTEM_SCHEDULER->add(thread4);
 
 #endif
 
