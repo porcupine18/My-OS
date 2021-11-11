@@ -151,11 +151,13 @@ void fun1() {
     for(int j = 0;; j++) 
 #endif
     {	
-        Console::puts("FUN 1 IN BURST["); Console::puti(j); Console::puts("]\n");
+        Console::puts("FUN 1 IN BURST["); Console::puti(j); Console::puts("] --> ");
         for (int i = 0; i < 10; i++) {
-            Console::puts("FUN 1: TICK ["); Console::puti(i); Console::puts("]\n");
+            Console::puts("FUN 1: TICK ["); Console::puti(i); Console::puts("] -->");
         }
+        Console::puts("\n");
         pass_on_CPU(thread2);
+
     }
 }
 
