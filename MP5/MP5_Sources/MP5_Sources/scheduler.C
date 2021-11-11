@@ -63,8 +63,6 @@ void Scheduler::yield(){
 
 void Scheduler::resume(Thread * _thread) {
 
-        Console::puts("     -> resume: start\n");
-
         Console::puts("     -> resume: LL [ ");  
         Thread* curr = this->ready_head;
         while(curr){
@@ -88,11 +86,9 @@ void Scheduler::resume(Thread * _thread) {
 }
 
 void Scheduler::add(Thread * _thread) {
-  Console::puts("     -> add: start\n");
+  Console::puts("     -> add: start");
   
   resume(_thread);
-
-  Console::puts("     -> add: end\n");
 
 }
 

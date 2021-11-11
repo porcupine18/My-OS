@@ -163,7 +163,7 @@ void fun1() {
 
 
 void fun2() {
-    Console::puts("Thread: "); Console::puti(Thread::CurrentThread()->ThreadId()); Console::puts("\n");
+    Console::puts("Thread:<"); Console::puti((int)Thread::CurrentThread()); Console::puts(">="); Console::puti(Thread::CurrentThread()->ThreadId()); Console::puts("\n");
     Console::puts("FUN 2 INVOKED!\n");
 
 #ifdef _TERMINATING_FUNCTIONS_
@@ -181,7 +181,7 @@ void fun2() {
 }
 
 void fun3() {
-    Console::puts("Thread: "); Console::puti(Thread::CurrentThread()->ThreadId()); Console::puts("\n");
+    Console::puts("Thread:<"); Console::puti((int)Thread::CurrentThread()); Console::puts(">="); Console::puti(Thread::CurrentThread()->ThreadId()); Console::puts("\n");
     Console::puts("FUN 3 INVOKED!\n");
 
     for(int j = 0;; j++) {
@@ -194,7 +194,7 @@ void fun3() {
 }
 
 void fun4() {
-    Console::puts("Thread: "); Console::puti(Thread::CurrentThread()->ThreadId()); Console::puts("\n");
+    Console::puts("Thread:<"); Console::puti((int)Thread::CurrentThread()); Console::puts(">="); Console::puti(Thread::CurrentThread()->ThreadId()); Console::puts("\n");
     Console::puts("FUN 4 INVOKED!\n");
 
     for(int j = 0;; j++) {
