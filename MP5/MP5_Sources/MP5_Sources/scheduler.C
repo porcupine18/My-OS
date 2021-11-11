@@ -68,13 +68,13 @@ void Scheduler::resume(Thread * _thread) {
   if(this->ready_head == NULL){
     this->ready_head = _thread;
     this->ready_tail = _thread;
-    Console::puts("++++++++++++++++ Added first to ready +++++++++++++++++\n");
+    Console::puts("     ++++++++++++++++ Added first to ready +++++++++++++++++\n");
     return;
   }
 
   this->ready_tail->next = _thread;
   this->ready_tail = _thread;
-  Console::puts("++++++++++++++++ Added thread to ready ++++++++++++++++\n");
+  Console::puts("     ++++++++++++++++ Added thread to ready ++++++++++++++++\n");
 }
 
 void Scheduler::add(Thread * _thread) {
