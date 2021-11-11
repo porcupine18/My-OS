@@ -51,7 +51,7 @@
  int Console::csr_x;                   /* position of cursor              */
  int Console::csr_y;
  unsigned short * Console::textmemptr; /* text pointer */
- bool Console::redirect_output = true;
+ bool Console::redirect_output = false;
 
 
 /* -- CONSTRUCTOR -- */
