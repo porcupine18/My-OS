@@ -44,7 +44,7 @@ void Scheduler::yield(){
     Thread* tmp;
 
     if(curr == this->ready_head){
-      this->ready_head = curr->next;
+      this->ready_head = this->ready_head->next;
       Console::puts("     -> yield: popped from start\n");
     }
     else{
