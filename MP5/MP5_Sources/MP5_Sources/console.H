@@ -5,6 +5,7 @@
               Department of Computer Science
               Texas A&M University
     Date    : 09/02/12
+    Update  : 21/10/12
 
     The class Console encapsulates the output operations ot the console 
     screen. Since the console is initialized at the very beginning of the
@@ -18,6 +19,12 @@
     By making all functions static, we can access them across all object 
     files without having to declare a global Console object or pass pointers
     to a locally declared object.
+
+    NOTE: Starting in 2021, Console can be configured to send output
+    to terminal as well. Use function 
+             output_redirection(bool _on_off)
+    to turn on or off the output to terminal. By default the output
+    to terminal is turned off.
 
 */
 
@@ -76,7 +83,13 @@ private:
   static int csr_x;                   /* position of cursor              */
   static int csr_y;
   static unsigned short * textmemptr; /* text pointer */
-  static bool redirect_output; 
+  static bool redirect_output;        /* redirect output to stdout in console? */
+
+  static void scroll();
+
+  static void move_cursor();
+  /* Update the hardware cursor. */
+
 public:
   
   /* -- INITIALIZER (we have no constructor, there is no memory mgmt yet.) */
@@ -84,12 +97,7 @@ public:
                    unsigned char _back_color = BLACK);
   
   static void output_redirection(bool _on_off);
- 
-  static void scroll();
-
-  static void move_cursor();
-  /* Update the hardware cursor. */
-
+  
   static void cls();
   /* Clear the screen. */
 

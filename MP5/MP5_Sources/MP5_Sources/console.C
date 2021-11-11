@@ -5,6 +5,8 @@
             Department of Computer Science
             Texas A&M University
     Date  : 09/02/2009
+    
+    Revised: 09/28/2021: Added redirection to stdout in console.
 
 */
 
@@ -51,9 +53,8 @@
  int Console::csr_x;                   /* position of cursor              */
  int Console::csr_y;
  unsigned short * Console::textmemptr; /* text pointer */
- bool Console::redirect_output = true;
-
-
+ bool Console::redirect_output = false;
+ 
 /* -- CONSTRUCTOR -- */
 
 void Console::init(unsigned char _fore_color,
@@ -194,26 +195,26 @@ void Console::putch(const char _c){
 
 /* Uses the above routine to output a string... */
 void Console::puts(const char * _s) {
-
+    
     for (int i = 0; i < strlen(_s); i++) {
         putch(_s[i]);
     }
 }
 
 void Console::puti(const int _n) {
-  char foostr[15];
+    char foostr[15];
 
-  int2str(_n, foostr);
-  puts(foostr);
+    int2str(_n, foostr);
+    puts(foostr);
 }
 
 void Console::putui(const unsigned int _n) {
-  char foostr[15];
+    char foostr[15];
 
-  uint2str(_n, foostr);
-  putch('<');
-  puts(foostr);
-  putch('>');
+    uint2str(_n, foostr);
+    putch('<');
+    puts(foostr);
+    putch('>');
 }
 
 
