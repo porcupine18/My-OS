@@ -202,9 +202,7 @@ void fun4() {
         for (int i = 0; i < 10; i++) {
 	    Console::puts("FUN 4: TICK ["); Console::puti(i); Console::puts("]");
         }
-        
-        assert(false);
-        
+                
         pass_on_CPU(thread1);
     }
 }
