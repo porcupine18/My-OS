@@ -110,7 +110,6 @@ void Scheduler::resume(Thread * _thread) {
       }
       tmp = tmp->next;
     }
-    assert(false);
   }
 
         Console::puts("     -> resume: new LL [ ");  
