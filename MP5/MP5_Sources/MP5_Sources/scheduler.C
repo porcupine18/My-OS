@@ -105,11 +105,12 @@ void Scheduler::resume(Thread * _thread) {
     while(tmp->next){
       if(tmp->next == _thread){
         tmp->next = _thread->next;
-        Console::puts("     -> resume: deleted from middle \n");  
+        Console::puts("     -> resume: deleted from middle \n");
         break;
       }
       tmp = tmp->next;
     }
+    assert(false);
   }
 
         Console::puts("     -> resume: new LL [ ");  
@@ -127,6 +128,24 @@ void Scheduler::resume(Thread * _thread) {
   if(this->ready_head == NULL){
     this->ready_head = _thread;
     this->ready_tail = _thread;
+    Console::puts("     ++++++++++++++++ resume first to ready +++++++++++++++++\n");
+    return;
+  }
+
+  this->ready_tail->next = _thread;
+  this->ready_tail = _thread;
+  Console::puts("     ++++++++++++++++ resume thread to ready ++++++++++++++++\n");
+}
+
+void Scheduler::add(Thread * _thread) {
+  Console::puts("     -> add: start");
+
+  /*_______ push to list _______*/
+  _thread->next = NULL;
+
+  if(this->ready_head == NULL){
+    this->ready_head = _thread;
+    this->ready_tail = _thread;
     Console::puts("     ++++++++++++++++ Added first to ready +++++++++++++++++\n");
     return;
   }
@@ -134,12 +153,6 @@ void Scheduler::resume(Thread * _thread) {
   this->ready_tail->next = _thread;
   this->ready_tail = _thread;
   Console::puts("     ++++++++++++++++ Added thread to ready ++++++++++++++++\n");
-}
-
-void Scheduler::add(Thread * _thread) {
-  Console::puts("     -> add: start");
-  
-  resume(_thread);
 
 }
 
