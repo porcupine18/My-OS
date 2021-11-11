@@ -75,7 +75,6 @@ void Scheduler::yield(){
   else{
         Console::puts("     -> yield: yield to -   new curr = ");Console::puti((int)curr);Console::puts("\n");  
     Thread::dispatch_to(this->ready_head);    
-    assert(false);
   }
   
   Console::puts("+++++++++++++++++++++ Yield  Done +++++++++++++++++++++\n");

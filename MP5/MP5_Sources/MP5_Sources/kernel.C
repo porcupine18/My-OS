@@ -184,6 +184,8 @@ void fun3() {
     Console::puts("Thread:<"); Console::puti((int)Thread::CurrentThread()); Console::puts(">="); Console::puti(Thread::CurrentThread()->ThreadId()); Console::puts("\n");
     Console::puts("FUN 3 INVOKED!\n");
 
+    assert(false);
+
     for(int j = 0;; j++) {
         Console::puts("FUN 3 IN BURST["); Console::puti(j); Console::puts("]");
         for (int i = 0; i < 10; i++) {
