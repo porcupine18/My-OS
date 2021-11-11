@@ -39,16 +39,23 @@ void Scheduler::yield(){
 
   Thread* curr = Thread::CurrentThread();
 
+        Console::puts("     -> yield: start -           curr = ");Console::puti((unsigned int)curr);Console::puts("\n");  
+
   assert(this->ready_head == curr);
 
   if(curr->next == NULL){
     Thread::dispatch_to(curr);
+        Console::puts("     -> yield: same continued - curr = ");Console::puti((unsigned int)curr);Console::puts("\n");  
+
   }
   else{
+        Console::puts("     -> yield: yeild to -   new curr = ");Console::puti((unsigned int)curr);Console::puts("\n");  
     this->ready_head = curr->next;
     Thread::dispatch_to(curr->next);    
   }
   
+  Console::puts("+++++++++++++++++++++ Yield  Done +++++++++++++++++++++\n");
+
 }
 
 void Scheduler::resume(Thread * _thread) {
