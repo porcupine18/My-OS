@@ -55,12 +55,13 @@ void Scheduler::resume(Thread * _thread) {
 
         Console::puts("     -> resume: start\n");
 
+        Console::puts("     -> resume: LL[");  
         Thread* curr = this->ready_head;
         while(curr){
           Console::puti((unsigned int)curr);Console::puts(" -> ");
           curr = curr->next;
         }
-        Console::puti((unsigned int)_thread);Console::puts("\n");  
+        Console::puti((unsigned int)_thread);Console::puts("]\n");  
 
   _thread->next = NULL;
 
