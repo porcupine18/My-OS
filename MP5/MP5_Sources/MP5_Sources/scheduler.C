@@ -39,6 +39,8 @@ void Scheduler::yield(){
 
   Thread* curr = Thread::CurrentThread();
 
+  assert(this->ready_head == curr);
+
   if(curr->next == NULL){
     Thread::dispatch_to(curr);
   }
@@ -53,29 +55,23 @@ void Scheduler::resume(Thread * _thread) {
 
         Console::puts("     -> resume: start\n");
 
-
-  Thread* curr = this->ready_head;
-  while(curr){
-    Console::puti((unsigned int)curr);Console::puts(" -> ");
-  }
+        Thread* curr = this->ready_head;
+        while(curr){
+          Console::puti((unsigned int)curr);Console::puts(" -> ");
+        }
 
   _thread->next = NULL;
 
   if(this->ready_head == NULL){
-
     this->ready_head = _thread;
     this->ready_tail = _thread;
-
-    Console::puts("     -> resume: first element added\n");
-    Console::puts("++++++++++++++++ Added thread to ready ++++++++++++++++\n");
+    Console::puts("++++++++++++++++ Added first to ready +++++++++++++++++\n");
     return;
   }
 
   Console::puts("\n");  
   this->ready_tail->next = _thread;
   this->ready_tail = _thread;
-
-  Console::puts("     -> resume: added to end\n");
   Console::puts("++++++++++++++++ Added thread to ready ++++++++++++++++\n");
 }
 
