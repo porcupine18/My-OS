@@ -51,6 +51,15 @@ void Scheduler::yield(){
       }
       tmp = tmp->next;
     }
+    
+    Console::puts("     -> yield: LL [ ");  
+    Thread* curr = this->ready_head;
+    while(curr){
+      Console::puti((unsigned int)curr);Console::puts(" -> ");
+      curr = curr->next;
+    }
+    Console::puts(" ]\n");  
+
 
   if(curr->next == NULL){
 
