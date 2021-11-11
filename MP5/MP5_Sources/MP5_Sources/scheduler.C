@@ -42,14 +42,19 @@ void Scheduler::yield(){
         Console::puts("     -> yield: start -           curr = ");Console::puti((int)curr);Console::puts("\n");  
 
 
-    Thread* tmp = this->ready_head;
-    while(tmp->next){
-      if(tmp->next == curr){
-        tmp->next = curr->next;
-        Console::puts("     -> yield: popped \n");
-        break;
+    if(curr == this->ready_head){
+      this->ready_head = curr->next;
+    }
+    else{
+      Thread* tmp = this->ready_head;
+      while(tmp->next){
+        if(tmp->next == curr){
+          tmp->next = curr->next;
+          Console::puts("     -> yield: popped \n");
+          break;
+        }
+        tmp = tmp->next;
       }
-      tmp = tmp->next;
     }
     
     Console::puts("     -> yield: LL [ ");  
