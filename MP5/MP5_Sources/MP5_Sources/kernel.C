@@ -219,8 +219,6 @@ int main() {
 
     /* -- EXAMPLE OF AN EXCEPTION HANDLER -- */
 
-    
-
     class DBZ_Handler : public ExceptionHandler {
       public:
       virtual void handle_exception(REGS * _regs) {
