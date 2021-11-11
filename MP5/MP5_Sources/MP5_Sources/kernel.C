@@ -122,10 +122,10 @@ void pass_on_CPU(Thread * _to_thread) {
            we pre-empt the current thread by putting it onto the ready
            queue and yielding the CPU. */
         
-        Console::puts(" ->kernel: resume\n");
+        Console::puts(" -> kernel: resume\n");
         SYSTEM_SCHEDULER->resume(Thread::CurrentThread());
 
-        Console::puts(" ->kernel: yield\n");
+        Console::puts(" -> kernel: yield\n");
         SYSTEM_SCHEDULER->yield();
 #endif
 }

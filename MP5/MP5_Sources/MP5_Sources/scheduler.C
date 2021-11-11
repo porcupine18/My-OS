@@ -37,16 +37,22 @@ Scheduler::Scheduler() {
 
 void Scheduler::yield(){
 
+        Console::puts("     -> yield: start\n");
+
   Thread* curr = Thread::CurrentThread();
+
 
   /*__________ assert and pop current from ready __________*/
   assert(curr == this->ready_head);
 
   this->ready_head = curr->next;
-  
+
+        Console::puts("     -> yield: asserted and popped curr\n");  
 
   /*__________ dispatch to next __________*/
    
+        Console::puts("     -> yield: going to dispatch\n");  
+
   Thread::dispatch_to(curr->next);
   
 }
@@ -61,8 +67,6 @@ void Scheduler::resume(Thread * _thread) {
   while(curr){
     Console::puti((unsigned int)curr);Console::puts(" -> ");
   }
-  Console::puts("\n");  
-
 
   if(this->ready_head == NULL){
 
@@ -74,6 +78,7 @@ void Scheduler::resume(Thread * _thread) {
     return;
   }
 
+  Console::puts("\n");  
   this->ready_tail->next = _thread;
   this->ready_tail = _thread;
 
