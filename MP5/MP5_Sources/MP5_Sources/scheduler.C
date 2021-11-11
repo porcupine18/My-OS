@@ -46,9 +46,9 @@ void Scheduler::yield(){
   // /*__________ assert and pop current from ready __________*/
   // assert(curr == this->ready_head);
 
-  // this->ready_head = curr->next;
+  this->ready_head = curr->next;
 
-  //       Console::puts("     -> yield: asserted and popped curr\n");  
+         Console::puts("     -> yield: asserted and popped curr\n");  
 
   // /*__________ dispatch to next __________*/
   
