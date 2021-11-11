@@ -53,8 +53,12 @@ void Scheduler::yield(){
   
         Console::puts("     -> yield: going to dispatch\n");  
 
-  assert(curr->next != NULL);
-  Thread::dispatch_to(curr->next);
+  if(curr->next == NULL){
+    Thread::dispatch_to(curr);
+  }
+  else{
+    Thread::dispatch_to(curr->next);    
+  }
   
 }
 
