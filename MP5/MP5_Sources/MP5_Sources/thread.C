@@ -150,9 +150,9 @@ void Thread::setup_context(Thread_Function _tfunction){
     push(0);  /* fs */
     push(0);  /* gs */
 
-    Console::puts("esp = "); Console::putui((unsigned int)esp); Console::puts("->");
+    Console::puts("esp = "); Console::putui((unsigned int)esp); Console::puts(" - ");
 
-    Console::puts("->done->");
+    Console::puts(" done - ");
 }
 
 /*--------------------------------------------------------------------------*/
