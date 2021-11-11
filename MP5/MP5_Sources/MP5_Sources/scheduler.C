@@ -53,10 +53,10 @@ void Scheduler::yield(){
     }
     
     Console::puts("     -> yield: LL [ ");  
-    Thread* curr = this->ready_head;
-    while(curr){
-      Console::puti((unsigned int)curr);Console::puts(" -> ");
-      curr = curr->next;
+    tmp = this->ready_head;
+    while(tmp){
+      Console::puti((unsigned int)tmp);Console::puts(" -> ");
+      tmp = tmp->next;
     }
     Console::puts(" ]\n");  
 
