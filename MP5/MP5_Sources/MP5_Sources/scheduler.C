@@ -66,25 +66,26 @@ void Scheduler::resume(Thread * _thread) {
 
   if(this->ready_head == NULL){
 
-    Console::puts("     -> resume: first element adding\n");
-
     this->ready_head = _thread;
     this->ready_tail = _thread;
 
+    Console::puts("     -> resume: first element added\n");
     return;
   }
-
-  Console::puts("     -> resume: adding to end\n");
 
   this->ready_tail->next = _thread;
   this->ready_tail = _thread;
 
+  Console::puts("     -> resume: added to end\n");
   Console::puts("++++++++++++++++ Added thread to ready ++++++++++++++++\n");
 }
 
 void Scheduler::add(Thread * _thread) {
   Console::puts("     -> add: start\n");
   resume(_thread);
+
+  Console::puts("     -> add: end\n");
+
 }
 
 void Scheduler::terminate(Thread * _thread) {
