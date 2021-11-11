@@ -54,7 +54,12 @@ void Scheduler::yield(){
   
         Console::puts("     -> yield: going to dispatch\n");  
 
-  Thread::dispatch_to(curr->next);
+  if(curr->next != NULL){
+    Thread::dispatch_to(curr->next);
+  }
+  else{
+        Console::puts("     -> yield: NOTHING TO YIELD TO!\n");  
+  }
   
 }
 
@@ -62,12 +67,13 @@ void Scheduler::resume(Thread * _thread) {
 
         Console::puts("     -> resume: start\n");
 
-  _thread->next = NULL;
 
   Thread* curr = this->ready_head;
   while(curr){
     Console::puti((unsigned int)curr);Console::puts(" -> ");
   }
+
+  _thread->next = NULL;
 
   if(this->ready_head == NULL){
 
