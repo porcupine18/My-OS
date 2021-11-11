@@ -6,6 +6,9 @@
         "frame_pool.C": "cpp",
         "exceptions.C": "cpp",
         "scheduler.C": "cpp",
-        "console.C": "cpp"
+        "console.C": "cpp",
+        "utils.C": "cpp",
+        "machine_low.H": "cpp",
+        "machine.C": "cpp"
     }
 }
