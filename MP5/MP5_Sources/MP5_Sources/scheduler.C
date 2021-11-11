@@ -113,7 +113,7 @@ void Scheduler::resume(Thread * _thread) {
   }
 
         Console::puts("     -> resume: new LL [ ");  
-        Thread* curr = this->ready_head;
+        curr = this->ready_head;
         while(curr){
           Console::puti((unsigned int)curr);Console::puts(" -> ");
           curr = curr->next;
