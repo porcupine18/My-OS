@@ -53,6 +53,8 @@ void Scheduler::yield(){
 
 void Scheduler::resume(Thread * _thread) {
 
+  _thread->next = NULL;
+
   Thread* curr = this->ready_head;
   while(curr){
     Console::puti((unsigned int)curr);Console::puts(" -> ");
@@ -60,7 +62,6 @@ void Scheduler::resume(Thread * _thread) {
   Console::puts("\n");  
 
   if(this->ready_head == NULL){
-    _thread->next = NULL;
     
     this->ready_head = _thread;
     this->ready_tail = _thread;
@@ -69,6 +70,7 @@ void Scheduler::resume(Thread * _thread) {
   }
 
   this->ready_tail->next = _thread;
+  this->ready_tail = _thread;
   this->ready_tail = _thread;
 
 
