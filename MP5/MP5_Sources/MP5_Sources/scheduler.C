@@ -76,28 +76,28 @@ void Scheduler::yield(){
 
   Thread* curr = Thread::CurrentThread();
 
-  Console::puts("     -> yield: start -           curr = ");Console::puti((int)curr);Console::puts("\n"); 
+  //Console::puts("     -> yield: start -           curr = ");Console::puti((int)curr);Console::puts("\n"); 
  
   Thread::dispatch_to(this->ready_head);    
 
-  Console::puts("+++++++++++++++++++++ Yield  Done +++++++++++++++++++++\n");
+  //Console::puts("+++++++++++++++++++++ Yield  Done +++++++++++++++++++++\n");
 
 }
 
 void Scheduler::resume(Thread * _thread) {
 
-        Console::puts("     -> resume:     LL [ ");  
+        //Console::puts("     -> resume:     LL [ ");  
         Thread* curr = this->ready_head;
         while(curr){
-          Console::puti((unsigned int)curr);Console::puts(" -> ");
+          //Console::puti((unsigned int)curr);Console::puts(" -> ");
           curr = curr->next;
         }
-        Console::puts(" ]\n");  
+        //Console::puts(" ]\n");  
 
 
   /*_______ remove from list _______*/
   if(_thread == this->ready_head){
-    Console::puts("     -> resume: deleted from head \n");  
+    //Console::puts("     -> resume: deleted from head \n");  
     this->ready_head = this->ready_head->next;
   }
   else{
@@ -105,20 +105,20 @@ void Scheduler::resume(Thread * _thread) {
     while(tmp->next){
       if(tmp->next == _thread){
         tmp->next = _thread->next;
-        Console::puts("     -> resume: deleted from middle \n");
+        //Console::puts("     -> resume: deleted from middle \n");
         break;
       }
       tmp = tmp->next;
     }
   }
 
-        Console::puts("     -> resume: new LL [ ");  
+        //Console::puts("     -> resume: new LL [ ");  
         curr = this->ready_head;
         while(curr){
-          Console::puti((unsigned int)curr);Console::puts(" -> ");
+          //Console::puti((unsigned int)curr);Console::puts(" -> ");
           curr = curr->next;
         }
-        Console::puti((unsigned int)_thread);Console::puts(" ]\n");  
+        //Console::puti((unsigned int)_thread);Console::puts(" ]\n");  
 
 
   /*_______ push to list _______*/
@@ -127,25 +127,25 @@ void Scheduler::resume(Thread * _thread) {
   if(this->ready_head == NULL){
     this->ready_head = _thread;
     this->ready_tail = _thread;
-    Console::puts("     ++++++++++++++++ resume first to ready +++++++++++++++++\n");
+    //Console::puts("     ++++++++++++++++ resume first to ready +++++++++++++++++\n");
     return;
   }
 
   this->ready_tail->next = _thread;
   this->ready_tail = _thread;
-  Console::puts("     ++++++++++++++++ resume thread to ready ++++++++++++++++\n");
+  //Console::puts("     ++++++++++++++++ resume thread to ready ++++++++++++++++\n");
 }
 
 void Scheduler::add(Thread * _thread) {
   Console::puts("     -> add: start");
 
-        Console::puts("     -> add:     LL [ ");  
+        //Console::puts("     -> add:     LL [ ");  
         Thread* curr = this->ready_head;
         while(curr){
-          Console::puti((unsigned int)curr);Console::puts(" -> ");
+          //Console::puti((unsigned int)curr);Console::puts(" -> ");
           curr = curr->next;
         }
-        Console::puti((unsigned int)_thread);Console::puts(" ]\n");  
+        //Console::puti((unsigned int)_thread);Console::puts(" ]\n");  
 
   /*_______ push to list _______*/
   _thread->next = NULL;
@@ -153,13 +153,13 @@ void Scheduler::add(Thread * _thread) {
   if(this->ready_head == NULL){
     this->ready_head = _thread;
     this->ready_tail = _thread;
-    Console::puts("     ++++++++++++++++ Added first to ready +++++++++++++++++\n");
+    //Console::puts("     ++++++++++++++++ Added first to ready +++++++++++++++++\n");
     return;
   }
 
   this->ready_tail->next = _thread;
   this->ready_tail = _thread;
-  Console::puts("     ++++++++++++++++ Added thread to ready ++++++++++++++++\n");
+  //Console::puts("     ++++++++++++++++ Added thread to ready ++++++++++++++++\n");
 
 }
 
