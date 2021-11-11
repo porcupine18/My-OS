@@ -309,7 +309,7 @@ int main() {
 
     SYSTEM_SCHEDULER->add(thread2);
     SYSTEM_SCHEDULER->add(thread3);
-    SYSTEM_SCHEDULER->add(thread4);
+    //SYSTEM_SCHEDULER->add(thread4);
 
 #endif
 
