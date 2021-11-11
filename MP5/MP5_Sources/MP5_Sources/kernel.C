@@ -142,7 +142,7 @@ Thread * thread4;
 /* -- THE 4 FUNCTIONS fun1 - fun4 ARE LARGELY IDENTICAL. */
 
 void fun1() {
-    Console::puts("Thread: "); Console::puti(Thread::CurrentThread()->ThreadId()); Console::puts("\n");
+    Console::puts("Thread:<"); Console::puti((int)Thread::CurrentThread()); Console::puts(">="); Console::puti(Thread::CurrentThread()->ThreadId()); Console::puts("\n");
     Console::puts("FUN 1 INVOKED!\n");
 
 #ifdef _TERMINATING_FUNCTIONS_
@@ -283,7 +283,7 @@ int main() {
 
     /* -- LET'S CREATE SOME THREADS... */
 
-    Console::puts("CREATING THREAD 1...\n");
+    Console::puts("CREATING THREAD 1...");
     char * stack1 = new char[1024];
     thread1 = new Thread(fun1, stack1, 1024);
     Console::puts("DONE\n");
