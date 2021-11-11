@@ -6,16 +6,9 @@
  
  */
 
-/*--------------------------------------------------------------------------*/
-/* DEFINES */
-/*--------------------------------------------------------------------------*/
+/* DEFINES -----------------------------------------------------------------*/
 
-/* -- (none) -- */
-
-/*--------------------------------------------------------------------------*/
-/* INCLUDES */
-/*--------------------------------------------------------------------------*/
-
+/* INCLUDES ----------------------------------------------------------------*/
 #include "scheduler.H"
 #include "thread.H"
 #include "console.H"
@@ -23,47 +16,61 @@
 #include "assert.H"
 #include "simple_keyboard.H"
 
-/*--------------------------------------------------------------------------*/
-/* DATA STRUCTURES */
-/*--------------------------------------------------------------------------*/
+/* DATA STRUCTURES ---------------------------------------------------------*/
 
-/* -- (none) -- */
+/* CONSTANTS ---------------------------------------------------------------*/
 
-/*--------------------------------------------------------------------------*/
-/* CONSTANTS */
-/*--------------------------------------------------------------------------*/
+/* FORWARDS ----------------------------------------------------------------*/
 
-/* -- (none) -- */
-
-/*--------------------------------------------------------------------------*/
-/* FORWARDS */
-/*--------------------------------------------------------------------------*/
-
-/* -- (none) -- */
-
-/*--------------------------------------------------------------------------*/
-/* METHODS FOR CLASS   S c h e d u l e r  */
-/*--------------------------------------------------------------------------*/
-
+/* CLASS: Scheduler --------------------------------------------------------*/
 Scheduler::Scheduler() {
 
   /*__________ create linked list of threads __________*/
+  this->ready_head = NULL;
+  this->ready_tail = NULL;
 
+  /*__________ init EOQ handler __________*/
+  // later
 
-  assert(false);
-  Console::puts("Constructed Scheduler.\n");
+  Console::puts("++++++++++++++++ Constructed Scheduler ++++++++++++++++\n");
 }
 
-void Scheduler::yield() {
-  assert(false);
+void Scheduler::yield(){
+
+  Thread* curr = Thread::CurrentThread();
+
+  /*__________ assert and pop current from ready __________*/
+  assert(curr == this->ready_head);
+
+  this->ready_head = curr->next;
+  
+
+  /*__________ dispatch to next __________*/
+   
+  Thread::dispatch_to(curr->next);
+  
 }
 
 void Scheduler::resume(Thread * _thread) {
-  assert(false);
+
+  if(this->ready_head == NULL){
+    _thread->next = NULL;
+    
+    this->ready_head = _thread;
+    this->ready_tail = _thread;
+
+    return;
+  }
+
+  this->ready_tail->next = _thread;
+  this->ready_tail = _thread;
+
+  Console::puts("++++++++++++++++ Added thread to ready ++++++++++++++++\n");
 }
 
 void Scheduler::add(Thread * _thread) {
-  assert(false);
+  
+  resume(_thread);
 }
 
 void Scheduler::terminate(Thread * _thread) {

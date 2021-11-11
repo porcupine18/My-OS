@@ -9,16 +9,9 @@
 #ifndef SCHEDULER_H
 #define SCHEDULER_H
 
-/*--------------------------------------------------------------------------*/
-/* DEFINES */
-/*--------------------------------------------------------------------------*/
+/* DEFINES -----------------------------------------------------------------*/
 
-/* -- (none) -- */
-
-/*--------------------------------------------------------------------------*/
-/* INCLUDES */
-/*--------------------------------------------------------------------------*/
-
+/* INCLUDES ----------------------------------------------------------------*/
 #include "thread.H"
 
 /*--------------------------------------------------------------------------*/
@@ -56,9 +49,14 @@
 
 class Scheduler {
 
-  /* The scheduler may need private members... */
-  
+private:
+   /* The scheduler may need private members... */
+   Thread* ready_head;    /* head of the ready queue */
+   Thread* ready_tail;    /* head of the ready queue */
+
 public:
+   
+   
 
    Scheduler();
    /* Setup the scheduler. This sets up the ready queue, for example.

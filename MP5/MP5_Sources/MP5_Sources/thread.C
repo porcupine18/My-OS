@@ -178,6 +178,8 @@ Thread::Thread(Thread_Function _tf, char * _stack, unsigned int _stack_size) {
     stack = _stack;
     stack_size = _stack_size;
     
+    next = NULL;
+
     /* -- INITIALIZE THE STACK OF THE THREAD */
 
     setup_context(_tf);
