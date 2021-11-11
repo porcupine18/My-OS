@@ -43,9 +43,10 @@ void Scheduler::yield(){
 
   assert(this->ready_head == curr);
 
-  assert(false);
+  //assert(false);
 
   if(curr->next == NULL){
+    this->ready_head = curr->next;
     Thread::dispatch_to(curr);
         Console::puts("     -> yield: same continued - curr = ");Console::puti((int)curr);Console::puts("\n");  
 
