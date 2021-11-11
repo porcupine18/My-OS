@@ -174,7 +174,7 @@ void fun2() {
         for (int i = 0; i < 10; i++) {
             Console::puts("FUN 2: TICK ["); Console::puti(i); Console::puts("]\n");
         }
-        pass_on_CPU(thread3);
+        //pass_on_CPU(thread3);
     }
 }
 
