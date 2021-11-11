@@ -70,6 +70,7 @@ void Scheduler::resume(Thread * _thread) {
     this->ready_tail = _thread;
 
     Console::puts("     -> resume: first element added\n");
+    Console::puts("++++++++++++++++ Added thread to ready ++++++++++++++++\n");
     return;
   }
 
@@ -82,6 +83,7 @@ void Scheduler::resume(Thread * _thread) {
 
 void Scheduler::add(Thread * _thread) {
   Console::puts("     -> add: start\n");
+  
   resume(_thread);
 
   Console::puts("     -> add: end\n");
