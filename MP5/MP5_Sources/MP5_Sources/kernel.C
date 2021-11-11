@@ -214,7 +214,12 @@ int main() {
     IRQ::init();
     InterruptHandler::init_dispatcher();
 
+    /* -- SEND OUTPUT TO TERMINAL -- */ 
+    Console::output_redirection(true);
+
     /* -- EXAMPLE OF AN EXCEPTION HANDLER -- */
+
+    
 
     class DBZ_Handler : public ExceptionHandler {
       public:

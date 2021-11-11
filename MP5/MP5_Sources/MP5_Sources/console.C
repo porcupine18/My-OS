@@ -63,6 +63,9 @@ void Console::init(unsigned char _fore_color,
     cls();
 }
 
+void Console::output_redirection(bool _on_off) {
+    redirect_output = _on_off;
+}
 
 void Console::scroll() {
 

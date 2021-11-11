@@ -46,6 +46,10 @@
 /*--------------------------------------------------------------------------*/
 
 Scheduler::Scheduler() {
+
+  /*__________ create linked list of threads __________*/
+
+
   assert(false);
   Console::puts("Constructed Scheduler.\n");
 }
