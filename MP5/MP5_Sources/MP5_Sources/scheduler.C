@@ -60,7 +60,7 @@ void Scheduler::resume(Thread * _thread) {
           Console::puti((unsigned int)curr);Console::puts(" -> ");
           curr = curr->next;
         }
-        Console::puti((unsigned int)_thread);
+        Console::puti((unsigned int)_thread);Console::puts("\n");  
 
   _thread->next = NULL;
 
@@ -71,7 +71,6 @@ void Scheduler::resume(Thread * _thread) {
     return;
   }
 
-  Console::puts("\n");  
   this->ready_tail->next = _thread;
   this->ready_tail = _thread;
   Console::puts("++++++++++++++++ Added thread to ready ++++++++++++++++\n");
