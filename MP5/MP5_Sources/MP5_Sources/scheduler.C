@@ -60,6 +60,7 @@ void Scheduler::resume(Thread * _thread) {
           Console::puti((unsigned int)curr);Console::puts(" -> ");
           curr = curr->next;
         }
+        Console::puti((unsigned int)_thread);
 
   _thread->next = NULL;
 
