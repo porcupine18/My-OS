@@ -55,7 +55,7 @@ void Scheduler::resume(Thread * _thread) {
 
   Thread* curr = this->ready_head;
   while(curr){
-    Console::puti(curr);Console::puts(" -> ");
+    Console::puti((unsigned int)curr);Console::puts(" -> ");
   }
   Console::puts("\n");  
 
