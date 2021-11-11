@@ -40,7 +40,7 @@ void Scheduler::yield(){
         Console::puts("     -> yield: start\n");
 
   
-  // Thread* curr = Thread::CurrentThread();
+  Thread* curr = Thread::CurrentThread();
 
 
   // /*__________ assert and pop current from ready __________*/
