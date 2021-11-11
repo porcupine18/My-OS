@@ -92,7 +92,7 @@ void Scheduler::resume(Thread * _thread) {
           Console::puti((unsigned int)curr);Console::puts(" -> ");
           curr = curr->next;
         }
-        Console::puti((unsigned int)_thread);Console::puts(" ]\n");  
+        Console::puts(" ]\n");  
 
 
   /*_______ remove from list _______*/
@@ -139,6 +139,14 @@ void Scheduler::resume(Thread * _thread) {
 
 void Scheduler::add(Thread * _thread) {
   Console::puts("     -> add: start");
+
+        Console::puts("     -> add:     LL [ ");  
+        Thread* curr = this->ready_head;
+        while(curr){
+          Console::puti((unsigned int)curr);Console::puts(" -> ");
+          curr = curr->next;
+        }
+        Console::puti((unsigned int)_thread);Console::puts(" ]\n");  
 
   /*_______ push to list _______*/
   _thread->next = NULL;
