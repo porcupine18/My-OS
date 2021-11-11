@@ -197,13 +197,14 @@ void fun4() {
     Console::puts("Thread:<"); Console::puti((int)Thread::CurrentThread()); Console::puts(">="); Console::puti(Thread::CurrentThread()->ThreadId()); Console::puts("\n");
     Console::puts("FUN 4 INVOKED!\n");
 
-    assert(false);
-
     for(int j = 0;; j++) {
         Console::puts("FUN 4 IN BURST["); Console::puti(j); Console::puts("]");
         for (int i = 0; i < 10; i++) {
 	    Console::puts("FUN 4: TICK ["); Console::puti(i); Console::puts("]");
         }
+        
+        assert(false);
+        
         pass_on_CPU(thread1);
     }
 }
