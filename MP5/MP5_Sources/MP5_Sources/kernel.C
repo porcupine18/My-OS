@@ -316,8 +316,7 @@ int main() {
     /* -- KICK-OFF THREAD1 ... */
 
     Console::puts("STARTING THREAD 1 ...\n");
-    pass_on_CPU(thread1);
-    //Thread::dispatch_to(thread1);
+    Thread::dispatch_to(thread1);
 
     /* -- AND ALL THE REST SHOULD FOLLOW ... */
 
