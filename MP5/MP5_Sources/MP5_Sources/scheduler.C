@@ -41,12 +41,13 @@ void Scheduler::yield(){
 
         Console::puts("     -> yield: start -           curr = ");Console::puti((int)curr);Console::puts("\n");  
 
+    Thread* tmp;
 
     if(curr == this->ready_head){
       this->ready_head = curr->next;
     }
     else{
-      Thread* tmp = this->ready_head;
+      tmp = this->ready_head;
       while(tmp->next){
         if(tmp->next == curr){
           tmp->next = curr->next;
@@ -64,6 +65,7 @@ void Scheduler::yield(){
       tmp = tmp->next;
     }
     Console::puts(" ]\n");  
+
 
 
   if(curr->next == NULL){
