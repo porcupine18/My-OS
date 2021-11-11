@@ -62,12 +62,12 @@ void Scheduler::yield(){
 
 
   if(curr->next == NULL){
-    Thread::dispatch_to(curr);
+    Thread::dispatch_to(this->ready_head);
         Console::puts("     -> yield: same continued - curr = ");Console::puti((int)curr);Console::puts("\n");  
   }
   else{
         Console::puts("     -> yield: yield to -   new curr = ");Console::puti((int)curr);Console::puts("\n");  
-    Thread::dispatch_to(curr->next);    
+    Thread::dispatch_to(this->ready_head);    
     assert(false);
   }
   
