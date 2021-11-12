@@ -215,7 +215,8 @@ int main() {
 
     GDT::init();
     Console::init();
-    IDT::init();newatcher();
+    IDT::init();
+    ExceptionHandler::init_dispatcher();
     IRQ::init();
     InterruptHandler::init_dispatcher();
 
