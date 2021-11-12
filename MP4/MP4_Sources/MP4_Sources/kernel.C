@@ -235,7 +235,7 @@ int main() {
 
     /* ---- We define the code pool to be a 256MB segment starting at virtual address 512MB -- */
     //Console::puts(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Making code VMPool <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
-    VMPool code_pool(512 MB, 256 MB, &process_mem_pool, &pt1);
+    VMPool code_pool(256 MB, 256 MB, &process_mem_pool, &pt1);
 
     /* ---- We define a 256MB heap that starts at 1GB in virtual memory. -- */
     Console::puts("\n\n\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Making heap VMPool <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
