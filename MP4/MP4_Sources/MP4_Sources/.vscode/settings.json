@@ -9,6 +9,7 @@
         "machine.C": "cpp",
         "exceptions.C": "cpp",
         "idt.C": "cpp",
-        "interrupts.C": "cpp"
+        "interrupts.C": "cpp",
+        "irq.C": "cpp"
     }
 }

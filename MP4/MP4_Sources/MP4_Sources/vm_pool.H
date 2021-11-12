@@ -41,6 +41,9 @@ public:
    
    VMPool* next; // next VMPool in linked list of VMPools
 
+   VMPool* vm_pool_head; // head of linkedlist of VMPools
+   VMPool* vm_pool_tail; // tail of linkedlist of VMPools
+
    unsigned long  _base_address;
    static const unsigned int PAGE_SIZE        = 4096;  			//in bytes
    static const unsigned int ENTRIES_PER_PAGE = 1024;  //in entries
