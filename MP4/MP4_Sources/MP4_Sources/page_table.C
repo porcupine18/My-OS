@@ -234,7 +234,7 @@ void PageTable::free_page(unsigned long _page_no) {
    *pte_of_vaddr = *pte_of_vaddr >> 2;
    *pte_of_vaddr = *pte_of_vaddr << 2;   
 
-   write_cr3(read_cr3());
+   //write_cr3(read_cr3());
 
          Console::puts("            -> free_page: new PTE ="); print_array_long(pte_of_vaddr);
 
