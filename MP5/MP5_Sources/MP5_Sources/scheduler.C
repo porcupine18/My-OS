@@ -47,6 +47,7 @@ void Scheduler::yield() {
                             Console::puti((unsigned int)curr);Console::puts(" -> ");
                             curr = curr->next;
                           }
+                          Console::puts("]\n");  
                       // print -------------------------------------------------------
 
 
@@ -62,6 +63,7 @@ void Scheduler::resume(Thread * _thread) {
                             Console::puti((unsigned int)curr);Console::puts(" -> ");
                             curr = curr->next;
                           }
+                          Console::puts("]\n");  
                       // print -------------------------------------------------------
   
     Console::puts("     -> resume: start");
@@ -88,6 +90,7 @@ void Scheduler::add(Thread * _thread) {
                             Console::puti((unsigned int)curr);Console::puts(" -> ");
                             curr = curr->next;
                           }
+                          Console::puts("]\n");  
                       // print -------------------------------------------------------
 
     Console::puts("     -> add: start");
