@@ -228,6 +228,7 @@ void PageTable::free_page(unsigned long _page_no) {
    if(*pte_of_vaddr & 1){
          Console::puts("            -> free_page: Freeing valid frame no= ");Console::puti(frame_to_free);Console::puts("\n");
       this->process_mem_pool->release_frames(frame_to_free);
+         Console::puts("            -> free_page: Release frame done");Console::puts("\n");
       write_cr3(read_cr3());
    }
 
