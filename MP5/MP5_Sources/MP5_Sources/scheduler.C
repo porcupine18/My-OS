@@ -47,7 +47,7 @@ void Scheduler::yield() {
                             Console::puti((unsigned int)curr);Console::puts(" -> ");
                             curr = curr->next;
                           }
-                          Console::puts("]\n");  
+                          Console::puts("]\n\n");  
                       // print -------------------------------------------------------
 
 
@@ -105,7 +105,7 @@ void Scheduler::add(Thread * _thread) {
                             Console::puti((unsigned int)curr);Console::puts(" -> ");
                             curr = curr->next;
                           }
-                          Console::puts("end ]\n");  
+                          Console::puts("]\n");  
                       // print -------------------------------------------------------
 }
 
