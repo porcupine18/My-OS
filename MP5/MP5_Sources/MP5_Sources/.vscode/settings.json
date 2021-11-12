@@ -9,6 +9,7 @@
         "console.C": "cpp",
         "utils.C": "cpp",
         "machine_low.H": "cpp",
-        "machine.C": "cpp"
+        "machine.C": "cpp",
+        "simple_timer.C": "cpp"
     }
 }
