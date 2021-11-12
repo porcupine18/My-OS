@@ -33,7 +33,7 @@ Scheduler::Scheduler() {
 
 void Scheduler::yield() {
 
-    Console::puts("       -> yield: start\n");
+    Console::puts("\n       -> yield: start\n");
     Thread* next = this->ready_head;
 
     this->ready_head = this->ready_head->next;
@@ -57,7 +57,7 @@ void Scheduler::yield() {
 void Scheduler::resume(Thread * _thread) {
 
                       // print -------------------------------------------------------
-                          Console::puts("       -> resume:     LL [ ");  
+                          Console::puts("\n       -> resume:     LL [ ");  
                           Thread* curr = this->ready_head;
                           while(curr){
                             Console::puti((unsigned int)curr);Console::puts(" -> ");
@@ -84,7 +84,7 @@ void Scheduler::resume(Thread * _thread) {
 void Scheduler::add(Thread * _thread) {
     
                       // print -------------------------------------------------------
-                          Console::puts("       -> add:     LL [ ");  
+                          Console::puts("\n       -> add:     LL [ ");  
                           Thread* curr = this->ready_head;
                           while(curr){
                             Console::puti((unsigned int)curr);Console::puts(" -> ");
