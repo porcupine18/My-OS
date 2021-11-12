@@ -215,8 +215,7 @@ int main() {
 
     GDT::init();
     Console::init();
-    IDT::init();
-    ExceptionHandler::init_dispatcher();
+    IDT::init();newatcher();
     IRQ::init();
     InterruptHandler::init_dispatcher();
 
@@ -316,7 +315,7 @@ int main() {
 
     /* -- KICK-OFF THREAD1 ... */
 
-    Console::puts("STARTING THREAD 1 ...\n");
+    Console::puts("\n\nSTARTING THREAD 1 ...\n");
     Thread::dispatch_to(thread1);
 
     /* -- AND ALL THE REST SHOULD FOLLOW ... */

@@ -54,6 +54,8 @@ private:
    Thread* ready_head;    /* head of the ready queue */
    Thread* ready_tail;    /* head of the ready queue */
 
+   Thread* zombie_head;    /* head of the ready queue */
+   Thread* zombie_tail;    /* head of the ready queue */
 public:
    
    
