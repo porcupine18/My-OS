@@ -83,7 +83,7 @@ void Scheduler::resume(Thread * _thread) {
 
 void Scheduler::add(Thread * _thread) {
     
-    Console::puts("       -> add: start\n");
+    Console::puts("\n       -> add: start\n");
 
     _thread->next = NULL;
     
@@ -99,7 +99,7 @@ void Scheduler::add(Thread * _thread) {
     }
 
                       // print -------------------------------------------------------
-                          Console::puts("\n       -> add:     LL [ ");  
+                          Console::puts("       -> add:     LL [ ");  
                           Thread* curr = this->ready_head;
                           while(curr){
                             Console::puti((unsigned int)curr);Console::puts(" -> ");
