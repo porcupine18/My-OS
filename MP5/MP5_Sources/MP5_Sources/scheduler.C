@@ -83,16 +83,6 @@ void Scheduler::resume(Thread * _thread) {
 
 void Scheduler::add(Thread * _thread) {
     
-                      // print -------------------------------------------------------
-                          Console::puts("\n       -> add:     LL [ ");  
-                          Thread* curr = this->ready_head;
-                          while(curr){
-                            Console::puti((unsigned int)curr);Console::puts(" -> ");
-                            curr = curr->next;
-                          }
-                          Console::puts("]\n");  
-                      // print -------------------------------------------------------
-
     Console::puts("       -> add: start\n");
 
     _thread->next = NULL;
@@ -107,6 +97,16 @@ void Scheduler::add(Thread * _thread) {
         this->ready_tail->next = _thread;
         this->ready_tail = _thread;
     }
+
+                      // print -------------------------------------------------------
+                          Console::puts("\n       -> add:     LL [ ");  
+                          Thread* curr = this->ready_head;
+                          while(curr){
+                            Console::puti((unsigned int)curr);Console::puts(" -> ");
+                            curr = curr->next;
+                          }
+                          Console::puts("]\n");  
+                      // print -------------------------------------------------------
 }
 
 void Scheduler::terminate(Thread * _thread) {
