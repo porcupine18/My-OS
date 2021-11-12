@@ -229,11 +229,13 @@ void PageTable::free_page(unsigned long _page_no) {
          Console::puts("            -> free_page: Freeing valid frame no= ");Console::puti(frame_to_free);Console::puts("\n");
       this->process_mem_pool->release_frames(frame_to_free);
          Console::puts("            -> free_page: Release frame done");Console::puts("\n");
-      write_cr3(read_cr3());
    }
 
    *pte_of_vaddr = *pte_of_vaddr >> 2;
    *pte_of_vaddr = *pte_of_vaddr << 2;   
+
+   write_cr3(read_cr3());
+
          Console::puts("            -> free_page: new PTE ="); print_array_long(pte_of_vaddr);
 
    Console::puts("            -> free_page: DONE!\n");
