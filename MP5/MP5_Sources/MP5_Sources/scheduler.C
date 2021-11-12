@@ -33,7 +33,7 @@ Scheduler::Scheduler() {
 
 void Scheduler::yield() {
 
-    Console::puts("     -> yield: start");
+    Console::puts("       -> yield: start");
     Thread* next = this->ready_head;
 
     this->ready_head = this->ready_head->next;
@@ -41,7 +41,7 @@ void Scheduler::yield() {
     Thread::CurrentThread()->next = NULL;
 
                       // print -------------------------------------------------------
-                          Console::puts("     -> yield:     LL [ ");  
+                          Console::puts("       -> yield:     LL [ ");  
                           Thread* curr = this->ready_head;
                           while(curr){
                             Console::puti((unsigned int)curr);Console::puts(" -> ");
@@ -57,7 +57,7 @@ void Scheduler::yield() {
 void Scheduler::resume(Thread * _thread) {
 
                       // print -------------------------------------------------------
-                          Console::puts("     -> resume:     LL [ ");  
+                          Console::puts("       -> resume:     LL [ ");  
                           Thread* curr = this->ready_head;
                           while(curr){
                             Console::puti((unsigned int)curr);Console::puts(" -> ");
@@ -66,15 +66,15 @@ void Scheduler::resume(Thread * _thread) {
                           Console::puts("]\n");  
                       // print -------------------------------------------------------
   
-    Console::puts("     -> resume: start");
+    Console::puts("       -> resume: start");
 
     if(this->ready_head == NULL){
-        Console::puts("     -> resume: add to start");
+        Console::puts("       -> resume: add to start");
         this->ready_head = _thread;
         this->ready_tail = _thread;
     }
     else{
-        Console::puts("     -> resume: add to end");
+        Console::puts("       -> resume: add to end");
         this->ready_tail->next = _thread;
         this->ready_tail = _thread;
     }
@@ -84,7 +84,7 @@ void Scheduler::resume(Thread * _thread) {
 void Scheduler::add(Thread * _thread) {
     
                       // print -------------------------------------------------------
-                          Console::puts("     -> add:     LL [ ");  
+                          Console::puts("       -> add:     LL [ ");  
                           Thread* curr = this->ready_head;
                           while(curr){
                             Console::puti((unsigned int)curr);Console::puts(" -> ");
@@ -93,17 +93,17 @@ void Scheduler::add(Thread * _thread) {
                           Console::puts("]\n");  
                       // print -------------------------------------------------------
 
-    Console::puts("     -> add: start");
+    Console::puts("       -> add: start");
 
     _thread->next = NULL;
     
     if(this->ready_head == NULL){
-        Console::puts("     -> add: add to start");
+        Console::puts("       -> add: add to start");
         this->ready_head = _thread;
         this->ready_tail = _thread;
     }
     else{
-        Console::puts("     -> add: add to end");
+        Console::puts("       -> add: add to end");
         this->ready_tail->next = _thread;
         this->ready_tail = _thread;
     }
