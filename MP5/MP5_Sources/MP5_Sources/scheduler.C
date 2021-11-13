@@ -28,6 +28,9 @@ Scheduler::Scheduler() {
 	this->ready_head = NULL;
 	this->ready_tail = NULL;
 
+	this->zombie_head = NULL;
+	this->zombie_tail = NULL;
+
 	Console::puts("\n\n++++++++++++++++ Constructed Scheduler ++++++++++++++++\n\n");
 }
 
@@ -81,6 +84,20 @@ void Scheduler::resume(Thread * _thread) {
 		this->ready_tail->next = _thread;
 		this->ready_tail = _thread;
 	}
+
+	/*__________ clean zombie queue __________*/
+	Thread* tmp = this->zombie_head;
+	Thread* tmp2 = NULL;
+
+	while(tmp){
+		tmp2 = tmp->next;
+		delete tmp;
+		tmp = tmp2;
+	}
+	
+	this->zombie_head = NULL;
+	this->zombie_tail = NULL;
+
 
 }
 
