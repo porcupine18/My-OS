@@ -156,9 +156,9 @@ void fun1() {
     for(int j = 0;; j++) 
 #endif
     {	
-        //Console::puts("FUN 1 IN BURST["); Console::puti(j); Console::puts("]\n");
+        Console::puts("FUN 1 IN BURST["); Console::puti(j); Console::puts("]\n");
         for (int i = 0; i < 10; i++) {
-            //Console::puts("FUN 1: TICK ["); Console::puti(i); Console::puts("]\n");
+            Console::puts("FUN 1: TICK ["); Console::puti(i); Console::puts("]\n");
         }
         Console::puts("\n");
         pass_on_CPU(thread2);
@@ -177,9 +177,9 @@ void fun2() {
     for(int j = 0;; j++) 
 #endif  
     {		
-        //Console::puts("FUN 2 IN BURST["); Console::puti(j); Console::puts("]\n");
+        Console::puts("FUN 2 IN BURST["); Console::puti(j); Console::puts("]\n");
         for (int i = 0; i < 10; i++) {
-            //Console::puts("FUN 2: TICK ["); Console::puti(i); Console::puts("]\n");
+            Console::puts("FUN 2: TICK ["); Console::puti(i); Console::puts("]\n");
         }
         pass_on_CPU(thread3);
     }
@@ -190,9 +190,9 @@ void fun3() {
     Console::puts("FUN 3 INVOKED!\n");
 
     for(int j = 0;; j++) {
-        //Console::puts("FUN 3 IN BURST["); Console::puti(j); Console::puts("]\n");
+        Console::puts("FUN 3 IN BURST["); Console::puti(j); Console::puts("]\n");
         for (int i = 0; i < 10; i++) {
-	    //Console::puts("FUN 3: TICK ["); Console::puti(i); Console::puts("]\n");
+	    Console::puts("FUN 3: TICK ["); Console::puti(i); Console::puts("]\n");
         }
         pass_on_CPU(thread4);
     }
@@ -203,9 +203,9 @@ void fun4() {
     Console::puts("FUN 4 INVOKED!\n");
 
     for(int j = 0;; j++) {
-        //Console::puts("FUN 4 IN BURST["); Console::puti(j); Console::puts("]\n");
+        Console::puts("FUN 4 IN BURST["); Console::puti(j); Console::puts("]\n");
         for (int i = 0; i < 10; i++) {
-	    //Console::puts("FUN 4: TICK ["); Console::puti(i); Console::puts("]\n");
+	    Console::puts("FUN 4: TICK ["); Console::puti(i); Console::puts("]\n");
         }
                 
         pass_on_CPU(thread1);
@@ -294,7 +294,7 @@ int main() {
     thread1 = new Thread(fun1, stack1, 1024);
     Console::puts("DONE\n");
 
-    Console::puts("CREenabling interruptsATING THREAD 2...");
+    Console::puts("CREATING THREAD 2...");
     char * stack2 = new char[1024];
     thread2 = new Thread(fun2, stack2, 1024);
     Console::puts("DONE\n");
