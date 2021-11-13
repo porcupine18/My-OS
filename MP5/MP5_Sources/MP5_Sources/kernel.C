@@ -156,7 +156,7 @@ void fun1() {
     for(int j = 0;; j++) 
 #endif
     {	
-        //Console::puts("FUN 1 IN BURST["); Console::puti(j); Console::puts("]\n");
+        Console::puts("FUN 1 IN BURST["); Console::puti(j); Console::puts("]\n");
         for (int i = 0; i < 10; i++) {
             //Console::puts("FUN 1: TICK ["); Console::puti(i); Console::puts("]\n");
         }
@@ -177,7 +177,7 @@ void fun2() {
     for(int j = 0;; j++) 
 #endif  
     {		
-        //Console::puts("FUN 2 IN BURST["); Console::puti(j); Console::puts("]\n");
+        Console::puts("FUN 2 IN BURST["); Console::puti(j); Console::puts("]\n");
         for (int i = 0; i < 10; i++) {
             //Console::puts("FUN 2: TICK ["); Console::puti(i); Console::puts("]\n");
         }
@@ -190,7 +190,7 @@ void fun3() {
     Console::puts("FUN 3 INVOKED!\n");
 
     for(int j = 0;; j++) {
-        //Console::puts("FUN 3 IN BURST["); Console::puti(j); Console::puts("]\n");
+        Console::puts("FUN 3 IN BURST["); Console::puti(j); Console::puts("]\n");
         for (int i = 0; i < 10; i++) {
 	    //Console::puts("FUN 3: TICK ["); Console::puti(i); Console::puts("]\n");
         }
@@ -203,7 +203,7 @@ void fun4() {
     Console::puts("FUN 4 INVOKED!\n");
 
     for(int j = 0;; j++) {
-        //Console::puts("FUN 4 IN BURST["); Console::puti(j); Console::puts("]\n");
+        Console::puts("FUN 4 IN BURST["); Console::puti(j); Console::puts("]\n");
         for (int i = 0; i < 10; i++) {
 	    //Console::puts("FUN 4: TICK ["); Console::puti(i); Console::puts("]\n");
         }
