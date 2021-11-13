@@ -22,7 +22,7 @@
 
 /* INCLUDES ----------------------------------------------------------------*/
 #include "machine.H"
-#include "Scheduler.H"
+#include "scheduler.H"
 
 
 /* DATA STRUCTURES ---------------------------------------------------------*/
