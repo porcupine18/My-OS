@@ -177,7 +177,7 @@ void fun2() {
     for(int j = 0;; j++) 
 #endif  
     {		
-        Console::puts("FUN 2 IN BURST["); Console::puti(j); Console::puts("]\n");
+        //Console::puts("FUN 2 IN BURST["); Console::puti(j); Console::puts("]\n");
         for (int i = 0; i < 10; i++) {
             //Console::puts("FUN 2: TICK ["); Console::puti(i); Console::puts("]\n");
         }
