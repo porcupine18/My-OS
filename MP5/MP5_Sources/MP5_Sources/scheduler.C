@@ -38,9 +38,13 @@ void Scheduler::yield() {
 
 	/*__________ pop thread from ready queue __________*/
 	Console::puts("\n       -> yield: start\n");
+
+	if(!this->ready_head){
+		Thread::dispatch_to(Thread::CurrentThread());
+	}
+
 	Thread* next = this->ready_head;
 
-	
 	this->ready_head = this->ready_head->next;
 
 	/*__________ set current thread's next to NULL as it is in the end too once popped __________*/
