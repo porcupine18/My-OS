@@ -40,7 +40,12 @@ void Scheduler::yield() {
 	//Console::puts("\n       -> yield: start\n");
 	Thread* next = this->ready_head;
 
-	this->ready_head = this->ready_head->next;
+	if(this->ready_head->next){
+		this->ready_head = this->ready_head->next;
+	}
+	else{
+		this->ready_head = NULL;
+	}
 
 	/*__________ set current thread's next to NULL as it is in the end too once popped __________*/
 	Thread::CurrentThread()->next = NULL;
