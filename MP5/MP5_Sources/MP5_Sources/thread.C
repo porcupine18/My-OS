@@ -83,8 +83,8 @@ static void thread_start() {
     /* This function is used to release the thread for execution in the ready queue. */
     
     
-    //Console::puts("!!ENABLING INTERRUPTS!!\n");
-    //Machine::enable_interrupts();
+    Console::puts("!!ENABLING INTERRUPTS!!\n");
+    Machine::enable_interrupts();
     
     /* We need to add code, but it is probably nothing more than enabling interrupts. */
 }
