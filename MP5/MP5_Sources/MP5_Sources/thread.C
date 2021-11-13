@@ -35,6 +35,8 @@
 
 #include "thread.H"
 
+#include "scheduler.H"
+
 #include "threads_low.H"
 
 
