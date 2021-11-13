@@ -87,12 +87,17 @@ void * operator new[] (size_t size) {
 }
 
 //replace the operator "delete"
-operator delete (void * p) {
+void operator delete (void * p) {
     MEMORY_POOL->release((unsigned long)p);
 }
 
 //replace the operator "delete[]"
-operator delete[] (void * p) {
+void operator delete[] (void * p) {
+    MEMORY_POOL->release((unsigned long)p);
+}
+
+//replace the operator "delete"
+void operator delete (void * p, size_t x) {
     MEMORY_POOL->release((unsigned long)p);
 }
 
@@ -316,7 +321,7 @@ int main() {
 
     /* -- KICK-OFF THREAD1 ... */
 
-    Console::puts("\n\nSTARTING THREAD 1 ...\n");
+    Console::puts("STARTING THREAD 1 ...\n");
     Thread::dispatch_to(thread1);
 
     /* -- AND ALL THE REST SHOULD FOLLOW ... */
