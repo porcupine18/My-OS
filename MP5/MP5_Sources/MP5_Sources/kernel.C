@@ -87,12 +87,12 @@ void * operator new[] (size_t size) {
 }
 
 //replace the operator "delete"
-void operator delete (void * p) {
+operator delete (void * p) {
     MEMORY_POOL->release((unsigned long)p);
 }
 
 //replace the operator "delete[]"
-void operator delete[] (void * p) {
+operator delete[] (void * p) {
     MEMORY_POOL->release((unsigned long)p);
 }
 
