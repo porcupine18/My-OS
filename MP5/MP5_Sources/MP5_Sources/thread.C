@@ -73,7 +73,7 @@ static void thread_shutdown() {
        This is a bit complicated because the thread termination interacts with the scheduler.
      */
 
-    assert(false);
+    Scheduler::yield();
     /* Let's not worry about it for now. 
        This means that we should have non-terminating thread functions. 
     */
