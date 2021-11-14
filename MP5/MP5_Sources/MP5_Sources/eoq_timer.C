@@ -50,8 +50,8 @@ void EOQTimer::handle_interrupt(REGS *_r) {
     Console::puts("\n\n!!!!! Timer interrupt --> Preempting !!!!! \n\n");
 
     SYSTEM_SCHEDULER->resume(Thread::CurrentThread());
-    SYSTEM_SCHEDULER->yield();
     Machine::outportb(0x20, 0x20);
+    SYSTEM_SCHEDULER->yield();
 }
 
 
