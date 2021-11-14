@@ -28,7 +28,7 @@
 void print_ll(Thread* head){
 	Thread* curr = head;
 	while(curr){
-		Console::puti((unsigned int)curr);Console::puts(" -> ");
+		Console::puti((unsigned int)curr);Console::puts(" -> yeeeeet");
 		curr = curr->next;
 	}
 }
