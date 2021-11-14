@@ -144,7 +144,8 @@ void Scheduler::resume(Thread * _thread) {
 
 void Scheduler::add(Thread * _thread) {
 	
-    if(Machine::interrupts_enabled()){
+	bool inter = Machine::interrupts_enabled();
+    if(inter){
         Machine::disable_interrupts();
 	}
 
@@ -167,8 +168,8 @@ void Scheduler::add(Thread * _thread) {
 	Console::puts("       -> add:     LL [ "); print_ll(this->ready_head); Console::puts("]\n");  
 
 
-	if (!Machine::interrupts_enabled()){
-	Machine::enable_interrupts();
+	if (inter){
+		Machine::enable_interrupts();
 	}
 }
 
