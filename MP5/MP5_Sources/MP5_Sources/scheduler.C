@@ -84,6 +84,10 @@ void Scheduler::yield() {
 
 	Console::puts("       -> yield: yeilding to :"); Console::puti((unsigned int)next);Console::puts("\n");
 
+    if(Machine::interrupts_enabled()){
+        Machine::enable_interrupts();
+	}
+
 	Thread::dispatch_to(next);
 
     if(Machine::interrupts_enabled()){
