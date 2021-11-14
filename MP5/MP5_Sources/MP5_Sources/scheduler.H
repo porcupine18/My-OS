@@ -13,6 +13,8 @@
 
 /* INCLUDES ----------------------------------------------------------------*/
 #include "thread.H"
+#include "eoq_timer.H"    /* TIMER MANAGEMENT  */
+
 
 /* HELPERS -----------------------------------------------------------------*/
 void print_ll(Thread* head);
