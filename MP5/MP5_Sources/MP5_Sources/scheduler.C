@@ -148,8 +148,12 @@ void Scheduler::add(Thread * _thread) {
 
 void Scheduler::terminate(Thread * _thread) {
     
+	Console::puts("\n       -> terminate: start\n");
+
 	/*__________ if not current thread, remove from linked list __________*/
 	if(_thread != Thread::CurrentThread()){
+
+		Console::puts("       -> terminate: not current thread, removing from ready\n");
 
 		if(_thread == this->ready_head){ //check if thread to be delete is first thread
 
@@ -171,8 +175,13 @@ void Scheduler::terminate(Thread * _thread) {
 			tmp = tmp->next;
 		}
 		delete _thread;
+
+		Console::puts("       -> terminate: DONE\n");
+
 		return;
 	}
+
+	Console::puts("       -> terminate: making current zombie\n");
 
 	/*__________ if current thread, add to zombie list __________*/
 
@@ -187,6 +196,20 @@ void Scheduler::terminate(Thread * _thread) {
 	this->zombie_tail->next = _thread;
 	this->zombie_tail = _thread;
 
+										// print -------------------------------------------------------
+												Console::puts("       -> terminate: ZOMBIE LL [ ");  
+												Thread* curr = this->zombie_head;
+												while(curr){
+													Console::puti((unsigned int)curr);Console::puts(" -> ");
+													curr = curr->next;
+												}
+												Console::puts("]\n");  
+										// print -------------------------------------------------------
+
+	Console::puts("       -> terminate: yielding\n");
+
 	yield();
+
+	Console::puts("       -> terminate: READY EMPTY, CURRENT THREAD IS ZOMBIE\n");
 
 }
