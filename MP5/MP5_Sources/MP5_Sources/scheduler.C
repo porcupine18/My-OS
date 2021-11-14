@@ -62,9 +62,7 @@ void Scheduler::yield() {
 	if(!this->ready_head){
 		Console::puts("       -> yield: ready queue empty, NOTHING TO YIELD TO!\n");
 		
-		if(Machine::interrupts_enabled()){
-        	Machine::enable_interrupts();
-		}
+        Machine::enable_interrupts();
 
 		return;
 	}
@@ -84,15 +82,12 @@ void Scheduler::yield() {
 
 	Console::puts("       -> yield: yeilding to :"); Console::puti((unsigned int)next);Console::puts("\n");
 
-    if(Machine::interrupts_enabled()){
-        Machine::enable_interrupts();
-	}
+    Machine::enable_interrupts();
+
 
 	Thread::dispatch_to(next);
 
-    if(Machine::interrupts_enabled()){
-        Machine::enable_interrupts();
-	}
+    Machine::enable_interrupts();
 
 	return;
 }
@@ -138,9 +133,7 @@ void Scheduler::resume(Thread * _thread) {
 	this->zombie_head = NULL;
 	this->zombie_tail = NULL;
 	
-    if(Machine::interrupts_enabled()){
-        Machine::enable_interrupts();
-	}
+    Machine::enable_interrupts();
 
 }
 
@@ -168,10 +161,8 @@ void Scheduler::add(Thread * _thread) {
 
 	Console::puts("       -> add:     LL [ "); print_ll(this->ready_head); Console::puts("]\n");  
 
-    if(Machine::interrupts_enabled()){
-        Machine::enable_interrupts();
-	}
 
+    Machine::enable_interrupts();
 }
 
 void Scheduler::terminate(Thread * _thread) {
@@ -196,9 +187,7 @@ void Scheduler::terminate(Thread * _thread) {
 
 			delete _thread;
     		
-			if(Machine::interrupts_enabled()){
-    		    Machine::enable_interrupts();
-			}
+    		Machine::enable_interrupts();
 
 			return;
 		}
@@ -214,9 +203,7 @@ void Scheduler::terminate(Thread * _thread) {
 
 		Console::puts("       -> terminate: DONE\n");
 
-		if(Machine::interrupts_enabled()){
-			Machine::enable_interrupts();
-		}
+    	Machine::enable_interrupts();
 
 		return;
 	}
@@ -239,11 +226,11 @@ void Scheduler::terminate(Thread * _thread) {
 	Console::puts("       -> terminate: ZOMBIE LL [ "); print_ll(this->zombie_head); Console::puts("]\n");  
 	Console::puts("       -> terminate: yielding\n");
 
-	if(Machine::interrupts_enabled()){
-		Machine::enable_interrupts();
-	}
+    Machine::enable_interrupts();
 
 	yield();
+
+    Machine::enable_interrupts();
 
 	Console::puts("       -> terminate: READY EMPTY, CURRENT THREAD IS ZOMBIE\n");
 
