@@ -150,6 +150,8 @@ void fun1() {
     Console::puts("Thread:<"); Console::puti((int)Thread::CurrentThread()); Console::puts("> = #"); Console::puti(Thread::CurrentThread()->ThreadId()); Console::puts("\n");
     Console::puts("FUN 1 INVOKED!\n");
 
+    Machine::enable_interrupts();
+
 #ifdef _TERMINATING_FUNCTIONS_
     for(int j = 0; j < 10; j++) 
 #else
@@ -329,8 +331,6 @@ int main() {
     /* -- KICK-OFF THREAD1 ... */
 
     Console::puts("STARTING THREAD 1 ...\n");
-
-    Machine::enable_interrupts();
 
     Thread::dispatch_to(thread1);
 
