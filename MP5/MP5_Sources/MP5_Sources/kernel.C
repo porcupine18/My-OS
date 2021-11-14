@@ -320,11 +320,8 @@ int main() {
     /* WE ADD thread2 - thread4 TO THE READY QUEUE OF THE SCHEDULER. */
 
     SYSTEM_SCHEDULER->add(thread2);
-    Machine::disable_interrupts();
     SYSTEM_SCHEDULER->add(thread3);
-    Machine::disable_interrupts();
     SYSTEM_SCHEDULER->add(thread4);
-    Machine::disable_interrupts();
 
 
 #endif
