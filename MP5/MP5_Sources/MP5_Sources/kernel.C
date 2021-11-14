@@ -33,7 +33,7 @@
 
 /* -- UNCOMMENT THE FOLLOWING LINE TO MAKE THREADS TERMINATING */
 
-//#define _TERMINATING_FUNCTIONS_
+#define _TERMINATING_FUNCTIONS_
 /* This macro is defined when we want the thread functions to return, and so
    terminate their thread.
    Otherwise, the thread functions don't return, and the threads run forever.
@@ -156,11 +156,11 @@ void fun1() {
     for(int j = 0;; j++) 
 #endif
     {	
-        Console::puts("FUN 1 IN BURST["); Console::puti(j); Console::puts("]\n");
+        Console::puts("\nFUN 1 IN BURST["); Console::puti(j); Console::puts("]\n");
         for (int i = 0; i < 10; i++) {
-            //Console::puts("FUN 1: TICK ["); Console::puti(i); Console::puts("]\n");
+            Console::puts("FUN 1: TICK ["); Console::puti(i); Console::puts("]\n");
         }
-        //Console::puts("\n");
+        Console::puts("\n");
         pass_on_CPU(thread2);
 
     }
@@ -168,8 +168,8 @@ void fun1() {
 
 
 void fun2() {
-    //Console::puts("Thread:<"); Console::puti((int)Thread::CurrentThread()); Console::puts("> = #"); Console::puti(Thread::CurrentThread()->ThreadId()); Console::puts(" \n");
-    //Console::puts("FUN 2 INVOKED!\n");
+    Console::puts("Thread:<"); Console::puti((int)Thread::CurrentThread()); Console::puts("> = #"); Console::puti(Thread::CurrentThread()->ThreadId()); Console::puts(" \n");
+    Console::puts("FUN 2 INVOKED!\n");
 
 #ifdef _TERMINATING_FUNCTIONS_
     for(int j = 0; j < 10; j++) 
@@ -177,9 +177,9 @@ void fun2() {
     for(int j = 0;; j++) 
 #endif  
     {		
-        Console::puts("FUN 2 IN BURST["); Console::puti(j); Console::puts("]\n");
+        Console::puts("\nFUN 2 IN BURST["); Console::puti(j); Console::puts("]\n");
         for (int i = 0; i < 10; i++) {
-            //Console::puts("FUN 2: TICK ["); Console::puti(i); Console::puts("]\n");
+            Console::puts("FUN 2: TICK ["); Console::puti(i); Console::puts("]\n");
         }
         pass_on_CPU(thread3);
     }
@@ -190,9 +190,9 @@ void fun3() {
     Console::puts("FUN 3 INVOKED!\n");
 
     for(int j = 0;; j++) {
-        Console::puts("FUN 3 IN BURST["); Console::puti(j); Console::puts("]\n");
+        Console::puts("\nFUN 3 IN BURST["); Console::puti(j); Console::puts("]\n");
         for (int i = 0; i < 10; i++) {
-	    //Console::puts("FUN 3: TICK ["); Console::puti(i); Console::puts("]\n");
+	    Console::puts("FUN 3: TICK ["); Console::puti(i); Console::puts("]\n");
         }
         pass_on_CPU(thread4);
     }
@@ -203,9 +203,9 @@ void fun4() {
     Console::puts("FUN 4 INVOKED!\n");
 
     for(int j = 0;; j++) {
-        Console::puts("FUN 4 IN BURST["); Console::puti(j); Console::puts("]\n");
+        Console::puts("\nFUN 4 IN BURST["); Console::puti(j); Console::puts("]\n");
         for (int i = 0; i < 10; i++) {
-	    //Console::puts("FUN 4: TICK ["); Console::puti(i); Console::puts("]\n");
+	    Console::puts("FUN 4: TICK ["); Console::puti(i); Console::puts("]\n");
         }
                 
         pass_on_CPU(thread1);
