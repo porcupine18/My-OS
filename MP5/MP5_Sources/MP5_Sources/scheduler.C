@@ -145,11 +145,15 @@ void Scheduler::terminate(Thread * _thread) {
 	/*__________ if not current thread, remove from linked list __________*/
 	if(_thread != Thread::CurrentThread()){
 
-		if(_thread == this->ready_head){
-			_thread->next = NULL;
-			this->ready_head = NULL;
-			this->ready_tail = NULL;
+		if(_thread == this->ready_head){ //check if thread to be delete is first thread
+
+			this->ready_head = this->ready_head->next;
+
+			if(this->ready_tail == _thread)
+				this->ready_tail = NULL;
+
 			delete _thread;
+
 			return;
 		}
 

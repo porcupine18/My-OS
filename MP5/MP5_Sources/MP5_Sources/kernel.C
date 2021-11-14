@@ -60,7 +60,6 @@
 
 #ifdef _USES_SCHEDULER_
 #include "scheduler.H"
-#include "system_components.H"
 #endif
 
 /*--------------------------------------------------------------------------*/
@@ -68,10 +67,10 @@
 /*--------------------------------------------------------------------------*/
 
 /* -- A POOL OF FRAMES FOR THE SYSTEM TO USE */
-//extern FramePool * SYSTEM_FRAME_POOL;
+FramePool * SYSTEM_FRAME_POOL;
 
 /* -- A POOL OF CONTIGUOUS MEMORY FOR THE SYSTEM TO USE */
-//extern MemPool * MEMORY_POOL;
+MemPool * MEMORY_POOL;
 
 typedef long unsigned int size_t;
 
@@ -109,7 +108,7 @@ void operator delete (void * p, size_t x) {
 #ifdef _USES_SCHEDULER_
 
 /* -- A POINTER TO THE SYSTEM SCHEDULER */
-//extern Scheduler * SYSTEM_SCHEDULER;
+Scheduler * SYSTEM_SCHEDULER;
 
 #endif
 

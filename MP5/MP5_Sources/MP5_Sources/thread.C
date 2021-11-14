@@ -37,7 +37,9 @@
 
 #include "threads_low.H"
 
-#include "system_components.H"
+#include "scheduler.H"
+
+extern Scheduler*  SYSTEM_SCHEDULER;
 
 /*--------------------------------------------------------------------------*/
 /* EXTERNS */
@@ -75,7 +77,7 @@ static void thread_shutdown() {
        This is a bit complicated because the thread termination interacts with the scheduler.
     */
    
-    SYSTEM_SCHEDULER->terminate(current_thread);
+    SYSTEM_SCHEDULER->terminate( Thread::CurrentThread());
 
     /* Let's not worry about it for now. 
        This means that we should have non-terminating thread functions. 
