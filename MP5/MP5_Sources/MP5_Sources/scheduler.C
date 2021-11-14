@@ -190,11 +190,11 @@ void Scheduler::terminate(Thread * _thread) {
 	if(this->zombie_head == NULL){
 		this->zombie_head = _thread;
 		this->zombie_tail = _thread;
-		return;
 	}
-
-	this->zombie_tail->next = _thread;
-	this->zombie_tail = _thread;
+	else{
+		this->zombie_tail->next = _thread;
+		this->zombie_tail = _thread;
+	}
 
 										// print -------------------------------------------------------
 												Console::puts("       -> terminate: ZOMBIE LL [ ");  
