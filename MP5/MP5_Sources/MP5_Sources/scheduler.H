@@ -13,7 +13,6 @@
 
 /* INCLUDES ----------------------------------------------------------------*/
 #include "thread.H"
-#include "eoq_timer.H"    /* TIMER MANAGEMENT  */
 
 
 /* HELPERS -----------------------------------------------------------------*/
@@ -61,8 +60,6 @@ private:
 
    Thread* zombie_head;    /* head of the ready queue */
    Thread* zombie_tail;    /* head of the ready queue */
-
-   EOQTimer* timer;
 
 public:
    
