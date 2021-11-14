@@ -180,10 +180,6 @@ void fun2() {
     {		
         Console::puts("\nFUN 2 IN BURST["); Console::puti(j); Console::puts("]\n");
 
-        if(j==5){
-                SYSTEM_SCHEDULER->terminate(thread3);
-        }
-
         for (int i = 0; i < 10; i++) {
             Console::puts("FUN 2: TICK ["); Console::puti(i); Console::puts("]\n");
 
