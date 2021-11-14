@@ -37,6 +37,7 @@
 
 #include "threads_low.H"
 
+#include "system_components.H"
 
 /*--------------------------------------------------------------------------*/
 /* EXTERNS */
@@ -72,8 +73,10 @@ static void thread_shutdown() {
     /* This function should be called when the thread returns from the thread function.
        It terminates the thread by releasing memory and any other resources held by the thread. 
        This is a bit complicated because the thread termination interacts with the scheduler.
-     */
-     
+    */
+   
+    SYSTEM_SCHEDULER->terminate(current_thread);
+
     /* Let's not worry about it for now. 
        This means that we should have non-terminating thread functions. 
     */

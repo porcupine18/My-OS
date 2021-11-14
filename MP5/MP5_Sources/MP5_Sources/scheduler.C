@@ -36,12 +36,15 @@ Scheduler::Scheduler() {
 
 void Scheduler::yield() {
 
-	/*__________ pop thread from ready queue __________*/
+
 	//Console::puts("\n       -> yield: start\n");
 
+	/*__________ return if ready queue is empty __________*/
 	if(!this->ready_head){
-		Thread::dispatch_to(Thread::CurrentThread());
+		return;
 	}
+
+	/*__________ pop thread from ready queue __________*/
 
 	Thread* next = this->ready_head;
 
@@ -62,6 +65,8 @@ void Scheduler::yield() {
 
 	/*__________ dispatch to next thread __________*/
 	Thread::dispatch_to(next);
+
+	return;
 }
 
 void Scheduler::resume(Thread * _thread) {
