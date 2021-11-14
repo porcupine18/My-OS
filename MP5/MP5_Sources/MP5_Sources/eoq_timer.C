@@ -45,6 +45,7 @@ void EOQTimer::handle_interrupt(REGS *_r) {
         seconds++;
         ticks = 0;
     }
+
     
     Console::puts("\n\n!!!!! Timer interrupt --> Preempting !!!!! \n\n");
 
