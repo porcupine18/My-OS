@@ -65,7 +65,7 @@ void SimpleTimer::handle_interrupt(REGS *_r) {
     {
         seconds++;
         ticks = 0;
-        Console::puts("Timer interrupt --> Preempting\n");
+        Console::puts("\n\n!!!!! Timer interrupt --> Preempting !!!!! \n\n");
     }
 
     SYSTEM_SCHEDULER->resume(Thread::CurrentThread());
