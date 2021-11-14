@@ -65,6 +65,9 @@ void Scheduler::yield() {
 										// print -------------------------------------------------------
 
 	/*__________ dispatch to next thread __________*/
+
+	Console::puts("       -> yield: yeilding to :"); Console::puti((unsigned int)next);Console::puts("\n");
+
 	Thread::dispatch_to(next);
 
 	return;
