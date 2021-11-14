@@ -15,7 +15,6 @@
 #include "utils.H"
 #include "assert.H"
 #include "simple_keyboard.H"
-#include "eoq_timer.H"    /* TIMER MANAGEMENT  */
 
 
 /* DATA STRUCTURES ---------------------------------------------------------*/
