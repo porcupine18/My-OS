@@ -47,7 +47,7 @@ void EOQTimer::handle_interrupt(REGS *_r) {
     }
 
     
-    Console::puts("\n\n!!!!! Timer interrupt --> Preempting !!!!! \n\n");
+    Console::puts("\n\n!!!!! LOLLOL Timer interrupt --> Preempting !!!!! \n\n");
 
     SYSTEM_SCHEDULER->resume(Thread::CurrentThread());
     SYSTEM_SCHEDULER->yield();
