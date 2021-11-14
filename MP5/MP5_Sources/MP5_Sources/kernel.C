@@ -182,7 +182,7 @@ void fun2() {
         for (int i = 0; i < 10; i++) {
             Console::puts("FUN 2: TICK ["); Console::puti(i); Console::puts("]\n");
 
-            if(i==5){
+            if(j==5){
                 SYSTEM_SCHEDULER->terminate(thread3);
             }
         }
