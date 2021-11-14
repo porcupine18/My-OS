@@ -137,9 +137,6 @@ void Scheduler::resume(Thread * _thread) {
 	this->zombie_head = NULL;
 	this->zombie_tail = NULL;
 	
-	if (!Machine::interrupts_enabled()){
-	Machine::enable_interrupts();
-	}
 }
 
 void Scheduler::add(Thread * _thread) {
