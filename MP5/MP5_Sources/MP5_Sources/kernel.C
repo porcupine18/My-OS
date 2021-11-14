@@ -164,6 +164,7 @@ void fun1() {
         pass_on_CPU(thread2);
 
     }
+    Console::puts("FUN 1 END!!!!!!\n");
 }
 
 
@@ -183,6 +184,7 @@ void fun2() {
         }
         pass_on_CPU(thread3);
     }
+    Console::puts("FUN 2 END!!!!!!\n");
 }
 
 void fun3() {
@@ -196,6 +198,7 @@ void fun3() {
         }
         pass_on_CPU(thread4);
     }
+    Console::puts("FUN 3 END!!!!!!\n");
 }
 
 void fun4() {
@@ -210,6 +213,8 @@ void fun4() {
                 
         pass_on_CPU(thread1);
     }
+
+    Console::puts("FUN 4 END!!!!!!\n");
 }
 
 /*--------------------------------------------------------------------------*/
