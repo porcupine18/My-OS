@@ -54,15 +54,7 @@ void Scheduler::yield() {
 	/*__________ set current thread's next to NULL as it is in the end too once popped __________*/
 	Thread::CurrentThread()->next = NULL;
 
-										// print -------------------------------------------------------
-												Console::puts("       -> yield:     LL [ ");  
-												Thread* curr = this->ready_head;
-												while(curr){
-													Console::puti((unsigned int)curr);Console::puts(" -> ");
-													curr = curr->next;
-												}
-												Console::puts("]\n\n");  
-										// print -------------------------------------------------------
+	Console::puts("       -> yield:     LL [ "); print_ll(this->ready_head); Console::puts("]\n");  
 
 	/*__________ dispatch to next thread __________*/
 
@@ -75,15 +67,7 @@ void Scheduler::yield() {
 
 void Scheduler::resume(Thread * _thread) {
 
-	                    // print -------------------------------------------------------
-                          Console::puts("\n       -> resume:     LL [ ");  
-                          Thread* curr = this->ready_head;
-                          while(curr){
-                            Console::puti((unsigned int)curr);Console::puts(" -> ");
-                            curr = curr->next;
-                          }
-                          Console::puts("]\n");  
-                      // print -------------------------------------------------------
+	Console::puts("       -> resume:     LL [ "); print_ll(this->ready_head); Console::puts("]\n");  
   
 	/*__________ add thread to ready queue __________*/
 	Console::puts("       -> resume: start\n");
@@ -138,15 +122,7 @@ void Scheduler::add(Thread * _thread) {
 		this->ready_tail = _thread;
 	}
 
-										// print -------------------------------------------------------
-												Console::puts("       -> add:     LL [ ");  
-												Thread* curr = this->ready_head;
-												while(curr){
-													Console::puti((unsigned int)curr);Console::puts(" -> ");
-													curr = curr->next;
-												}
-												Console::puts("]\n");  
-										// print -------------------------------------------------------
+	Console::puts("       -> add:     LL [ "); print_ll(this->ready_head); Console::puts("]\n");  
 }
 
 void Scheduler::terminate(Thread * _thread) {
@@ -199,16 +175,7 @@ void Scheduler::terminate(Thread * _thread) {
 		this->zombie_tail = _thread;
 	}
 
-										// print -------------------------------------------------------
-												Console::puts("       -> terminate: ZOMBIE LL [ ");  
-												Thread* curr = this->zombie_head;
-												while(curr){
-													Console::puti((unsigned int)curr);Console::puts(" -> ");
-													curr = curr->next;
-												}
-												Console::puts("]\n");  
-										// print -------------------------------------------------------
-
+	Console::puts("       -> terminate: ZOMBIE LL [ "); print_ll(this->zombie_head); Console::puts("]\n");  
 	Console::puts("       -> terminate: yielding\n");
 
 	yield();
@@ -216,3 +183,12 @@ void Scheduler::terminate(Thread * _thread) {
 	Console::puts("       -> terminate: READY EMPTY, CURRENT THREAD IS ZOMBIE\n");
 
 }
+
+void print_ll(Thread* head){
+	Thread* curr = head;
+	while(curr){
+		Console::puti((unsigned int)curr);Console::puts(" -> ");
+		curr = curr->next;
+	}
+}
+

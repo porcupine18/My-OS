@@ -83,6 +83,8 @@ public:
     static Thread * CurrentThread();
     /* Returns the currently running thread. NULL if no thread has started 
        yet. */
+
+    static void print_ll(Thread* head);
 };
 
 #endif
