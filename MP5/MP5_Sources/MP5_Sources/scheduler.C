@@ -16,7 +16,6 @@
 #include "assert.H"
 #include "simple_keyboard.H"
 #include "eoq_timer.H"    /* TIMER MANAGEMENT  */
-#include "eoq_timer.C"    /* TIMER MANAGEMENT  */
 
 
 /* DATA STRUCTURES ---------------------------------------------------------*/
@@ -45,7 +44,7 @@ Scheduler::Scheduler() {
 	this->zombie_head = NULL;
 	this->zombie_tail = NULL;
 
-    EOQTimer* timer = new EOQTimer(20); /* timer ticks every 10ms. */
+    EOQTimer* timer = new EOQTimer::EOQTimer(20); /* timer ticks every 10ms. */
     InterruptHandler::register_handler(0, timer);
 
 	Console::puts("\n\n++++++++++++++++ Constructed Scheduler ++++++++++++++++\n\n");
