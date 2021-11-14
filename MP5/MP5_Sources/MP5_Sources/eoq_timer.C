@@ -3,6 +3,7 @@
 #include "console.H"
 #include "interrupts.H"
 #include "eoq_timer.H"
+#include "scheduler.H"
 
 extern Scheduler*  SYSTEM_SCHEDULER;
 
