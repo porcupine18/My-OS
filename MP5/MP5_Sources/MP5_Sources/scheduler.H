@@ -89,6 +89,9 @@ public:
       of the thread. 
       Graciously handle the case where the thread wants to terminate itself.*/
   
+   static void print_ll(Thread* head);
+
+
 };
 	
 	
