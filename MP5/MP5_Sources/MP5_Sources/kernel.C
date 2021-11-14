@@ -269,7 +269,7 @@ int main() {
                  we enable interrupts correctly. If we forget to do it,
                  the timer "dies". */
 
-    SimpleTimer timer(50); /* timer ticks every 50msec. */
+    SimpleTimer timer(11); /* timer ticks every 50msec. */
     InterruptHandler::register_handler(0, &timer);
     /* The Timer is implemented as an interrupt handler. */
 
