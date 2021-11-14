@@ -166,6 +166,10 @@ void Scheduler::add(Thread * _thread) {
 }
 
 void Scheduler::terminate(Thread * _thread) {
+
+    if(Machine::interrupts_enabled()){
+        Machine::disable_interrupts();
+	}
     
 	Console::puts("\n       -> terminate: start\n");
 
@@ -182,6 +186,10 @@ void Scheduler::terminate(Thread * _thread) {
 				this->ready_tail = NULL;
 
 			delete _thread;
+    		
+			if(Machine::interrupts_enabled()){
+    		    Machine::enable_interrupts();
+			}
 
 			return;
 		}
@@ -196,6 +204,10 @@ void Scheduler::terminate(Thread * _thread) {
 		delete _thread;
 
 		Console::puts("       -> terminate: DONE\n");
+
+		if(Machine::interrupts_enabled()){
+			Machine::enable_interrupts();
+		}
 
 		return;
 	}
@@ -217,6 +229,10 @@ void Scheduler::terminate(Thread * _thread) {
 
 	Console::puts("       -> terminate: ZOMBIE LL [ "); print_ll(this->zombie_head); Console::puts("]\n");  
 	Console::puts("       -> terminate: yielding\n");
+
+	if(Machine::interrupts_enabled()){
+		Machine::enable_interrupts();
+	}
 
 	yield();
 
