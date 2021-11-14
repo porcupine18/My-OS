@@ -43,7 +43,7 @@ Scheduler::Scheduler() {
 	this->zombie_head = NULL;
 	this->zombie_tail = NULL;
 
-    EOQTimer timer(20); /* timer ticks every 10ms. */
+    EOQTimer timer = new EOQTimer(20); /* timer ticks every 10ms. */
     InterruptHandler::register_handler(0, &timer);
 
 	Console::puts("\n\n++++++++++++++++ Constructed Scheduler ++++++++++++++++\n\n");
