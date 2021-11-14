@@ -23,6 +23,17 @@
 /* FORWARDS ----------------------------------------------------------------*/
 
 /* CLASS: Scheduler --------------------------------------------------------*/
+
+
+void print_ll(Thread* head){
+	Thread* curr = head;
+	while(curr){
+		Console::puti((unsigned int)curr);Console::puts(" -> ");
+		curr = curr->next;
+	}
+}
+
+
 Scheduler::Scheduler() {
 	/*__________ init head and tail of linked list of threads __________*/
 	this->ready_head = NULL;
@@ -182,13 +193,5 @@ void Scheduler::terminate(Thread * _thread) {
 
 	Console::puts("       -> terminate: READY EMPTY, CURRENT THREAD IS ZOMBIE\n");
 
-}
-
-void print_ll(Thread* head){
-	Thread* curr = head;
-	while(curr){
-		Console::puti((unsigned int)curr);Console::puts(" -> ");
-		curr = curr->next;
-	}
 }
 
