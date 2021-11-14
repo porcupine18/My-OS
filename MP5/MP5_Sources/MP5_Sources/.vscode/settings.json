@@ -10,6 +10,11 @@
         "utils.C": "cpp",
         "machine_low.H": "cpp",
         "machine.C": "cpp",
-        "simple_timer.C": "cpp"
+        "simple_timer.C": "cpp",
+        "eoc_timer.C": "cpp",
+        "eoq_timer.C": "cpp",
+        "gdt.C": "cpp",
+        "irq.C": "cpp",
+        "interrupts.C": "cpp"
     }
 }

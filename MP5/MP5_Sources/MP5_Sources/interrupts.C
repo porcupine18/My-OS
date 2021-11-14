@@ -28,10 +28,8 @@
 
 /*--------------------------------------------------------------------------*/
 /* EXTERNS */
-/*--------------------------------------------------------------------------*/
+/*--------------------------------    handler->handle_interrupt(_r);
 
-/* The low-level functions (defined in file 'irq_low.s') that handle the
-   16 PIC-generated interrupts.
    These functions are actually merely stubs that put the error code and 
    the exception code on the stack and then call a low-level function, which
    in turn calls the interrupt dispatcher.

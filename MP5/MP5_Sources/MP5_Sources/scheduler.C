@@ -47,12 +47,20 @@ Scheduler::Scheduler() {
 
 void Scheduler::yield() {
 
+    if(Machine::interrupts_enabled()){
+        Machine::disable_interrupts();
+	}
 
 	Console::puts("       -> yield: start\n");
 
 	/*__________ return if ready queue is empty __________*/
 	if(!this->ready_head){
 		Console::puts("       -> yield: ready queue empty, NOTHING TO YIELD TO!\n");
+		
+		if(Machine::interrupts_enabled()){
+        	Machine::enable_interrupts();
+		}
+
 		return;
 	}
 
@@ -73,10 +81,18 @@ void Scheduler::yield() {
 
 	Thread::dispatch_to(next);
 
+    if(Machine::interrupts_enabled()){
+        Machine::enable_interrupts();
+	}
+
 	return;
 }
 
 void Scheduler::resume(Thread * _thread) {
+
+    if(Machine::interrupts_enabled()){
+        Machine::disable_interrupts();
+	}
 
 	Console::puts("       -> resume:     LL [ "); print_ll(this->ready_head); Console::puts("]\n");  
   
@@ -112,11 +128,19 @@ void Scheduler::resume(Thread * _thread) {
 
 	this->zombie_head = NULL;
 	this->zombie_tail = NULL;
+	
+    if(Machine::interrupts_enabled()){
+        Machine::enable_interrupts();
+	}
 
 }
 
 void Scheduler::add(Thread * _thread) {
 	
+    if(Machine::interrupts_enabled()){
+        Machine::disable_interrupts();
+	}
+
 	/*__________ add thread to ready queue __________*/
 	Console::puts("\n       -> add: start\n");
 
@@ -134,6 +158,11 @@ void Scheduler::add(Thread * _thread) {
 	}
 
 	Console::puts("       -> add:     LL [ "); print_ll(this->ready_head); Console::puts("]\n");  
+
+    if(Machine::interrupts_enabled()){
+        Machine::enable_interrupts();
+	}
+
 }
 
 void Scheduler::terminate(Thread * _thread) {
