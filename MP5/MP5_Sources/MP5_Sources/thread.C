@@ -77,6 +77,7 @@ static void thread_shutdown() {
        This is a bit complicated because the thread termination interacts with the scheduler.
     */
    
+    Console::puts("!!THREAD SHUTDOWN -> TERMINATING!!\n");
     SYSTEM_SCHEDULER->terminate( Thread::CurrentThread());
 
     /* Let's not worry about it for now. 
