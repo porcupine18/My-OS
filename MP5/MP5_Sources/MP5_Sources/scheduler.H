@@ -59,6 +59,9 @@ private:
 
    Thread* zombie_head;    /* head of the ready queue */
    Thread* zombie_tail;    /* head of the ready queue */
+
+   EOQTimer* timer;
+
 public:
    
    
