@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "simple_disk.C": "cpp",
+        "blocking_disk.C": "cpp",
+        "kernel.C": "cpp"
+    }
+}
