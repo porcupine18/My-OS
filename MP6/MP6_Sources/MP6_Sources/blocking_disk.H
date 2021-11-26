@@ -43,16 +43,16 @@ class BlockingDisk : public SimpleDisk {
 protected:
 
 
-void wait_until_ready(){
-   if(!SimpleDisk::is_ready()){
-      
-      Thread* curr = Thread::CurrentThread();
-      
-      this->linkedlist_head->push(curr);
-      SYSTEM_SCHEDULER->yield();         
+   void wait_until_ready(){
+      if(!SimpleDisk::is_ready()){
+         
+         Thread* curr = Thread::CurrentThread();
+         
+         this->linkedlist_head->push(curr);
+         SYSTEM_SCHEDULER->yield();         
+      }
+      return;
    }
-   return;
-}
 
 public:
 
