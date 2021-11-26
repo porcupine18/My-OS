@@ -13,7 +13,7 @@
 
 /* INCLUDES ----------------------------------------------------------------*/
 #include "thread.H"
-#include "blocking_disk.H"
+#include "blocking_disk.C"
 
 /* HELPERS -----------------------------------------------------------------*/
 void print_ll(Thread* head);
