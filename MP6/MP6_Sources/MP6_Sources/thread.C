@@ -39,7 +39,7 @@
 
 #include "scheduler.H"
 
-extern Scheduler::Scheduler* SYSTEM_SCHEDULER;
+extern Scheduler* SYSTEM_SCHEDULER;
 
 /*--------------------------------------------------------------------------*/
 /* EXTERNS */

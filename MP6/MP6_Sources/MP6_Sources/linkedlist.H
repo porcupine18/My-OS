@@ -1,4 +1,4 @@
-#include "thread.C"
+#include "thread.H"
 
 
 class ListItem{
