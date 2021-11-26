@@ -39,7 +39,7 @@ class BlockingDisk : public SimpleDisk {
 
 protected:
 
-void wait_until_ready();
+   void wait_until_ready();
 
 public:
 
