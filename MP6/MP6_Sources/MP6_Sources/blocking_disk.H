@@ -22,7 +22,7 @@
 /*--------------------------------------------------------------------------*/
 
 #include "simple_disk.H"
-#include "linkedlist.C"
+#include "linkedlist.H"
 #include "scheduler.H"
 
 extern Scheduler*  SYSTEM_SCHEDULER;
