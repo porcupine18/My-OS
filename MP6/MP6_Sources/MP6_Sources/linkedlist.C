@@ -21,7 +21,7 @@ void ListItem::push(Thread* inp){
 Thread* ListItem::pop(){
 
     if(!this->th){
-        return;
+        return NULL;
     }
     else{
         Thread* tmp_th = this->th;
