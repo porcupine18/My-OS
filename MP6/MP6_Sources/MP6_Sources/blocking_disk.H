@@ -35,11 +35,13 @@
 /* B l o c k i n g D i s k  */
 /*--------------------------------------------------------------------------*/
 
+extern Scheduler*  SYSTEM_SCHEDULER;
+
+
 class BlockingDisk : public SimpleDisk {
 
 protected:
 
-extern Scheduler*  SYSTEM_SCHEDULER;
 
 void wait_until_ready(){
    if(!SimpleDisk::is_ready()){
