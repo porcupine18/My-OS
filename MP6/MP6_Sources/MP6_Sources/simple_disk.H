@@ -32,6 +32,7 @@
 /* DATA STRUCTURES */ 
 /*--------------------------------------------------------------------------*/
 
+
 enum class DISK_ID {MASTER = 0, DEPENDENT = 1};
 enum class DISK_OPERATION {READ = 0, WRITE = 1};
 
@@ -55,7 +56,6 @@ private:
 protected:
      /* -- HERE WE CAN DEFINE THE BEHAVIOR OF DERIVED DISKS */ 
 
-     virtual bool is_ready();
      /* Return true if disk is ready to transfer data from/to disk, false otherwise. */
 
      virtual void wait_until_ready() {
@@ -68,6 +68,8 @@ protected:
         and return to check later. */
 
 public:
+
+   virtual bool is_ready();
 
    SimpleDisk(DISK_ID _disk_id, unsigned int _size); 
    /* Creates a SimpleDisk device with the given size connected to the MASTER or 

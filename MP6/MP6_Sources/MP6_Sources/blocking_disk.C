@@ -27,8 +27,9 @@
 /* CONSTRUCTOR */
 /*--------------------------------------------------------------------------*/
 
-BlockingDisk::BlockingDisk(DISK_ID _disk_id, unsigned int _size) 
-  : SimpleDisk(_disk_id, _size) {
+BlockingDisk::BlockingDisk(DISK_ID _disk_id, unsigned int _size) : SimpleDisk(_disk_id, _size) {
+ 
+  this->linkedlist_head = new ListItem(NULL);
 }
 
 /*--------------------------------------------------------------------------*/

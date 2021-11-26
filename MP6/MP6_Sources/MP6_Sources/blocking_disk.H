@@ -22,19 +22,39 @@
 /*--------------------------------------------------------------------------*/
 
 #include "simple_disk.H"
+#include "linkedlist.C"
+#include "scheduler.H"
 
+extern Scheduler*  SYSTEM_SCHEDULER;
 /*--------------------------------------------------------------------------*/
 /* DATA STRUCTURES */ 
 /*--------------------------------------------------------------------------*/
 
-/* -- (none) -- */
+
 
 /*--------------------------------------------------------------------------*/
 /* B l o c k i n g D i s k  */
 /*--------------------------------------------------------------------------*/
 
 class BlockingDisk : public SimpleDisk {
+
+protected:
+
+void wait_until_ready(){
+   if(!SimpleDisk::is_ready()){
+      
+      Thread* curr = Thread::CurrentThread();
+      
+      this->linkedlist_head->push(curr);
+      SYSTEM_SCHEDULER->yield();         
+   }
+   return;
+}
+
 public:
+
+   ListItem* linkedlist_head = NULL;
+
    BlockingDisk(DISK_ID _disk_id, unsigned int _size); 
    /* Creates a BlockingDisk device with the given size connected to the 
       MASTER or SLAVE slot of the primary ATA controller.

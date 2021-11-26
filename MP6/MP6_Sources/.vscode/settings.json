@@ -2,6 +2,10 @@
     "files.associations": {
         "simple_disk.C": "cpp",
         "blocking_disk.C": "cpp",
-        "kernel.C": "cpp"
+        "kernel.C": "cpp",
+        "machine.C": "cpp",
+        "scheduler.C": "cpp",
+        "thread.C": "cpp",
+        "linkedlist.C": "cpp"
     }
 }
