@@ -35,7 +35,6 @@
 /* B l o c k i n g D i s k  */
 /*--------------------------------------------------------------------------*/
 
-extern Scheduler*  SYSTEM_SCHEDULER;
 
 
 class BlockingDisk : public SimpleDisk {
@@ -43,16 +42,7 @@ class BlockingDisk : public SimpleDisk {
 protected:
 
 
-   void wait_until_ready(){
-      if(!SimpleDisk::is_ready()){
-         
-         Thread* curr = Thread::CurrentThread();
-         
-         this->linkedlist_head->push(curr);
-         SYSTEM_SCHEDULER->yield();         
-      }
-      return;
-   }
+   void wait_until_ready();
 
 public:
 

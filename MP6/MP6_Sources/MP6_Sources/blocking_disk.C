@@ -23,6 +23,20 @@
 #include "console.H"
 #include "blocking_disk.H"
 
+extern Scheduler*  SYSTEM_SCHEDULER;
+
+
+void BlockingDisk::wait_until_ready(){
+  if(!SimpleDisk::is_ready()){
+      
+      Thread* curr = Thread::CurrentThread();
+      
+      this->linkedlist_head->push(curr);
+      SYSTEM_SCHEDULER->yield();         
+  }
+  return;
+}
+
 /*--------------------------------------------------------------------------*/
 /* CONSTRUCTOR */
 /*--------------------------------------------------------------------------*/
