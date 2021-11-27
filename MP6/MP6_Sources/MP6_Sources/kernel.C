@@ -181,12 +181,12 @@ void fun2() {
        Console::puts("FUN 2 IN ITERATION["); Console::puti(j); Console::puts("]\n");
 
        /* -- Read */
-       Console::puts("Reading a block from disk...\n");
         
         if (!Machine::interrupts_enabled()){
 	        Machine::enable_interrupts();
 	    }
 
+       Console::puts("Reading a block from disk...\n");
        SYSTEM_DISK->read(read_block, buf);
 
        /* -- Display */

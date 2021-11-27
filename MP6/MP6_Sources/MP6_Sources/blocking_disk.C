@@ -62,11 +62,6 @@ BlockingDisk::BlockingDisk(DISK_ID _disk_id, unsigned int _size) : SimpleDisk(_d
 
 void BlockingDisk::read(unsigned long _block_no, unsigned char * _buf) {
 
-	if (!Machine::interrupts_enabled()){
-	Machine::enable_interrupts();
-	}
-
-
   Console::puts("       -> read(): start\n"); 
 
   issue_operation(DISK_OPERATION::READ, _block_no);
@@ -93,10 +88,6 @@ void BlockingDisk::read(unsigned long _block_no, unsigned char * _buf) {
 
 
 void BlockingDisk::write(unsigned long _block_no, unsigned char * _buf) {
-
-	if (!Machine::interrupts_enabled()){
-	Machine::enable_interrupts();
-	}
 
   Console::puts("       -> write(): start\n"); 
 
