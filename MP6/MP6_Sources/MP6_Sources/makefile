@@ -69,7 +69,7 @@ frame_pool.o: frame_pool.C frame_pool.H
 mem_pool.o: mem_pool.C mem_pool.H 
 	$(GCC) $(GCC_OPTIONS) -c -o mem_pool.o mem_pool.C
 
-linkedlist.o: linkedlist.C linkedlist.H thread.H
+linkedlist.o: linkedlist.C linkedlist.H thread.H thread.C
 	$(GCC) $(GCC_OPTIONS) -c -o linkedlist.o linkedlist.C
 
 # ==== THREADS & SCHEDULING =====
