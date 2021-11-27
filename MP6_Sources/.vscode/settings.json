@@ -2,6 +2,7 @@
     "files.associations": {
         "scheduler.C": "cpp",
         "thread.C": "cpp",
-        "mem_pool.C": "cpp"
+        "mem_pool.C": "cpp",
+        "kernel.C": "cpp"
     }
 }
