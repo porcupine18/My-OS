@@ -110,7 +110,7 @@ Scheduler * SYSTEM_SCHEDULER;
 /*--------------------------------------------------------------------------*/
 
 /* -- A POINTER TO THE SYSTEM DISK */
-BlockingDisk* SYSTEM_DISK;
+SimpleDisk* SYSTEM_DISK;
 
 #define SYSTEM_DISK_SIZE (10 MB)
 
@@ -182,10 +182,6 @@ void fun2() {
 
        /* -- Read */
         
-        if (!Machine::interrupts_enabled()){
-	        Machine::enable_interrupts();
-	    }
-
        Console::puts("Reading a block from disk...\n");
        SYSTEM_DISK->read(read_block, buf);
 
@@ -193,10 +189,6 @@ void fun2() {
        for (int i = 0; i < DISK_BLOCK_SIZE; i++) {
            Console::putch(buf[i]);
        }
-
-        if (!Machine::interrupts_enabled()){
-	        Machine::enable_interrupts();
-	    }
 
        Console::puts("Writing a block to disk...\n");
        SYSTEM_DISK->write(write_block, buf); 
@@ -305,7 +297,7 @@ int main() {
 
     /* -- DISK DEVICE -- */
 
-    SYSTEM_DISK = new BlockingDisk(DISK_ID::MASTER, SYSTEM_DISK_SIZE);
+    SYSTEM_DISK = new SimpleDisk(DISK_ID::MASTER, SYSTEM_DISK_SIZE);
    
     /* NOTE: The timer chip starts periodically firing as 
              soon as we enable interrupts.
