@@ -297,7 +297,7 @@ int main() {
 
     /* -- DISK DEVICE -- */
 
-    SYSTEM_DISK = new BlockingDisk(DISK_ID::MASTER, SYSTEM_DISK_SIZE);
+    SYSTEM_DISK = new SimpleDisk(DISK_ID::MASTER, SYSTEM_DISK_SIZE);
    
     /* NOTE: The timer chip starts periodically firing as 
              soon as we enable interrupts.
