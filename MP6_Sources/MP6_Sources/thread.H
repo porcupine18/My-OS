@@ -17,24 +17,19 @@
 #ifndef _thread_H_                   // include file only once
 #define _thread_H_
 
-/*--------------------------------------------------------------------------*/
-/* DEFINES */
-/*--------------------------------------------------------------------------*/
+/* DEFINES -----------------------------------------------------------------*/
 
-/* -- (none) -- */
 
-/*--------------------------------------------------------------------------*/
-/* INCLUDES */
-/*--------------------------------------------------------------------------*/
-
+/* INCLUDES ----------------------------------------------------------------*/
 #include "machine.H"
 
-/*--------------------------------------------------------------------------*/
-/* DATA STRUCTURES */
-/*--------------------------------------------------------------------------*/
+
+/* DATA STRUCTURES ---------------------------------------------------------*/
 
 /* -- THREAD FUNCTION (CALLED WHEN THREAD STARTS RUNNING) */
 typedef void (*Thread_Function)();
+
+/* CLASS: Thread -----------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------*/
 /* THREAD CONTROL BLOCK */
@@ -43,16 +38,16 @@ typedef void (*Thread_Function)();
 class Thread {
 
 private: 
-    char     * esp;         /* The current stack pointer for the thread.*/
-                            /* Keep it at offset 0, since the thread 
-                               dispatcher relies on this  location! */
-    int        thread_id;   /* thread identifier. Assigned upon creation. */
-    char     * stack;       /* pointer to the stack of the thread.*/
-    unsigned int stack_size;/* size of the stack (in byte) */
-    int        priority;    /* Maybe the scheduler wants to use priorities. */
-    char     * cargo;       /* pointer to additional data that 
-                               may need to be stored, typically by schedulers.
-                               (for future use) */
+    char*         esp;         /* The current stack pointer for the thread.*/
+                               /* Keep it at offset 0, since the thread 
+                                  dispatcher relies on this  location! */
+    int           thread_id;   /* thread identifier. Assigned upon creation. */
+    char*         stack;       /* pointer to the stack of the thread.*/
+    unsigned int  stack_size;  /* size of the stack (in byte) */
+    int           priority;    /* Maybe the scheduler wants to use priorities. */
+    char*         cargo;       /* pointer to additional data that 
+                                  may need to be stored, typically by schedulers.
+                                  (for future use) */
 
     static int nextFreePid; /* Used to assign unique id's to threads. */
 
@@ -65,6 +60,9 @@ private:
     */
  
 public: 
+
+    Thread*       next;        /* next thread in linked list */
+
     Thread(Thread_Function _tf, char * _stack, unsigned int _stack_size);
     /* Create a thread that is set up to execute the given thread function. 
        The thread is given a pointer to the stack to use. 
@@ -85,6 +83,7 @@ public:
     static Thread * CurrentThread();
     /* Returns the currently running thread. NULL if no thread has started 
        yet. */
+
 };
 
 #endif
