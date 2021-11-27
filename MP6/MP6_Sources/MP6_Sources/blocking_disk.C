@@ -36,7 +36,8 @@ void BlockingDisk::wait_until_ready(){
       
       Thread* curr = Thread::CurrentThread();
       
-      this->linkedlist_head->push(curr);
+      //this->linkedlist_head->push(curr);
+      SYSTEM_SCHEDULER->resume(); 
       SYSTEM_SCHEDULER->yield(); 
       
       Console::puts("       -> wait_until_ready: added self <"); Console::puti((unsigned int)curr); Console::puts("> and Yielding\n"); 
