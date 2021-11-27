@@ -31,9 +31,6 @@ extern Scheduler*  SYSTEM_SCHEDULER;
 
 void BlockingDisk::wait_until_ready(){
 
-	if (!Machine::interrupts_enabled()){
-	Machine::enable_interrupts();
-	}
 
   if(!SimpleDisk::is_ready()){
       
