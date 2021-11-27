@@ -180,6 +180,12 @@ void fun2() {
        Console::puts("FUN 2 IN ITERATION["); Console::puti(j); Console::puts("]\n");
 
        /* -- Read */
+           
+
+        if (!Machine::interrupts_enabled()){
+            Machine::enable_interrupts();
+	    }
+
        Console::puts("Reading a block from disk...\n");
        SYSTEM_DISK->read(read_block, buf);
 
@@ -187,6 +193,11 @@ void fun2() {
        for (int i = 0; i < DISK_BLOCK_SIZE; i++) {
            Console::putch(buf[i]);
        }
+
+
+        if (!Machine::interrupts_enabled()){
+            Machine::enable_interrupts();
+	    }
 
        Console::puts("Writing a block to disk...\n");
        SYSTEM_DISK->write(write_block, buf); 
