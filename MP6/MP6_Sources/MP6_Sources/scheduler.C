@@ -62,6 +62,9 @@ void Scheduler::yield() {
         Machine::disable_interrupts();
 	}
 
+	Console::puts("       -> yield: start\n");
+
+
 	// finishing work in blocking disk threads
 	if(this->curr_disk){
 		if(this->curr_disk->is_ready()){
@@ -78,7 +81,7 @@ void Scheduler::yield() {
 
 
 
-	Console::puts("       -> yield: start\n");
+	Console::puts("       -> yield: not in blocked\n");
 
 	/*__________ return if ready queue is empty __________*/
 	if(!this->ready_head){
