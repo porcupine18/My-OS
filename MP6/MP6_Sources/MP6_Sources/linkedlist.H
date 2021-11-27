@@ -1,5 +1,7 @@
+#ifndef LINKEDLIST_H
+#define LINKEDLIST_H
+
 #include "thread.H"
-#include <cstddef>
 
 class ListItem{
 
