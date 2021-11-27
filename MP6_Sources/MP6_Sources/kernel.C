@@ -88,6 +88,11 @@ void operator delete[] (void * p) {
     MEMORY_POOL->release((unsigned long)p);
 }
 
+//replace the operator "delete"
+void operator delete (void * p, size_t x) {
+    MEMORY_POOL->release((unsigned long)p);
+}
+
 /*--------------------------------------------------------------------------*/
 /* SCHEDULER */
 /*--------------------------------------------------------------------------*/
