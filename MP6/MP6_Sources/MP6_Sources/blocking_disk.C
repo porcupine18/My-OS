@@ -59,11 +59,6 @@ void BlockingDisk::read(unsigned long _block_no, unsigned char * _buf) {
 
   Console::puts("       -> read(): start\n"); 
 
-
-	if (!Machine::interrupts_enabled()){
-	Machine::enable_interrupts();
-	}
-
   issue_operation(DISK_OPERATION::READ, _block_no);
 
   Console::puts("       -> read(): yielding\n"); 
@@ -90,10 +85,6 @@ void BlockingDisk::read(unsigned long _block_no, unsigned char * _buf) {
 void BlockingDisk::write(unsigned long _block_no, unsigned char * _buf) {
 
   Console::puts("       -> write(): start\n"); 
-
-	if (!Machine::interrupts_enabled()){
-	Machine::enable_interrupts();
-	}
 
   issue_operation(DISK_OPERATION::WRITE, _block_no);
 
