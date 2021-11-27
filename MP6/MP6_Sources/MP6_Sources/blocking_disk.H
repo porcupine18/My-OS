@@ -23,7 +23,6 @@
 
 #include "simple_disk.H"
 #include "linkedlist.H"
-#include "scheduler.H"
 
 /*--------------------------------------------------------------------------*/
 /* DATA STRUCTURES */ 
