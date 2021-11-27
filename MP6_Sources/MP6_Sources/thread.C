@@ -29,7 +29,6 @@
 /*--------------------------------------------------------------------------*/
 
 #include "assert.H"
-#include "utils.H"
 #include "console.H"
 
 #include "frame_pool.H"
@@ -37,6 +36,10 @@
 #include "thread.H"
 
 #include "threads_low.H"
+
+#include "scheduler.H"
+
+extern Scheduler* SYSTEM_SCHEDULER;
 
 /*--------------------------------------------------------------------------*/
 /* EXTERNS */
@@ -72,18 +75,27 @@ static void thread_shutdown() {
     /* This function should be called when the thread returns from the thread function.
        It terminates the thread by releasing memory and any other resources held by the thread. 
        This is a bit complicated because the thread termination interacts with the scheduler.
-     */
+    */
+   
+    Console::puts("!!THREAD SHUTDOWN -> TERMINATING!!\n");
+    SYSTEM_SCHEDULER->terminate( Thread::CurrentThread());
 
-    assert(false);
     /* Let's not worry about it for now. 
        This means that we should have non-terminating thread functions. 
     */
 }
 
 static void thread_start() {
-     /* This function is used to release the thread for execution in the ready queue. */
+    /* This function is used to release the thread for execution in the ready queue. */
     
-     /* We need to add code, but it is probably nothing more than enabling interrupts. */
+    Machine::outportb(0x20, 0x20);
+    Console::puts("!!ENABLING INTERRUPTS!!\n");
+    if (!Machine::interrupts_enabled()){
+        Machine::enable_interrupts();
+	}
+
+    
+    /* We need to add code, but it is probably nothing more than enabling interrupts. */
 }
 
 void Thread::setup_context(Thread_Function _tfunction){
@@ -151,9 +163,9 @@ void Thread::setup_context(Thread_Function _tfunction){
     push(0);  /* fs */
     push(0);  /* gs */
 
-    Console::puts("esp = "); Console::putui((unsigned int)esp); Console::puts("\n");
+    Console::puts("esp = "); Console::putui((unsigned int)esp); Console::puts(" - ");
 
-    Console::puts("done\n");
+    Console::puts(" done - ");
 }
 
 /*--------------------------------------------------------------------------*/
@@ -179,6 +191,8 @@ Thread::Thread(Thread_Function _tf, char * _stack, unsigned int _stack_size) {
     stack = _stack;
     stack_size = _stack_size;
     
+    next = NULL;
+
     /* -- INITIALIZE THE STACK OF THE THREAD */
 
     setup_context(_tf);
