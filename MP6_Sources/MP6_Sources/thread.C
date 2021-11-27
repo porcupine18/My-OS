@@ -88,7 +88,6 @@ static void thread_shutdown() {
 static void thread_start() {
     /* This function is used to release the thread for execution in the ready queue. */
     
-    Machine::outportb(0x20, 0x20);
     Console::puts("!!ENABLING INTERRUPTS!!\n");
     if (!Machine::interrupts_enabled()){
         Machine::enable_interrupts();
