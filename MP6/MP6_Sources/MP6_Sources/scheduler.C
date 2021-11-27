@@ -58,9 +58,6 @@ Scheduler::Scheduler() {
 
 void Scheduler::yield() {
 
-    if(Machine::interrupts_enabled()){
-        Machine::disable_interrupts();
-	}
 
 	Console::puts("       -> yield: start\n");
 
@@ -87,9 +84,6 @@ void Scheduler::yield() {
 	if(!this->ready_head){
 		Console::puts("       -> yield: ready queue empty, NOTHING TO YIELD TO!\n");
 		
-		if (!Machine::interrupts_enabled()){
-		Machine::enable_interrupts();
-		}
 		return;
 	}
 
@@ -108,25 +102,15 @@ void Scheduler::yield() {
 
 	Console::puts("       -> yield: yeilding to :"); Console::puti((unsigned int)next);Console::puts("\n");
 
-	if (!Machine::interrupts_enabled()){
-	Machine::enable_interrupts();
-	}
 
 	Thread::dispatch_to(next);
 
 	
-	if (!Machine::interrupts_enabled()){
-	Machine::enable_interrupts();
-	}
-
 	return;
 }
 
 void Scheduler::resume(Thread * _thread) {
 	
-    if(Machine::interrupts_enabled()){
-        Machine::disable_interrupts();
-	}
 	
 	Console::puts("       -> resume:     LL [ "); print_ll(this->ready_head); Console::puts("]\n");  
   
@@ -167,11 +151,6 @@ void Scheduler::resume(Thread * _thread) {
 
 void Scheduler::add(Thread * _thread) {
 	
-	bool inter = Machine::interrupts_enabled();
-    if(inter){
-        Machine::disable_interrupts();
-	}
-
 	/*__________ add thread to ready queue __________*/
 	Console::puts("\n       -> add: start\n");
 
@@ -191,18 +170,10 @@ void Scheduler::add(Thread * _thread) {
 	Console::puts("       -> add:     LL [ "); print_ll(this->ready_head); Console::puts("]\n");  
 
 
-	if (inter){
-		Machine::enable_interrupts();
-	}
 }
 
 void Scheduler::terminate(Thread * _thread) {
 	
-    if(Machine::interrupts_enabled()){
-        Machine::disable_interrupts();
-	}
-	
-    
 	Console::puts("\n       -> terminate: start\n");
 
 	/*__________ if not current thread, remove from linked list __________*/
@@ -219,10 +190,6 @@ void Scheduler::terminate(Thread * _thread) {
 
 			delete _thread;
     		
-			if (!Machine::interrupts_enabled()){
-			Machine::enable_interrupts();
-			}
-			
 			return;
 		}
 
@@ -237,9 +204,6 @@ void Scheduler::terminate(Thread * _thread) {
 
 		Console::puts("       -> terminate: DONE\n");
 		
-        if (!Machine::interrupts_enabled()){
-    	Machine::enable_interrupts();
-		}
 		
 
 		return;
@@ -263,19 +227,9 @@ void Scheduler::terminate(Thread * _thread) {
 	Console::puts("       -> terminate: ZOMBIE LL [ "); print_ll(this->zombie_head); Console::puts("]\n");  
 	Console::puts("       -> terminate: yielding\n");
 
-	
-    if (!Machine::interrupts_enabled()){
-    	Machine::enable_interrupts();
-	}
-	
 
 	yield();
 
-	
-    if (!Machine::interrupts_enabled()){
-    	Machine::enable_interrupts();
-	}
-	
 
 	Console::puts("       -> terminate: READY EMPTY, CURRENT THREAD IS ZOMBIE\n");
 
