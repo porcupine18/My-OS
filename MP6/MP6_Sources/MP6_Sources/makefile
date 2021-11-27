@@ -58,7 +58,7 @@ simple_keyboard.o: simple_keyboard.C simple_keyboard.H
 simple_disk.o: simple_disk.C simple_disk.H
 	$(GCC) $(GCC_OPTIONS) -c -o simple_disk.o simple_disk.C
 
-blocking_disk.o: blocking_disk.C simple_disk.H linkedlist.H scheduler.H
+blocking_disk.o: blocking_disk.C simple_disk.H linkedlist.H scheduler.H kernel.C
 	$(GCC) $(GCC_OPTIONS) -c -o blocking_disk.o blocking_disk.C
 
 # ==== MEMORY =====
