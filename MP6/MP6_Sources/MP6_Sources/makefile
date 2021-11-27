@@ -69,6 +69,9 @@ frame_pool.o: frame_pool.C frame_pool.H
 mem_pool.o: mem_pool.C mem_pool.H 
 	$(GCC) $(GCC_OPTIONS) -c -o mem_pool.o mem_pool.C
 
+linkedlist.o: linkedlist.C linkedlist.H thread.H
+	$(GCC) $(GCC_OPTIONS) -c -o linkedlist.o linkedlist.C
+
 # ==== THREADS & SCHEDULING =====
 
 threads_low.o: threads_low.asm threads_low.H
@@ -80,8 +83,6 @@ thread.o: thread.C thread.H threads_low.H
 scheduler.o: scheduler.C scheduler.H thread.H blocking_disk.H linkedlist.H
 	$(GCC) $(GCC_OPTIONS) -c -o scheduler.o scheduler.C
 
-linkedlist.o: linkedlist.C linkedlist.H thread.H
-	$(GCC) $(GCC_OPTIONS) -c -o linkedlist.o linkedlist.C
 
 # ==== KERNEL MAIN FILE =====
 
