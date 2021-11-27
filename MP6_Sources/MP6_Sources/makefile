@@ -77,8 +77,14 @@ threads_low.o: threads_low.asm threads_low.H
 thread.o: thread.C thread.H threads_low.H
 	$(GCC) $(GCC_OPTIONS) -c -o thread.o thread.C
 
-scheduler.o: scheduler.C scheduler.H thread.H
+scheduler.o: scheduler.C scheduler.H thread.H blocking_disk.H
 	$(GCC) $(GCC_OPTIONS) -c -o scheduler.o scheduler.C
+
+blocking_disk.o: blocking_disk.C blocking_disk.H simple_disk.H linkedlist.H scheduler.H
+	$(GCC) $(GCC_OPTIONS) -c -o blocking_disk.o blocking_disk.C
+
+linkedlist.o: linkedlist.C linkedlist.H thread.H
+	$(GCC) $(GCC_OPTIONS) -c -o linkedlist.o linkedlist.C
 
 # ==== KERNEL MAIN FILE =====
 

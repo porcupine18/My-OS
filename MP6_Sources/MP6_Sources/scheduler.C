@@ -34,9 +34,30 @@ void print_ll(Thread* head){
 	}
 }
 
+void Scheduler::register_disk(BlockingDisk* disk){
+	this->curr_disk = disk;
+}
 
 Scheduler::Scheduler() {
-	/*__________ init head and tail of linked list of threads __________*/
+
+	// finishing work in blocking disk threads
+	if(this->curr_disk){
+		if(this->curr_disk->is_ready()){
+			
+			if(this->disk_threads){
+				
+				Thread* new_disk_thread = this->disk_threads->pop();
+				Console::puts("       -> yield: disk dispatch to <"); print_ll(new_disk_thread); Console::puts(">\n");  
+				Thread::dispatch_to(new_disk_thread);
+
+			}
+		}
+	}
+
+
+	this->curr_disk = NULL;
+	this->disk_threads = NULL;
+    
 	this->ready_head = NULL;
 	this->ready_tail = NULL;
 

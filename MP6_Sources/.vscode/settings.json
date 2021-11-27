@@ -3,6 +3,8 @@
         "scheduler.C": "cpp",
         "thread.C": "cpp",
         "mem_pool.C": "cpp",
-        "kernel.C": "cpp"
+        "kernel.C": "cpp",
+        "blocking_disk.C": "cpp",
+        "linkedlist.C": "cpp"
     }
 }
