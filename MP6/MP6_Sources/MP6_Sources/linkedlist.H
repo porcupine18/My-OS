@@ -1,6 +1,10 @@
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 
+#include "console.H"
+#include "utils.H"
+#include "assert.H"
+#include "simple_keyboard.H"
 #include "thread.H"
 
 class ListItem{
