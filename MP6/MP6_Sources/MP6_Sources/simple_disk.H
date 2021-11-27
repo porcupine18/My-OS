@@ -41,7 +41,7 @@ enum class DISK_OPERATION {READ = 0, WRITE = 1};
 /*--------------------------------------------------------------------------*/
 
 class SimpleDisk  {
-private:
+protected:
      /* -- FUNCTIONALITY OF THE IDE LBA28 CONTROLLER */
 
      DISK_ID      disk_id;        /* This disk is either MASTER or DEPENDENT */
@@ -52,8 +52,6 @@ private:
      /* Send a sequence of commands to the controller to initialize the READ/WRITE 
         operation. This operation is called by read() and write(). */ 
         
-     
-protected:
      /* -- HERE WE CAN DEFINE THE BEHAVIOR OF DERIVED DISKS */ 
 
      /* Return true if disk is ready to transfer data from/to disk, false otherwise. */
