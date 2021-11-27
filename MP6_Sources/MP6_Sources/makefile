@@ -88,16 +88,16 @@ linkedlist.o: linkedlist.C linkedlist.H thread.H
 
 # ==== KERNEL MAIN FILE =====
 
-kernel.o: kernel.C machine.H console.H gdt.H idt.H irq.H exceptions.H interrupts.H simple_timer.H frame_pool.H mem_pool.H thread.H simple_disk.H scheduler.H
+kernel.o: kernel.C machine.H console.H gdt.H idt.H irq.H exceptions.H interrupts.H simple_timer.H frame_pool.H mem_pool.H thread.H simple_disk.H scheduler.H linkedlist.H
 	$(GCC) $(GCC_OPTIONS) -c -o kernel.o kernel.C
 
 kernel.bin: start.o utils.o kernel.o \
    assert.o console.o gdt.o idt.o irq.o exceptions.o \
    interrupts.o simple_timer.o simple_keyboard.o frame_pool.o mem_pool.o \
-   thread.o threads_low.o simple_disk.o blocking_disk.o scheduler.o\
+   thread.o threads_low.o simple_disk.o blocking_disk.o scheduler.o linkedlist.o\
     machine.o machine_low.o 
 	$(LD) -melf_i386 -T linker.ld -o kernel.bin start.o utils.o kernel.o \
    assert.o console.o gdt.o idt.o irq.o exceptions.o interrupts.o \
    simple_timer.o simple_keyboard.o frame_pool.o mem_pool.o \
-   thread.o threads_low.o simple_disk.o blocking_disk.o scheduler.o \
+   thread.o threads_low.o simple_disk.o blocking_disk.o scheduler.o linkedlist.o\
     machine.o machine_low.o
