@@ -58,7 +58,7 @@ simple_keyboard.o: simple_keyboard.C simple_keyboard.H
 simple_disk.o: simple_disk.C simple_disk.H
 	$(GCC) $(GCC_OPTIONS) -c -o simple_disk.o simple_disk.C
 
-blocking_disk.o: blocking_disk.C simple_disk.H scheduler.H
+blocking_disk.o: blocking_disk.C simple_disk.H 
 	$(GCC) $(GCC_OPTIONS) -c -o blocking_disk.o blocking_disk.C
 
 # ==== MEMORY =====
@@ -80,7 +80,7 @@ threads_low.o: threads_low.asm threads_low.H
 thread.o: thread.C thread.H threads_low.H
 	$(GCC) $(GCC_OPTIONS) -c -o thread.o thread.C
 
-scheduler.o: scheduler.C scheduler.H thread.H blocking_disk.H linkedlist.H
+scheduler.o: scheduler.C scheduler.H thread.H
 	$(GCC) $(GCC_OPTIONS) -c -o scheduler.o scheduler.C
 
 
