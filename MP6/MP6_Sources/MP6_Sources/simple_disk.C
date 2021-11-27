@@ -79,7 +79,12 @@ void SimpleDisk::read(unsigned long _block_no, unsigned char * _buf) {
 
   issue_operation(DISK_OPERATION::READ, _block_no);
 
+  Console::puts("       -> read(): yielding\n"); 
+
+
   wait_until_ready();
+
+  Console::puts("       -> read(): came back\n"); 
 
   /* read data from port */
   int i;
@@ -89,6 +94,9 @@ void SimpleDisk::read(unsigned long _block_no, unsigned char * _buf) {
     _buf[i*2]   = (unsigned char)tmpw;
     _buf[i*2+1] = (unsigned char)(tmpw >> 8);
   }
+
+  Console::puts("       -> read(): done with read\n"); 
+
 }
 
 void SimpleDisk::write(unsigned long _block_no, unsigned char * _buf) {
@@ -96,7 +104,11 @@ void SimpleDisk::write(unsigned long _block_no, unsigned char * _buf) {
 
   issue_operation(DISK_OPERATION::WRITE, _block_no);
 
+  Console::puts("       -> write(): yielding\n"); 
+
   wait_until_ready();
+
+  Console::puts("       -> write(): came back\n"); 
 
   /* write data to port */
   int i; 
@@ -105,5 +117,8 @@ void SimpleDisk::write(unsigned long _block_no, unsigned char * _buf) {
     tmpw = _buf[2*i] | (_buf[2*i+1] << 8);
     Machine::outportw(0x1F0, tmpw);
   }
+
+  Console::puts("       -> write(): done with read\n"); 
+
 
 }
