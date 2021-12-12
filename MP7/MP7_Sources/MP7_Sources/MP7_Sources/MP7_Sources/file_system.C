@@ -84,7 +84,7 @@ bool FileSystem::Mount(SimpleDisk * _disk) {
     }
 
     for(int i=0; i<MAX_MAPPED_BLOCKS; i++){
-        Console::puts("     -> Format: free_buf[");     Console::puti(i); 
+        Console::puts("     -> Mount: free_buf[");     Console::puti(i); 
         Console::puts("]=");                            Console::puti((int)free_list[i]);
         Console::puts("\n");
     }
