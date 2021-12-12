@@ -89,6 +89,7 @@ static void thread_start() {
     /* This function is used to release the thread for execution in the ready queue. */
     
     Machine::outportb(0x20, 0x20);
+    
     Console::puts("!!ENABLING INTERRUPTS!!\n");
     if (!Machine::interrupts_enabled()){
         Machine::enable_interrupts();
@@ -191,7 +192,7 @@ Thread::Thread(Thread_Function _tf, char * _stack, unsigned int _stack_size) {
     stack = _stack;
     stack_size = _stack_size;
     
-    next = NULL;
+    this->next = NULL;
 
     /* -- INITIALIZE THE STACK OF THE THREAD */
 

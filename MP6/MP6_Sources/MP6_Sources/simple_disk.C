@@ -89,7 +89,6 @@ void SimpleDisk::read(unsigned long _block_no, unsigned char * _buf) {
     _buf[i*2]   = (unsigned char)tmpw;
     _buf[i*2+1] = (unsigned char)(tmpw >> 8);
   }
-
 }
 
 void SimpleDisk::write(unsigned long _block_no, unsigned char * _buf) {
@@ -106,5 +105,5 @@ void SimpleDisk::write(unsigned long _block_no, unsigned char * _buf) {
     tmpw = _buf[2*i] | (_buf[2*i+1] << 8);
     Machine::outportw(0x1F0, tmpw);
   }
-  
+
 }

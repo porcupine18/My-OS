@@ -58,7 +58,7 @@ private:
 
    BlockingDisk* curr_disk;
    ListItem* disk_threads;
-   
+
    /* The scheduler may need private members... */
    Thread* ready_head;    /* head of the ready queue */
    Thread* ready_tail;    /* head of the ready queue */
@@ -99,8 +99,8 @@ public:
       of the thread. 
       Graciously handle the case where the thread wants to terminate itself.*/
   
-
    virtual void register_disk(BlockingDisk* disk);
+
 
 };
 	

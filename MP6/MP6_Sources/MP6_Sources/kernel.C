@@ -93,7 +93,6 @@ void operator delete (void * p, size_t x) {
     MEMORY_POOL->release((unsigned long)p);
 }
 
-
 /*--------------------------------------------------------------------------*/
 /* SCHEDULER */
 /*--------------------------------------------------------------------------*/
@@ -110,7 +109,7 @@ Scheduler * SYSTEM_SCHEDULER;
 /*--------------------------------------------------------------------------*/
 
 /* -- A POINTER TO THE SYSTEM DISK */
-SimpleDisk* SYSTEM_DISK;
+SimpleDisk * SYSTEM_DISK;
 
 #define SYSTEM_DISK_SIZE (10 MB)
 
@@ -181,7 +180,12 @@ void fun2() {
        Console::puts("FUN 2 IN ITERATION["); Console::puti(j); Console::puts("]\n");
 
        /* -- Read */
-        
+           
+
+        if (!Machine::interrupts_enabled()){
+            Machine::enable_interrupts();
+	    }
+
        Console::puts("Reading a block from disk...\n");
        SYSTEM_DISK->read(read_block, buf);
 
@@ -189,6 +193,11 @@ void fun2() {
        for (int i = 0; i < DISK_BLOCK_SIZE; i++) {
            Console::putch(buf[i]);
        }
+
+
+        if (!Machine::interrupts_enabled()){
+            Machine::enable_interrupts();
+	    }
 
        Console::puts("Writing a block to disk...\n");
        SYSTEM_DISK->write(write_block, buf); 
@@ -306,7 +315,7 @@ int main() {
 
     /* -- ENABLE INTERRUPTS -- */
 
-    Machine::enable_interrupts();
+     Machine::enable_interrupts();
 
     /* -- MOST OF WHAT WE NEED IS SETUP. THE KERNEL CAN START. */
 

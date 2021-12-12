@@ -58,7 +58,7 @@ simple_keyboard.o: simple_keyboard.C simple_keyboard.H
 simple_disk.o: simple_disk.C simple_disk.H
 	$(GCC) $(GCC_OPTIONS) -c -o simple_disk.o simple_disk.C
 
-blocking_disk.o: blocking_disk.C simple_disk.H machine.C
+blocking_disk.o: blocking_disk.C simple_disk.H
 	$(GCC) $(GCC_OPTIONS) -c -o blocking_disk.o blocking_disk.C
 
 # ==== MEMORY =====
@@ -69,9 +69,6 @@ frame_pool.o: frame_pool.C frame_pool.H
 mem_pool.o: mem_pool.C mem_pool.H 
 	$(GCC) $(GCC_OPTIONS) -c -o mem_pool.o mem_pool.C
 
-linkedlist.o: linkedlist.C linkedlist.H thread.H thread.C
-	$(GCC) $(GCC_OPTIONS) -c -o linkedlist.o linkedlist.C
-
 # ==== THREADS & SCHEDULING =====
 
 threads_low.o: threads_low.asm threads_low.H
@@ -80,8 +77,14 @@ threads_low.o: threads_low.asm threads_low.H
 thread.o: thread.C thread.H threads_low.H
 	$(GCC) $(GCC_OPTIONS) -c -o thread.o thread.C
 
-scheduler.o: scheduler.C scheduler.H thread.H
+linkedlist.o: linkedlist.C linkedlist.H thread.H
+	$(GCC) $(GCC_OPTIONS) -c -o linkedlist.o linkedlist.C
+
+scheduler.o: scheduler.C scheduler.H thread.H blocking_disk.H
 	$(GCC) $(GCC_OPTIONS) -c -o scheduler.o scheduler.C
+
+blocking_disk.o: blocking_disk.C blocking_disk.H simple_disk.H linkedlist.H scheduler.H
+	$(GCC) $(GCC_OPTIONS) -c -o blocking_disk.o blocking_disk.C
 
 
 # ==== KERNEL MAIN FILE =====
@@ -92,10 +95,10 @@ kernel.o: kernel.C machine.H console.H gdt.H idt.H irq.H exceptions.H interrupts
 kernel.bin: start.o utils.o kernel.o \
    assert.o console.o gdt.o idt.o irq.o exceptions.o \
    interrupts.o simple_timer.o simple_keyboard.o frame_pool.o mem_pool.o \
-   thread.o threads_low.o simple_disk.o blocking_disk.o linkedlist.o\
-    machine.o machine_low.o scheduler.o
+   thread.o threads_low.o simple_disk.o blocking_disk.o scheduler.o linkedlist.o\
+    machine.o machine_low.o 
 	$(LD) -melf_i386 -T linker.ld -o kernel.bin start.o utils.o kernel.o \
    assert.o console.o gdt.o idt.o irq.o exceptions.o interrupts.o \
    simple_timer.o simple_keyboard.o frame_pool.o mem_pool.o \
-   thread.o threads_low.o simple_disk.o blocking_disk.o linkedlist.o\
-    machine.o machine_low.o scheduler.o
+   thread.o threads_low.o simple_disk.o blocking_disk.o scheduler.o linkedlist.o\
+    machine.o machine_low.o

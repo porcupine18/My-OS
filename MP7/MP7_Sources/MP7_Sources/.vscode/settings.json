@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "file_system.H": "cpp",
+        "file_system.C": "cpp",
+        "kernel.C": "cpp",
+        "file.C": "cpp",
+        "simple_disk.H": "cpp",
+        "simple_disk.C": "cpp",
+        "utils.C": "cpp"
+    }
+}

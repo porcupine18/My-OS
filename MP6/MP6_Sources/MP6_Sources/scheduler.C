@@ -40,28 +40,6 @@ void Scheduler::register_disk(BlockingDisk* disk){
 
 Scheduler::Scheduler() {
 
-	this->curr_disk = NULL;
-	this->disk_threads = NULL;
-
-	/*__________ init head and tail of linked list of threads __________*/
-	this->ready_head = NULL;
-	this->ready_tail = NULL;
-
-	this->zombie_head = NULL;
-	this->zombie_tail = NULL;
-
-	//EOQTimer* timer = new EOQTimer(20); /* timer ticks every 10ms. */
-    //InterruptHandler::register_handler(0, timer);
-
-	Console::puts("\n\n++++++++++++++++ Constructed Scheduler ++++++++++++++++\n\n");
-}
-
-void Scheduler::yield() {
-
-
-	Console::puts("       -> yield: start\n");
-
-
 	// finishing work in blocking disk threads
 	if(this->curr_disk){
 		if(this->curr_disk->is_ready()){
@@ -77,8 +55,22 @@ void Scheduler::yield() {
 	}
 
 
+	this->curr_disk = NULL;
+	this->disk_threads = NULL;
+    
+	this->ready_head = NULL;
+	this->ready_tail = NULL;
 
-	Console::puts("       -> yield: not in blocked\n");
+	this->zombie_head = NULL;
+	this->zombie_tail = NULL;
+
+	Console::puts("\n\n++++++++++++++++ Constructed Scheduler ++++++++++++++++\n\n");
+}
+
+void Scheduler::yield() {
+
+
+	Console::puts("       -> yield: start\n");
 
 	/*__________ return if ready queue is empty __________*/
 	if(!this->ready_head){
@@ -102,16 +94,13 @@ void Scheduler::yield() {
 
 	Console::puts("       -> yield: yeilding to :"); Console::puti((unsigned int)next);Console::puts("\n");
 
-
 	Thread::dispatch_to(next);
 
-	
 	return;
 }
 
 void Scheduler::resume(Thread * _thread) {
-	
-	
+
 	Console::puts("       -> resume:     LL [ "); print_ll(this->ready_head); Console::puts("]\n");  
   
 	/*__________ add thread to ready queue __________*/
@@ -151,6 +140,8 @@ void Scheduler::resume(Thread * _thread) {
 
 void Scheduler::add(Thread * _thread) {
 	
+
+
 	/*__________ add thread to ready queue __________*/
 	Console::puts("\n       -> add: start\n");
 
@@ -169,11 +160,11 @@ void Scheduler::add(Thread * _thread) {
 
 	Console::puts("       -> add:     LL [ "); print_ll(this->ready_head); Console::puts("]\n");  
 
-
 }
 
 void Scheduler::terminate(Thread * _thread) {
-	
+
+    
 	Console::puts("\n       -> terminate: start\n");
 
 	/*__________ if not current thread, remove from linked list __________*/
@@ -190,6 +181,7 @@ void Scheduler::terminate(Thread * _thread) {
 
 			delete _thread;
     		
+
 			return;
 		}
 
@@ -203,8 +195,7 @@ void Scheduler::terminate(Thread * _thread) {
 		delete _thread;
 
 		Console::puts("       -> terminate: DONE\n");
-		
-		
+
 
 		return;
 	}
@@ -227,9 +218,7 @@ void Scheduler::terminate(Thread * _thread) {
 	Console::puts("       -> terminate: ZOMBIE LL [ "); print_ll(this->zombie_head); Console::puts("]\n");  
 	Console::puts("       -> terminate: yielding\n");
 
-
 	yield();
-
 
 	Console::puts("       -> terminate: READY EMPTY, CURRENT THREAD IS ZOMBIE\n");
 
