@@ -85,7 +85,7 @@ private:
   SimpleDisk *disk;  // disk the file system is related to
 
   // MAX_INODES in a single INODES block
-  static constexpr unsigned int MAX_INODES        = SimpleDisk::BLOCK_SIZE / sizeof(Inode);
+  static constexpr unsigned int MAX_INODES        = (SimpleDisk::BLOCK_SIZE / sizeof(Inode)) -1;
   static constexpr unsigned int MAX_MAPPED_BLOCKS = SimpleDisk::BLOCK_SIZE / sizeof(unsigned char);
 
   Inode** inode_list;         // inode list

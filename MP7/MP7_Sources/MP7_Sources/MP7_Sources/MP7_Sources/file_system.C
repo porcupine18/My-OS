@@ -89,6 +89,7 @@ bool FileSystem::Format(SimpleDisk * _disk, unsigned int _size, FileSystem* _fs)
     Console::puts("     -> Format: MaxInodes=");Console::puti(MAX_INODES);  Console::puts("\n");
 
     // make empty inode list for 1st block
+
     Inode* inode_buf[MAX_INODES];
     for(int i=2; i<MAX_INODES; i++){
         inode_buf[i] = new Inode((long)-1, (long)-1, (long)-1, _fs);
