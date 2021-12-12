@@ -237,15 +237,20 @@ int main() {
 
     /* -- MOST OF WHAT WE NEED IS SETUP. THE KERNEL CAN START. */
 
-    Console::puts("Hello World!\n");
+    Console::puts("START\n");
 
     /* -- HERE WE STRESS TEST THE FILE SYSTEM -- */
 
     assert(FileSystem::Format(SYSTEM_DISK, (128 KB), FILE_SYSTEM)); // Don't try this at home!
+    Console::puts("FORMAT DONE\n");
+
     /* This is a really small file system. This allows you to use a very crude
        implementation for the free block list. */
     
     assert(FILE_SYSTEM->Mount(SYSTEM_DISK)); // 'connect' disk to file system.
+    Console::puts("MOUNT DONE\n");
+
+    Console::puts("GOING TO EXERCISE\n");
 
     for(int j = 0;; j++) {
         exercise_file_system(FILE_SYSTEM);
