@@ -83,6 +83,12 @@ bool FileSystem::Mount(SimpleDisk * _disk) {
         Console::puts("\n");
     }
 
+    for(int i=0; i<MAX_MAPPED_BLOCKS; i++){
+        Console::puts("     -> Format: free_buf[");     Console::puti(i); 
+        Console::puts("]=");                            Console::puti((int)free_list[i]);
+        Console::puts("\n");
+    }
+
     Console::puts("++++++++++ Mounting DONE ++++++++++\n\n");
     return true;
 }
@@ -125,6 +131,13 @@ bool FileSystem::Format(SimpleDisk * _disk, unsigned int _size, FileSystem* _fs)
 
     // set first element to be busy
     free_buf[0] = 1; // 1 = BUSY, 0 = FREE
+
+    for(int i=0; i<MAX_MAPPED_BLOCKS; i++){
+        Console::puts("     -> Format: free_buf[");     Console::puti(i); 
+        Console::puts("]=");                            Console::puti((int)free_buf[i]);
+        Console::puts("\n");
+    }
+
 
     // write empty inode list and free list to the disk
     _disk->write(0,(unsigned char*)inode_buf);
