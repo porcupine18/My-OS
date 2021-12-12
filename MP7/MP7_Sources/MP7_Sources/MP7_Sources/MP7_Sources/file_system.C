@@ -131,6 +131,7 @@ bool FileSystem::Format(SimpleDisk * _disk, unsigned int _size, FileSystem* _fs)
 
     // set first element to be busy
     free_buf[0] = 1; // 1 = BUSY, 0 = FREE
+    free_buf[1] = 1; // 1 = BUSY, 0 = FREE
 
     for(int i=0; i<MAX_MAPPED_BLOCKS; i++){
         Console::puts("     -> Format: free_buf[");     Console::puti(i); 
