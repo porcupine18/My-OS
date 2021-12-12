@@ -27,7 +27,7 @@
 /*--------------------------------------------------------------------------*/
 
 File::File(FileSystem* _fs, int _id){
-    Console::puts("File  -> Constructor: start- opening file\n");
+    Console::puts("\nFile  -> Constructor: start- opening file\n");
     
     this->name_id = _id;                                    // get file's name
     this->filesystem = _fs;                                 // get file's related filesystem

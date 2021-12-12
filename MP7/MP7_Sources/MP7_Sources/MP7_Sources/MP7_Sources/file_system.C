@@ -121,7 +121,7 @@ bool FileSystem::Format(SimpleDisk * _disk, unsigned int _size, FileSystem* _fs)
         Console::puts("; file_id=");                    Console::puti(inode_buf[i]->id);
         Console::puts("; block_id=");                   Console::puti(inode_buf[i]->block_id);
         Console::puts("; size=");                       Console::puti(inode_buf[i]->size);
-        Console::puts("; fs=");                         Console::puti((int)inode_buf[i]->fs->MAX_MAPPED_BLOCKS);
+        Console::puts("; fs(size)=");                   Console::puti((int)inode_buf[i]->fs->size);
         Console::puts("\n");
     }
 
@@ -209,10 +209,11 @@ bool FileSystem::CreateFile(int _file_id) { //assigning a free inode to the _fil
     this->free_list[freelist_idx] = 1; // set busy
 
     Console::puts("     -> CreateFile: new file inode idx=");    Console::puti(inode_idx);
-    Console::puts("; file_id=");                    Console::puti(this->inode_list[inode_idx]->id);
-    Console::puts("; block_id=");                   Console::puti(this->inode_list[inode_idx]->block_id);
-    Console::puts("; size=");                       Console::puti(this->inode_list[inode_idx]->size);
-    Console::puts("; fs=");                         Console::puti((int)this->inode_list[inode_idx]->fs->MAX_MAPPED_BLOCKS);
+    Console::puts("; file_id=");                                 Console::puti(this->inode_list[inode_idx]->id);
+    Console::puts("; block_id=");                                Console::puti(this->inode_list[inode_idx]->block_id);
+    Console::puts("; size=");                                    Console::puti(this->inode_list[inode_idx]->size);
+    Console::puts("; fs(size)=");                                Console::puti((int)this->inode_list[inode_idx]->fs->size);
+    Console::puts("\n");  
 
     Console::puts("     -> CreateFile: FILE CREATED\n");
     return true;
