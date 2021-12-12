@@ -32,7 +32,7 @@ Inode::Inode(long _id, long _block_id, long _size, FileSystem* _fs){
 /* CONSTRUCTOR */
 FileSystem::FileSystem(){ /* Just initializes local data structures . Does not connect to disk yet. */
     this->disk = NULL;
-    this->size = 99;
+    this->size = 0;
     this-> inode_list = NULL;
     this-> free_list = NULL;
 
@@ -102,6 +102,7 @@ bool FileSystem::Format(SimpleDisk * _disk, unsigned int _size, FileSystem* _fs)
 
 
     for(int i=0; i<MAX_INODES; i++){
+        inode_buf[i]->fs->size = 20;
         Console::puts("     -> Format: inode idx=");Console::puti(i);  Console::puts("; file_id="); Console::puti(inode_buf[i]->id); Console::puts("; block_id="); Console::puti(inode_buf[i]->block_id); Console::puts("; size="); Console::puti(inode_buf[i]->size); Console::puts("; fs(size)="); Console::puti(inode_buf[i]->fs->size); Console::puts("\n");
     }
 
