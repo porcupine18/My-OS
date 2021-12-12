@@ -93,7 +93,7 @@ bool FileSystem::Format(SimpleDisk * _disk, unsigned int _size, FileSystem* _fs)
     
     Inode* inode_buf[MAX_INODES];
     for(int i=2; i<MAX_INODES; i++){
-        inode_buf[i] = new Inode((long)-1, (long)-1, (long)-1, _fs);
+        inode_buf[i] = new Inode((long)5, (long)5, (long)5, _fs);
     }
 
     // set first inode busy
