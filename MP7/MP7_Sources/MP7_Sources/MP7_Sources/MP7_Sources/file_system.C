@@ -79,7 +79,7 @@ bool FileSystem::Mount(SimpleDisk * _disk) {
         Console::puts("; file_id=");                    Console::puti(this->inode_list[i]->block_id);
         Console::puts("; block_id=");                   Console::puti(this->inode_list[i]->block_id);
         Console::puts("; size=");                       Console::puti(this->inode_list[i]->size);
-        Console::puts("; fs=");                         Console::puti((int)this->inode_list[i]->fs);
+        Console::puts("; fs=");                         Console::puti((int)this->inode_list[i]->fs->MAX_MAPPED_BLOCKS);
         Console::puts("\n");
     }
 
@@ -115,7 +115,7 @@ bool FileSystem::Format(SimpleDisk * _disk, unsigned int _size, FileSystem* _fs)
         Console::puts("; file_id=");                    Console::puti(inode_buf[i]->id);
         Console::puts("; block_id=");                   Console::puti(inode_buf[i]->block_id);
         Console::puts("; size=");                       Console::puti(inode_buf[i]->size);
-        Console::puts("; fs=");                         Console::puti((int)inode_buf[i]->fs);
+        Console::puts("; fs=");                         Console::puti((int)inode_buf[i]->fs->MAX_MAPPED_BLOCKS);
         Console::puts("\n");
     }
 
