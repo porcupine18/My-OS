@@ -8,7 +8,6 @@
 */
 
 /* DEFINES -----------------------------------------------------------------*/
-extern FileSystem* FILE_SYSTEM;
 
 
 /* INCLUDES ----------------------------------------------------------------*/
@@ -80,18 +79,18 @@ bool FileSystem::Mount(SimpleDisk * _disk) {
     and a free list. Make sure that blocks used for the inodes and for the free list
     are marked as used, otherwise they may get overwritten. */
 /* Wipes any file system from the disk and installs an empty file system of given size . */
-bool FileSystem::Format(SimpleDisk * _disk, unsigned int _size) {
+bool FileSystem::Format(SimpleDisk * _disk, unsigned int _size, FileSystem* _fs) {
     Console::puts("     -> Format: start\n");
 
     // make empty inode list for 1st block
     Inode* inode_buf[MAX_INODES];
     for(int i=2; i<MAX_INODES; i++){
-        inode_buf[i] = new Inode(-1, -1, -1, FILE_SYSTEM);
+        inode_buf[i] = new Inode(-1, -1, -1, _fs);
     }
 
     // set first inode busy
-    inode_buf[0] = new Inode(-2, 0, 1, FILE_SYSTEM); // inodes block marked
-    inode_buf[1] = new Inode(-3, 1, 1, FILE_SYSTEM); // freelist block marked
+    inode_buf[0] = new Inode(-2, 0, 1, _fs); // inodes block marked
+    inode_buf[1] = new Inode(-3, 1, 1, _fs); // freelist block marked
 
 
     // make empty free list for 2nd block

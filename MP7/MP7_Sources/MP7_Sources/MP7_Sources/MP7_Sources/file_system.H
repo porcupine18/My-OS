@@ -119,7 +119,7 @@ public:
   /* Associates this file system with a disk. Limit to at most one file system per disk.
      Returns true if operation successful (i.e. there is indeed a file system on the disk.) */
 
-  static bool Format(SimpleDisk *_disk, unsigned int _size);
+  static bool Format(SimpleDisk *_disk, unsigned int _size, FileSystem* _fs);
   /* Wipes any file system from the disk and installs an empty file system of given size. */
 
   Inode* LookupFile(int _file_id);
