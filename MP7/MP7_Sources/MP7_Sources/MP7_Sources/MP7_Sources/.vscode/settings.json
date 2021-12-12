@@ -5,6 +5,8 @@
         "kernel.C": "cpp",
         "file.C": "cpp",
         "simple_disk.H": "cpp",
-        "simple_disk.C": "cpp"
+        "simple_disk.C": "cpp",
+        "console.C": "cpp",
+        "utils.C": "cpp"
     }
 }
