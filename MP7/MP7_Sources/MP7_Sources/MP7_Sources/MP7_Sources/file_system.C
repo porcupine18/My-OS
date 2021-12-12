@@ -47,8 +47,7 @@ FileSystem::~FileSystem() {
 }
 
 
-/* FILE SYSTEM FUNCTIONSFileSystem * FILE_SYSTEM;
- */
+/* FILE SYSTEM FUNCTIONS*/
 
 /*  Associates this file system with a disk. Limit to at most one file system per disk
     Returns true if operation successful (i.e. there is indeed a file system on the disk .) 
@@ -100,7 +99,7 @@ bool FileSystem::Format(SimpleDisk * _disk, unsigned int _size, FileSystem* _fs)
     inode_buf[1] = new Inode(-3, 1, 512, _fs); // freelist block marked
 
     for(int i=0; i<MAX_INODES; i++){
-        Console::puts("     -> Format: inode idx=");Console::puti(i);  Console::puts("; file_id="); Console::puti(inode_buf[i]->id); Console::puts("; block_id="); Console::puti(inode_buf[i]->block_id); Console::puts("; size="); Console::puti(inode_buf[i]->size);Console::puts("\n");
+        Console::puts("     -> Format: inode idx=");Console::puti(i);  Console::puts("; file_id="); Console::puti(inode_buf[i]->id); Console::puts("; block_id="); Console::puti(inode_buf[i]->block_id); Console::puts("; size="); Console::puti(inode_buf[i]->size); Console::puts("; fs*="); Console::puti((unsigned int)inode_buf[i]->fs); Console::puts("\n");
     }
 
     // make empty free list for 2nd block
@@ -134,7 +133,7 @@ Inode* FileSystem::LookupFile(int _file_id) {
     // iterate through inode list and return inode if file_id matches
     for(int i=0; i<MAX_INODES; i++){
         if(this->inode_list[i]->id == _file_id){
-            Console::puts("         -> LookupFile: FOUND FILE! inode: block_id="); Console::puti(this->inode_list[i]->block_id); Console::puts("; name_id="); Console::puti(this->inode_list[i]->id); Console::puts("; size="); Console::puti(this->inode_list[i]->size); Console::puts("\n");
+            Console::puts("         -> LookupFile: FOUND FILE! inode: block_id="); Console::puti(this->inode_list[i]->block_id); Console::puts("; name_id="); Console::puti(this->inode_list[i]->id); Console::puts("; size="); Console::puti(this->inode_list[i]->size); Console::puts("; fs*="); Console::puti((unsigned int)this->inode_list[i]->fs); Console::puts("\n");Console::puts("\n");
             return (this->inode_list[i]);
         }
     }
