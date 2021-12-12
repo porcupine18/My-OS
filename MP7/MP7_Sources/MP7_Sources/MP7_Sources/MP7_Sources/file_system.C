@@ -84,12 +84,13 @@ bool FileSystem::Format(SimpleDisk * _disk, unsigned int _size, FileSystem* _fs)
 
     // make empty inode list for 1st block
 
-    Console::puts("MaxInodes=");Console::puti(MAX_INODES);  Console::puts("\n");
-
     Inode* inode_buf[MAX_INODES];
     for(int i=2; i<MAX_INODES; i++){
         inode_buf[i] = new Inode((long)-1, (long)-1, (long)-1, _fs);
     }
+
+    Console::puts("     -> Format: MaxInodes=");Console::puti(MAX_INODES);  Console::puts("\n");
+    Console::puts("     -> Format: check:");Console::puti(inode_buf[21]->block_id == -1);  Console::puts("\n");
 
     // set first inode busy
     inode_buf[0] = new Inode(-2, 0, 512, _fs); // inodes block marked
@@ -97,7 +98,7 @@ bool FileSystem::Format(SimpleDisk * _disk, unsigned int _size, FileSystem* _fs)
 
 
     for(int i=0; i<MAX_INODES; i++){
-        Console::puts("inode idx=");Console::puti(i);  Console::puts("; file_id="); Console::puti(inode_buf[i]->id); Console::puts("; block_id="); Console::puti(inode_buf[i]->block_id); Console::puts("; size="); Console::puti(inode_buf[i]->size);Console::puts("\n");
+        Console::puts("     -> Format: inode idx=");Console::puti(i);  Console::puts("; file_id="); Console::puti(inode_buf[i]->id); Console::puts("; block_id="); Console::puti(inode_buf[i]->block_id); Console::puts("; size="); Console::puti(inode_buf[i]->size);Console::puts("\n");
     }
 
     // make empty free list for 2nd block
