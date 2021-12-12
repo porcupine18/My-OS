@@ -71,6 +71,10 @@ bool FileSystem::Mount(SimpleDisk * _disk) {
     this->disk->read(0, (unsigned char*)inode_list);
     this->disk->read(1, free_list);
 
+    for(int i=0; i<MAX_INODES; i++){
+        Console::puts("     -> Mount: inode idx=");Console::puti(i);  Console::puts("; file_id="); Console::puti(this->inode_list[i]->block_id); Console::puts("; block_id="); Console::puti(this->inode_list[i]->block_id); Console::puts("; size="); Console::puti(this->inode_list[i]->size);Console::puts("\n");
+    }
+
     Console::puts("++++++++++ Mounting DONE ++++++++++\n");
     return true;
 }
@@ -81,21 +85,17 @@ bool FileSystem::Mount(SimpleDisk * _disk) {
 /* Wipes any file system from the disk and installs an empty file system of given size . */
 bool FileSystem::Format(SimpleDisk * _disk, unsigned int _size, FileSystem* _fs) {
     Console::puts("     -> Format: start\n");
+    Console::puts("     -> Format: MaxInodes=");Console::puti(MAX_INODES);  Console::puts("\n");
 
     // make empty inode list for 1st block
-
     Inode* inode_buf[MAX_INODES];
     for(int i=2; i<MAX_INODES; i++){
         inode_buf[i] = new Inode((long)-1, (long)-1, (long)-1, _fs);
     }
 
-    Console::puts("     -> Format: MaxInodes=");Console::puti(MAX_INODES);  Console::puts("\n");
-    Console::puts("     -> Format: check:");Console::puti(inode_buf[21]->block_id == -1);  Console::puts("\n");
-
     // set first inode busy
     inode_buf[0] = new Inode(-2, 0, 512, _fs); // inodes block marked
     inode_buf[1] = new Inode(-3, 1, 512, _fs); // freelist block marked
-
 
     for(int i=0; i<MAX_INODES; i++){
         Console::puts("     -> Format: inode idx=");Console::puti(i);  Console::puts("; file_id="); Console::puti(inode_buf[i]->id); Console::puts("; block_id="); Console::puti(inode_buf[i]->block_id); Console::puts("; size="); Console::puti(inode_buf[i]->size);Console::puts("\n");
