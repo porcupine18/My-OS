@@ -59,7 +59,7 @@ private:
   /* You may need a few additional functions to help read and store the 
      inodes from and to disk. */
      
-  Inode::Inode(long _id, long _block_id, long _size, FileSystem* _fs); //constuctor
+  Inode(long _id, long _block_id, long _size, FileSystem* _fs); //constuctor
 
 
 };
