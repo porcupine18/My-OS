@@ -113,7 +113,7 @@ bool FileSystem::Format(SimpleDisk * _disk, unsigned int _size, FileSystem* _fs)
 /* Here you go through the inode list to find the file. */
 Inode* FileSystem::LookupFile(int _file_id) {
     Console::puts("         -> LookupFile: start\n");
-    Console::puts("         -> LookupFile: looking up file with id = "); Console::puti(_file_id); Console::puts("\n");
+    Console::puts("         -> LookupFile: looking up file with id="); Console::puti(_file_id); Console::puts("\n");
 
     // validate file id
     if(_file_id < 0){
@@ -124,7 +124,7 @@ Inode* FileSystem::LookupFile(int _file_id) {
     // iterate through inode list and return inode if file_id matches
     for(int i=0; i<MAX_INODES; i++){
         if(this->inode_list[i]->id == _file_id){
-            Console::puts("         -> LookupFile: FOUND FILE!");
+            Console::puts("         -> LookupFile: FOUND FILE! inode: block_id="); Console::puti(this->inode_list[i]->block_id); Console::puts("; name_id="); Console::puti(this->inode_list[i]->id); Console::puts("; size="); Console::puti(this->inode_list[i]->size); Console::puts("\n");
             return (this->inode_list[i]);
         }
     }
@@ -139,7 +139,7 @@ Inode* FileSystem::LookupFile(int _file_id) {
     new file. After this function there will be a new file on disk.                     */
 bool FileSystem::CreateFile(int _file_id) { //assigning a free inode to the _file_id
     Console::puts("     -> CreateFile: start\n");
-    Console::puts("     -> CreateFile: creating file with id:"); Console::puti(_file_id); Console::puts("\n");
+    Console::puts("     -> CreateFile: creating file with id="); Console::puti(_file_id); Console::puts("\n");
 
     // LookupFile: iterate through inode list to see if file exists
     Inode* file_inode = this->LookupFile(_file_id);
@@ -214,6 +214,7 @@ short FileSystem::GetFreeInode(){
     // check to find free inode
     int i;
     for(i=0; i<MAX_INODES; i++){
+        Console::puts("         -> GetFreeInode: finding free inode_id=");Console::puti(i); Console::puts("; block_id="); Console::puti(this->inode_list[i]->block_id); Console::puts("\n");
         if(this->inode_list[i]->block_id == -1){
             Console::puts("         -> GetFreeInode: FOUND free inode inode_id=");Console::puti(i); Console::puts("\n");
             return i;
