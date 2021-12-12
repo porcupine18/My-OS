@@ -74,7 +74,7 @@ bool FileSystem::Mount(SimpleDisk * _disk) {
     Console::puts("     -> Mount: char inode_list=");Console::puts((const char*)inode_list); Console::puts("\n");
 
     for(int i=0; i<MAX_INODES; i++){
-        Console::puts("     -> Mount: inode idx=");Console::puti(i);  Console::puts("; file_id="); Console::puti(this->inode_list[i]->block_id); Console::puts("; block_id="); Console::puti(this->inode_list[i]->block_id); Console::puts("; size="); Console::puti(this->inode_list[i]->size);Console::puts("\n");
+        Console::puts("     -> Mount: inode idx=");Console::puti(i);  Console::puts("; file_id="); Console::puti(this->inode_list[i]->block_id); Console::puts("; block_id="); Console::puti(this->inode_list[i]->block_id); Console::puts("; size="); Console::puti(this->inode_list[i]->size); Console::puts("; fs*="); Console::puti((unsigned int)this->inode_list[i]->fs); Console::puts("\n");
     }
 
     Console::puts("++++++++++ Mounting DONE ++++++++++\n");
