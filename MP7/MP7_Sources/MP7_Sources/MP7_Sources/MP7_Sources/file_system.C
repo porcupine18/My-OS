@@ -8,7 +8,7 @@
 */
 
 /* DEFINES -----------------------------------------------------------------*/
-extern FileSystem::FileSystem* FILE_SYSTEM;
+extern FileSystem* FILE_SYSTEM;
 
 
 /* INCLUDES ----------------------------------------------------------------*/
