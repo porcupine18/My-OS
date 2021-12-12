@@ -237,14 +237,14 @@ bool FileSystem::DeleteFile(int _file_id) {
 
 /* returns the inode index*/
 short FileSystem::GetFreeInode(){
-    Console::puts("         -> GetFreeInode: start\n");
+    Console::puts("             -> GetFreeInode: start\n");
 
     // check to find free inode
     int i;
     for(i=0; i<MAX_INODES; i++){
-        Console::puts("         -> GetFreeInode: finding free idx=");Console::puti(i); Console::puts("; block_id="); Console::puti(this->inode_list[i]->block_id); Console::puts("\n");
+        Console::puts("             -> GetFreeInode: finding free idx=");Console::puti(i); Console::puts("; block_id="); Console::puti(this->inode_list[i]->block_id); Console::puts("\n");
         if(this->inode_list[i]->block_id == -1){
-            Console::puts("         -> GetFreeInode: FOUND free inode idx=");Console::puti(i); Console::puts("\n");
+            Console::puts("                 -> GetFreeInode: FOUND free inode idx=");Console::puti(i); Console::puts("\n");
             return i;
         }
     }
@@ -261,13 +261,13 @@ int FileSystem::GetFreeBlock(){
     // iterate through freelist to find empty block and return block id
     for(block_id = 0; block_id < MAX_MAPPED_BLOCKS; block_id++){
         if(this->free_list[block_id] = -1){
-            Console::puts("         -> GetFreeBlock: Found free block block_id=");Console::puti(block_id); Console::puts("\n");
+            Console::puts("             -> GetFreeBlock: Found free block block_id=");Console::puti(block_id); Console::puts("\n");
             return block_id;
         }
     }
 
     // if reaches here, no free blocks, return -1
-    Console::puts("         -> GetFreeBlock: FAILED-No free blocks found!\n");
+    Console::puts("             -> GetFreeBlock: FAILED-No free blocks found!\n");
     return -1;
 
 }
