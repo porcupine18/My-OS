@@ -274,7 +274,7 @@ int FileSystem::GetFreeBlock(){
 
     // iterate through freelist to find empty block and return block id
     for(block_id = 0; block_id < MAX_MAPPED_BLOCKS; block_id++){
-        if(this->free_list[block_id] = -1){
+        if(this->free_list[block_id] == 0){
             Console::puts("             -> GetFreeBlock: Found free block block_id=");Console::puti(block_id); Console::puts("\n");
             return block_id;
         }
