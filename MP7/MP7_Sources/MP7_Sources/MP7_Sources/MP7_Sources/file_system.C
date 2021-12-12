@@ -90,8 +90,8 @@ bool FileSystem::Format(SimpleDisk * _disk, unsigned int _size, FileSystem* _fs)
 
     // make empty inode list for 1st block
 
-    Inode* inode_buf[MAX_INODES];
-    for(int i=2; i<MAX_INODES; i++){
+    Inode* inode_buf[15];
+    for(int i=2; i<15; i++){
         inode_buf[i] = new Inode((long)-1, (long)-1, (long)-1, _fs);
     }
 
@@ -100,7 +100,7 @@ bool FileSystem::Format(SimpleDisk * _disk, unsigned int _size, FileSystem* _fs)
     inode_buf[1] = new Inode(-3, 1, 512, _fs); // freelist block marked
 
 
-    for(int i=0; i<MAX_INODES; i++){
+    for(int i=0; i<15; i++){
         Console::puts("     -> Format: inode idx=");Console::puti(i);  Console::puts("; file_id="); Console::puti(inode_buf[i]->id); Console::puts("; block_id="); Console::puti(inode_buf[i]->block_id); Console::puts("; size="); Console::puti(inode_buf[i]->size); Console::puts("; fs(max_inodes)="); Console::puti(inode_buf[i]->fs->MAX_INODES); Console::puts("\n");
     }
 
