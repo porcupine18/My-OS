@@ -67,21 +67,23 @@ bool FileSystem::Mount(SimpleDisk * _disk) {
     this->disk = _disk;
 
     // read inode and free lists from disk
-
     unsigned char* inode_char = new unsigned char[512];
 
     this->disk->read(0, inode_char);
     this->disk->read(1, free_list);
 
-    Console::puts("     -> Mount: char inode_list=");Console::puts((const char*)inode_char); Console::puts("\n");
-
-    inode_list = (Inode**)inode_char;
+    inode_list = (Inode**)inode_char; // change pointer type
 
     for(int i=0; i<MAX_INODES; i++){
-        Console::puts("     -> Mount: inode idx=");Console::puti(i);  Console::puts("; file_id="); Console::puti(this->inode_list[i]->block_id); Console::puts("; block_id="); Console::puti(this->inode_list[i]->block_id); Console::puts("; size="); Console::puti(this->inode_list[i]->size); Console::puts("; fs(size)="); Console::puti(this->inode_list[i]->fs->size); Console::puts("\n");
+        Console::puts("     -> Mount: inode idx=");     Console::puti(i);
+        Console::puts("; file_id=");                    Console::puti(this->inode_list[i]->block_id);
+        Console::puts("; block_id=");                   Console::puti(this->inode_list[i]->block_id);
+        Console::puts("; size=");                       Console::puti(this->inode_list[i]->size);
+        Console::puts("; fs(size)=");                   Console::puti(this->inode_list[i]->fs->size);
+        Console::puts("\n");
     }
 
-    Console::puts("++++++++++ Mounting DONE ++++++++++\n");
+    Console::puts("++++++++++ Mounting DONE ++++++++++\n\n");
     return true;
 }
 
@@ -91,11 +93,10 @@ bool FileSystem::Mount(SimpleDisk * _disk) {
 /* Wipes any file system from the disk and installs an empty file system of given size . */
 bool FileSystem::Format(SimpleDisk * _disk, unsigned int _size, FileSystem* _fs) {
     Console::puts("     -> Format: start\n");
-    Console::puts("     -> Format: MaxInodes=");Console::puti(MAX_INODES);  Console::puts("\n");
+    Console::puts("     -> Format: fs->MaxInodes=");Console::puti(_fs->MAX_INODES);  Console::puts("\n");
+    Console::puts("     -> Format: fs->Size=");Console::puti(_size);  Console::puts("\n");
 
     // make empty inode list for 1st block
-
-    
     Inode* inode_buf[MAX_INODES];
     for(int i=2; i<MAX_INODES; i++){
         inode_buf[i] = new Inode((long)-1, (long)-1, (long)-1, _fs);
@@ -107,7 +108,15 @@ bool FileSystem::Format(SimpleDisk * _disk, unsigned int _size, FileSystem* _fs)
 
 
     for(int i=0; i<MAX_INODES; i++){
-        Console::puts("     -> Format: inode idx=");Console::puti(i);  Console::puts("; file_id="); Console::puti(inode_buf[i]->id); Console::puts("; block_id="); Console::puti(inode_buf[i]->block_id); Console::puts("; size="); Console::puti(inode_buf[i]->size); Console::puts("; fs(size)="); Console::puti(inode_buf[i]->fs->size); Console::puts("\n");
+
+        inode_buf[i]->fs->size = _size;
+
+        Console::puts("     -> Format: inode idx=");    Console::puti(i);
+        Console::puts("; file_id=");                    Console::puti(inode_buf[i]->id);
+        Console::puts("; block_id=");                   Console::puti(inode_buf[i]->block_id);
+        Console::puts("; size=");                       Console::puti(inode_buf[i]->size);
+        Console::puts("; fs(size)=");                   Console::puti(inode_buf[i]->fs->size);
+        Console::puts("\n");
     }
 
     // make empty free list for 2nd block
@@ -122,7 +131,7 @@ bool FileSystem::Format(SimpleDisk * _disk, unsigned int _size, FileSystem* _fs)
     _disk->write(1,free_buf);
 
 
-    Console::puts("++++++++++ Formatting DONE ++++++++++\n");
+    Console::puts("++++++++++ Formatting DONE ++++++++++\n\n");
 
     return true;
 }
