@@ -73,7 +73,7 @@ bool FileSystem::Mount(SimpleDisk * _disk) {
     Console::puts("     -> Mount: char inode_list=");Console::puts((const char*)free_list); Console::puts("\n");
 
     for(int i=0; i<MAX_INODES; i++){
-        Console::puts("     -> Mount: inode idx=");Console::puti(i);  Console::puts("; file_id="); Console::puti(this->inode_list[i]->block_id); Console::puts("; block_id="); Console::puti(this->inode_list[i]->block_id); Console::puts("; size="); Console::puti(this->inode_list[i]->size); Console::puts("; fs*="); Console::puti((unsigned int)this->inode_list[i]->fs); Console::puts("\n");
+        Console::puts("     -> Mount: inode idx=");Console::puti(i);  Console::puts("; file_id="); Console::puti(this->inode_list[i]->block_id); Console::puts("; block_id="); Console::puti(this->inode_list[i]->block_id); Console::puts("; size="); Console::puti(this->inode_list[i]->size); Console::puts("; fs(max_inodes)="); Console::puti(this->inode_list[i]->fs->MAX_INODES); Console::puts("\n");
     }
 
     Console::puts("++++++++++ Mounting DONE ++++++++++\n");
@@ -100,7 +100,7 @@ bool FileSystem::Format(SimpleDisk * _disk, unsigned int _size, FileSystem* _fs)
 
 
     for(int i=0; i<MAX_INODES; i++){
-        Console::puts("     -> Format: inode idx=");Console::puti(i);  Console::puts("; file_id="); Console::puti(inode_buf[i]->id); Console::puts("; block_id="); Console::puti(inode_buf[i]->block_id); Console::puts("; size="); Console::puti(inode_buf[i]->size); Console::puts("; fs*="); Console::puti((unsigned int)(inode_buf[i]->fs->MAX_INODES)); Console::puts("\n");
+        Console::puts("     -> Format: inode idx=");Console::puti(i);  Console::puts("; file_id="); Console::puti(inode_buf[i]->id); Console::puts("; block_id="); Console::puti(inode_buf[i]->block_id); Console::puts("; size="); Console::puti(inode_buf[i]->size); Console::puts("; fs(max_inodes)="); Console::puti(inode_buf[i]->fs->MAX_INODES); Console::puts("\n");
     }
 
     // make empty free list for 2nd block
@@ -134,7 +134,7 @@ Inode* FileSystem::LookupFile(int _file_id) {
     // iterate through inode list and return inode if file_id matches
     for(int i=0; i<MAX_INODES; i++){
         if(this->inode_list[i]->id == _file_id){
-            Console::puts("         -> LookupFile: FOUND FILE! inode: block_id="); Console::puti(this->inode_list[i]->block_id); Console::puts("; name_id="); Console::puti(this->inode_list[i]->id); Console::puts("; size="); Console::puti(this->inode_list[i]->size); Console::puts("; fs*="); Console::puti((unsigned int)this->inode_list[i]->fs); Console::puts("\n");Console::puts("\n");
+            Console::puts("         -> LookupFile: FOUND FILE! inode: block_id="); Console::puti(this->inode_list[i]->block_id); Console::puts("; name_id="); Console::puti(this->inode_list[i]->id); Console::puts("; size="); Console::puti(this->inode_list[i]->size); Console::puts("; fs(max_inodes)="); Console::puti((unsigned int)this->inode_list[i]->fs->MAX_INODES); Console::puts("\n");Console::puts("\n");
             return (this->inode_list[i]);
         }
     }
