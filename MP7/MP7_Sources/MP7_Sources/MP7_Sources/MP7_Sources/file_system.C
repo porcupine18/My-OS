@@ -110,7 +110,6 @@ bool FileSystem::Format(SimpleDisk * _disk, unsigned int _size, FileSystem* _fs)
     for(int i=0; i<MAX_INODES; i++){
 
         inode_buf[i]->fs->size = _size;
-        inode_buf[i]->fs->MAX_MAPPED_BLOCKS = 500;
 
         Console::puts("     -> Format: inode idx=");    Console::puti(i);
         Console::puts("; file_id=");                    Console::puti(inode_buf[i]->id);
