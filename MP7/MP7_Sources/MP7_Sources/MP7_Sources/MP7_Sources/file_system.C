@@ -89,9 +89,12 @@ bool FileSystem::Format(SimpleDisk * _disk, unsigned int _size, FileSystem* _fs)
     }
 
     // set first inode busy
-    inode_buf[0] = new Inode(-2, 0, 1, _fs); // inodes block marked
-    inode_buf[1] = new Inode(-3, 1, 1, _fs); // freelist block marked
+    inode_buf[0] = new Inode(-2, 0, 512, _fs); // inodes block marked
+    inode_buf[1] = new Inode(-3, 1, 512, _fs); // freelist block marked
 
+    for(int i=0; i<MAX_INODES; i++){
+        Console::puts("inode idx=");Console::puti(i); Console::puts("; block_id="); Console::puti(inode_buf[i]->block_id); Console::puts("; size="); Console::puti(inode_buf[i]->size);Console::puts("\n");
+    }
 
     // make empty free list for 2nd block
     unsigned char free_buf[SimpleDisk::BLOCK_SIZE];
@@ -214,9 +217,9 @@ short FileSystem::GetFreeInode(){
     // check to find free inode
     int i;
     for(i=0; i<MAX_INODES; i++){
-        Console::puts("         -> GetFreeInode: finding free inode_id=");Console::puti(i); Console::puts("; block_id="); Console::puti(this->inode_list[i]->block_id); Console::puts("\n");
+        Console::puts("         -> GetFreeInode: finding free idx=");Console::puti(i); Console::puts("; block_id="); Console::puti(this->inode_list[i]->block_id); Console::puts("\n");
         if(this->inode_list[i]->block_id == -1){
-            Console::puts("         -> GetFreeInode: FOUND free inode inode_id=");Console::puti(i); Console::puts("\n");
+            Console::puts("         -> GetFreeInode: FOUND free inode idx=");Console::puti(i); Console::puts("\n");
             return i;
         }
     }
