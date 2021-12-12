@@ -208,6 +208,12 @@ bool FileSystem::CreateFile(int _file_id) { //assigning a free inode to the _fil
     this->inode_list[inode_idx] = new Inode(_file_id, freelist_idx, 0, this);
     this->free_list[freelist_idx] = 1; // set busy
 
+    Console::puts("     -> CreateFile: new file inode idx=");    Console::puti(inode_idx);
+    Console::puts("; file_id=");                    Console::puti(this->inode_list[inode_idx]->id);
+    Console::puts("; block_id=");                   Console::puti(this->inode_list[inode_idx]->block_id);
+    Console::puts("; size=");                       Console::puti(this->inode_list[inode_idx]->size);
+    Console::puts("; fs=");                         Console::puti((int)this->inode_list[inode_idx]->fs->MAX_MAPPED_BLOCKS);
+
     Console::puts("     -> CreateFile: FILE CREATED\n");
     return true;
 }
