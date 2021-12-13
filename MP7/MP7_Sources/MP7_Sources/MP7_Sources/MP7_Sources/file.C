@@ -125,7 +125,7 @@ int File::Write(unsigned int _n, const char *_buf) {
         to_write = _n;
     }
 
-    Console::puts("File  -> Write: Cache = \""); Console::puts((const char*)this->block_cache); Console::puts("\"\n");
+    Console::puts("File  -> Write: init Cache = \""); Console::puts((const char*)this->block_cache); Console::puts("\"\n");
 
     Console::puts("File  -> Write: size=");  Console::puti(this->file_inode->file_size);
     Console::puts(";  seek=");               Console::puti(this->seek_position); 
@@ -143,7 +143,7 @@ int File::Write(unsigned int _n, const char *_buf) {
     this->file_inode->file_size += to_write;
 
 
-    Console::puts("File  -> Write: Cache = \""); Console::puts((const char*)this->block_cache); Console::puts("\"\n");
+    Console::puts("File  -> Write: new  Cache = \""); Console::puts((const char*)this->block_cache); Console::puts("\"\n");
 
     Console::puts("File  -> Write: DONE\n");
     return to_write;    
