@@ -75,10 +75,6 @@ int File::Read(unsigned int _n, char *_buf) {
         Console::puts("File  -> Read: invalid number of bytes asked to read\n");
         return 0;
     }
-    if(! *_buf){
-        Console::puts("File  -> Read: NULL pointer passed\n");
-        return 0;
-    }
 
     // check how many bytes to read without overshooting
     int to_read;
