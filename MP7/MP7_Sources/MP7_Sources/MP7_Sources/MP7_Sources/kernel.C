@@ -271,7 +271,7 @@ int main() {
         exercise_file_system(FILE_SYSTEM);
     }
 
-    Console::puts("EXERCISE DONE\n");
+    Console::puts("EXERCISE DONE========================================================================================================================\n");
 
 
     /* -- AND ALL THE REST SHOULD FOLLOW ... */
