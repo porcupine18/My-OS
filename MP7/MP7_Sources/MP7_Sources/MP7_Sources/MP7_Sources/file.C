@@ -41,6 +41,8 @@ File::File(FileSystem* _fs, int _id){
 
     this->seek_position = 0;                    // set seek position to the start of the file
 
+    Console::puts("File  -> Constructor: intial Cache = \""); Console::puts((const char*)this->block_cache); Console::puts("\"\n");
+    
     Console::puts("File  -> Constructor: size = "); Console::puti(this->file_inode->file_size); Console::puts("\n");
 
     Console::puts("File  -> Constructor: file opened!\n");
@@ -95,8 +97,6 @@ int File::Read(unsigned int _n, char *_buf) {
     Console::puts("  , max_read="); Console::puti(max_read);
     Console::puts("  , can_read=");Console::puti(to_read);
     Console::puts("  , asked_to_read="); Console::puti(_n); Console::puts("\n");
-
-    Console::puts("File  -> Read: read from cache = \""); Console::puts(_buf); Console::puts("\"\n");
 
     Console::puts("File  -> Read: DONE\n");
 
