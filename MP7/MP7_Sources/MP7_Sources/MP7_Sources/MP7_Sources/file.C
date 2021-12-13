@@ -39,10 +39,12 @@ File::File(FileSystem* _fs, int _id){
     memset(this->block_cache, '\0', SimpleDisk::BLOCK_SIZE);   // clean cache before writing to it
     this->filesystem->disk->read(block_id, this->block_cache); // load data into cache
 
-    Console::puts("File  -> Constructor: intial Cache = \""); Console::puts((const char*)this->block_cache); Console::puts("\"\n");
-    
-    Console::puts("File  -> Constructor: seek = "); Console::puti(this->seek_position); Console::puts("\n");
+    if(this->file_inode->file_size == 0){
+        this->seek_position = 0;
+    }
 
+    Console::puts("File  -> Constructor: intial Cache = \""); Console::puts((const char*)this->block_cache); Console::puts("\"\n");
+    Console::puts("File  -> Constructor: seek = "); Console::puti(this->seek_position); Console::puts("\n");
     Console::puts("File  -> Constructor: file opened!\n");
 }
 
