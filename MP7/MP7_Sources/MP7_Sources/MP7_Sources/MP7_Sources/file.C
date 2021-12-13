@@ -36,8 +36,11 @@ File::File(FileSystem* _fs, int _id){
 
     short block_id = this->file_inode->block_id;               // get block_id of current file
 
+    unsigned char tmp_cache[512];
+    this->filesystem->disk->read(block_id, tmp_cache); // load data into cache
+
     memset(this->block_cache, '\0', SimpleDisk::BLOCK_SIZE);   // clean cache before writing to it
-    this->filesystem->disk->read(block_id, this->block_cache); // load data into cache
+    memcpy(this->block_cache, tmp_cache, this->file_inode->file_size);
 
     if(this->file_inode->file_size == 0){
         this->seek_position = 0;
