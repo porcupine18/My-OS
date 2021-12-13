@@ -95,7 +95,7 @@ bool FileSystem::Mount(SimpleDisk * _disk) {
     }
 
     Console::puts("     -> Mount: free_list-\n");
-    for(int i=0; i<MAX_MAPPED_BLOCKS; i++){
+    for(int i=0; i<32; i++){
         Console::puts("[");     Console::puti(i); 
         Console::puts("]=");                            Console::puti((int)free_list[i]);
         if(i%10 == 0 && i!=0)
@@ -228,7 +228,7 @@ bool FileSystem::CreateFile(int _file_id) { //assigning a free inode to the _fil
     this->free_list[freelist_idx] = 1; // set busy
 
     Console::puts("     -> CreateFile: free_buf-\n");
-    for(int i=0; i<MAX_MAPPED_BLOCKS; i++){
+    for(int i=0; i<32; i++){
         Console::puts("[");     Console::puti(i); 
         Console::puts("]=");                            Console::puti((int)this->free_list[i]);
         if(i%10 == 0 && i!=0)
