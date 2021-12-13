@@ -241,7 +241,7 @@ int main() {
 
     /* -- HERE WE STRESS TEST THE FILE SYSTEM -- */
 
-    assert(FileSystem::Format(SYSTEM_DISK, (128 KB))); // Don't try this at home!
+    assert(FileSystem::Format(SYSTEM_DISK, (128 KB), FILE_SYSTEM)); // Don't try this at home!
     /* This is a really small file system. This allows you to use a very crude
        implementation for the free block list. */
     
