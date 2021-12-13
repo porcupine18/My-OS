@@ -41,7 +41,7 @@ File::File(FileSystem* _fs, int _id){
 
     Console::puts("File  -> Constructor: intial Cache = \""); Console::puts((const char*)this->block_cache); Console::puts("\"\n");
     
-    Console::puts("File  -> Constructor: size = "); Console::puti(this->file_inode->file_size); Console::puts("\n");
+    Console::puts("File  -> Constructor: seek = "); Console::puti(this->seek_position); Console::puts("\n");
 
     Console::puts("File  -> Constructor: file opened!\n");
 }
