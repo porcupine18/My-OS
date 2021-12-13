@@ -229,7 +229,7 @@ bool FileSystem::CreateFile(int _file_id) { //assigning a free inode to the _fil
     Then free all blocks that belong to the file and delete/invalidate 
     (depending on your implementation of the inode list) the inode. */
 bool FileSystem::DeleteFile(int _file_id) {
-    Console::puts("     -> DeleteFile: start");
+    Console::puts("     -> DeleteFile: start\n");
     Console::puts("     -> DeleteFile: deleting file with id:"); Console::puti(_file_id); Console::puts("\n");
 
     // LookupFile: iterate through inode list to see if file exists
