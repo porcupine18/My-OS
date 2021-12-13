@@ -85,10 +85,14 @@ int File::Read(unsigned int _n, char *_buf) {
     // read from the file cache
     memcpy(_buf, this->block_cache+this->seek_position, to_read);
 
+
     Console::puts("File  -> Read: size="); Console::puti(this->file_inode->file_size);
     Console::puts("  , seek="); Console::puti(this->seek_position);
-    Console::puts("  , to_read=");Console::puti(to_read);
-    Console::puts("  , _n="); Console::puti(_n); Console::puts("\n");
+    Console::puts("  , can_read=");Console::puti(to_read);
+    Console::puts("  , asked_to_read="); Console::puti(_n); Console::puts("\n");
+
+    Console::puts("File  -> Read: read from cache = \""); Console::puts(_buf); Console::puts("\"\n");
+
     Console::puts("File  -> Read: DONE\n");
 
     return to_read;
