@@ -108,19 +108,22 @@ void exercise_file_system(FileSystem * _file_system) {
     const char* str5 = "1111111111111111111111111";
     const char* str6 = "bbbbbbbbbbbbbbbbbbbbbbbb";
     
-    for(int i = 0; i < 3, i++){
+    const char * STRING1;
+    const char * STRING2;
+
+    for(int i = 0; i < 3; i++){
 
     if(i==0){
-        const char * STRING1 = str1;
-        const char * STRING2 = str2;
+        STRING1 = str1;
+        STRING2 = str2;
     }
     if(i==1){
-        const char * STRING1 = str3;
-        const char * STRING2 = str4;
+        STRING1 = str3;
+        STRING2 = str4;
     }
     if(i==2){
-        const char * STRING1 = str5;
-        const char * STRING2 = str6;
+        STRING1 = str5;
+        STRING2 = str6;
     }
     
     /* -- Create two files -- */
