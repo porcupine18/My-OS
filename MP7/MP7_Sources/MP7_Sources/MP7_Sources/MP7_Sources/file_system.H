@@ -45,7 +45,7 @@ class Inode
 private:
   long id;        // File "name"
   long block_id;  // block in which file is stored
-  long size;      // size of the file in bytes
+  long file_size; // size of the file in bytes
   FileSystem* fs; // pointer to the file system
 
   /* You will need additional information in the inode, such as allocation 

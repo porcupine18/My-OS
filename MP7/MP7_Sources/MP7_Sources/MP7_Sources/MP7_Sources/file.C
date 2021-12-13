@@ -37,10 +37,10 @@ File::File(FileSystem* _fs, int _id){
     short block_id = this->file_inode->block_id;               // get block_id of current file
     this->filesystem->disk->read(block_id, this->block_cache); // load data into cache
 
-    this->file_inode->size = strlen((const char*)this->block_cache); // get current size of file
+    this->file_inode->file_size = strlen((const char*)this->block_cache); // get current size of file
     this->seek_position = 0;                    // set seek position to the end of the file
 
-    Console::puts("File  -> Constructor: size = "); Console::puti(this->file_inode->size); Console::puts("\n");
+    Console::puts("File  -> Constructor: size = "); Console::puti(this->file_inode->file_size); Console::puts("\n");
 
     Console::puts("File  -> Constructor: file opened!\n");
 }
@@ -70,7 +70,7 @@ int File::Read(unsigned int _n, char *_buf) {
 
     // check how many bytes to read without overshooting
     int to_read;
-    int max_read = this->file_inode->size - this->seek_position;
+    int max_read = this->file_inode->file_size - this->seek_position;
     if(_n > max_read){
         to_read = max_read;
     } else{
@@ -101,19 +101,24 @@ int File::Write(unsigned int _n, const char *_buf) {
 
     // check how many bytes to write without buffer overflow
     int to_write;
-    int max_write = SimpleDisk::BLOCK_SIZE - this->file_inode->size;
+    int max_write = SimpleDisk::BLOCK_SIZE - this->file_inode->file_size;
     if(_n > max_write){
         to_write = max_write;
     } else{
         to_write = _n;
     }
 
-    // write to file 
+    Console::puts("File  -> Write: size="); Console::puti(this->file_inode->file_size);
+    Console::puts("  , seek=");  Console::puti(this->seek_position); 
+    Console::puts("  , to_read="); Console::puti(to_write); Console::puts("  , _n="); 
+    Console::puti(_n);Console::puts("\n");
+    Console::puts("File  -> Write: DONE\n");
+
+    // write to file , update size in inode
     memcpy(this->block_cache+this->seek_position, _buf, to_write);
     this->filesystem->disk->write(this->file_inode->block_id, this->block_cache);
 
-    Console::puts("File  -> Write: size="); Console::puti(this->file_inode->size); Console::puts("  , seek=");  Console::puti(this->seek_position); Console::puts("  , to_read="); Console::puti(to_write); Console::puts("  , _n="); Console::puti(_n);Console::puts("\n");
-    Console::puts("File  -> Write: DONE\n");
+    this->file_inode->file_size += to_write;
 
     return to_write;    
 }
@@ -125,7 +130,7 @@ void File::Reset() {
 
 bool File::EoF() {
     
-    if(this->seek_position == this->file_inode->size){
+    if(this->seek_position == this->file_inode->file_size){
         Console::puts("File  -> EOF: reached EOF\n");
         return true;
     } else{

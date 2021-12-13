@@ -21,7 +21,7 @@
 Inode::Inode(long _id, long _block_id, long _size, FileSystem* _fs){
     this->id = _id;
     this->block_id = _block_id;
-    this->size = _size;
+    this->file_size = _size;
     this->fs = fs;
 }
     
@@ -78,7 +78,7 @@ bool FileSystem::Mount(SimpleDisk * _disk) {
         Console::puts("     -> Mount: inode idx=");     Console::puti(i);
         Console::puts("; file_id=");                    Console::puti(this->inode_list[i]->block_id);
         Console::puts("; block_id=");                   Console::puti(this->inode_list[i]->block_id);
-        Console::puts("; size=");                       Console::puti(this->inode_list[i]->size);
+        Console::puts("; size=");                       Console::puti(this->inode_list[i]->file_size);
         Console::puts("; fs=");                         Console::puti((int)this->inode_list[i]->fs->MAX_MAPPED_BLOCKS);
         Console::puts("\n");
     }
@@ -120,7 +120,7 @@ bool FileSystem::Format(SimpleDisk * _disk, unsigned int _size, FileSystem* _fs)
         Console::puts("     -> Format: inode idx=");    Console::puti(i);
         Console::puts("; file_id=");                    Console::puti(inode_buf[i]->id);
         Console::puts("; block_id=");                   Console::puti(inode_buf[i]->block_id);
-        Console::puts("; size=");                       Console::puti(inode_buf[i]->size);
+        Console::puts("; size=");                       Console::puti(inode_buf[i]->file_size);
         Console::puts("; fs(size)=");                   Console::puti((int)inode_buf[i]->fs->size);
         Console::puts("\n");
     }
@@ -166,7 +166,11 @@ Inode* FileSystem::LookupFile(int _file_id) {
     // iterate through inode list and return inode if file_id matches
     for(int i=0; i<MAX_INODES; i++){
         if(this->inode_list[i]->id == _file_id){
-            Console::puts("         -> LookupFile: FOUND FILE! inode: block_id="); Console::puti(this->inode_list[i]->block_id); Console::puts("; name_id="); Console::puti(this->inode_list[i]->id); Console::puts("; size="); Console::puti(this->inode_list[i]->size); Console::puts("; fs(size)="); Console::puti((unsigned int)this->inode_list[i]->fs->size); Console::puts("\n");Console::puts("\n");
+            Console::puts("         -> LookupFile: FOUND FILE! inode: block_id="); Console::puti(this->inode_list[i]->block_id);
+            Console::puts("; name_id=");                                           Console::puti(this->inode_list[i]->id); 
+            Console::puts("; size=");                                              Console::puti(this->inode_list[i]->file_size); 
+            Console::puts("; fs(size)=");                                          Console::puti((unsigned int)this->inode_list[i]->fs->size); 
+            Console::puts("\n");
             return (this->inode_list[i]);
         }
     }
@@ -211,7 +215,7 @@ bool FileSystem::CreateFile(int _file_id) { //assigning a free inode to the _fil
     Console::puts("     -> CreateFile: new file inode idx=");    Console::puti(inode_idx);
     Console::puts("; file_id=");                                 Console::puti(this->inode_list[inode_idx]->id);
     Console::puts("; block_id=");                                Console::puti(this->inode_list[inode_idx]->block_id);
-    Console::puts("; size=");                                    Console::puti(this->inode_list[inode_idx]->size);
+    Console::puts("; size=");                                    Console::puti(this->inode_list[inode_idx]->file_size);
     Console::puts("; fs(size)=");                                Console::puti((int)this->inode_list[inode_idx]->fs->size);
     Console::puts("\n");  
 
@@ -247,7 +251,7 @@ bool FileSystem::DeleteFile(int _file_id) {
     // resetting inode list and freelist
     this->inode_list[inode_idx]->id       = -1;
     this->inode_list[inode_idx]->block_id = -1;
-    this->inode_list[inode_idx]->size     = -1;
+    this->inode_list[inode_idx]->file_size     = -1;
 
     this->free_list[block_id] = 0; // set free
 
