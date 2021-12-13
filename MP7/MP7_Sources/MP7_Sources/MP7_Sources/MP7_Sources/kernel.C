@@ -267,6 +267,7 @@ int main() {
 
     for(int j = 0; j<3; j++) {
         exercise_file_system(FILE_SYSTEM);
+        Console::puts("\n\nITERATION["); Console::puti(j); Console::puts("DONE\n");
     }
 
     Console::puts("EXERCISE DONE\n");
