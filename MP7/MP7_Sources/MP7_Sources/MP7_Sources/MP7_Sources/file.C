@@ -101,7 +101,7 @@ int File::Write(unsigned int _n, const char *_buf) {
         return 0;
     }
 
-    Console::puts("File  -> Write: to write=\"\n"); Console::puts(_buf); Console::puts("\"\n");
+    Console::puts("File  -> Write: to write=\""); Console::puts(_buf); Console::puts("\"\n");
 
     // check how many bytes to write without buffer overflow
     int to_write;
