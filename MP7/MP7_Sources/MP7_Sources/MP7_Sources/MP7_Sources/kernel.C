@@ -101,8 +101,8 @@ FileSystem * FILE_SYSTEM;
 
 void exercise_file_system(FileSystem * _file_system, char* str1, char* str2) {
 
-    const char * STRING1 = str1;
-    const char * STRING2 = str2;
+    char * STRING1 = str1;
+    char * STRING2 = str2;
     
     //const char * STRING1 = "01234567890123456789";
     //const char * STRING2 = "abcdefghijabcdefghij";
