@@ -126,7 +126,7 @@ void exercise_file_system(FileSystem * _file_system) {
         Console::puts("++++++++++++++++++++++++++++ DONE WRITING TO FILE 1 +++++++++++++++++++++++++++\n");
 
         /* -- Write into File 2 -- */
-        Console::puts("+++++++++++++++++++++++++++++ WILL WRITE TO FILE 1 ++++++++++++++++++++++++++++\n");
+        Console::puts("+++++++++++++++++++++++++++++ WILL WRITE TO FILE 2 ++++++++++++++++++++++++++++\n");
         file2.Write(20, STRING2);
         Console::puts("++++++++++++++++++++++++++++ DONE WRITING TO FILE 2 +++++++++++++++++++++++++++\n");
 
