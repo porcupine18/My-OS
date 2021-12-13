@@ -44,7 +44,7 @@ class File  {
     
 private:
 
-   unsigned int seek_position;
+   unsigned int seek_position = 0;
 
    int name_id;
    Inode* file_inode;
