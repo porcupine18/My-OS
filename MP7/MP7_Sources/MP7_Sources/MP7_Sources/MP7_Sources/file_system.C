@@ -41,9 +41,20 @@ FileSystem::FileSystem(){ /* Just initializes local data structures . Does not c
 
 /* DESTRUCTOR */
 FileSystem::~FileSystem() {
-    Console::puts("---------- FileSystem Unmounted ----------\n");
+    
     /* Make sure that the inode list and the free list are written back to the disk. */
-    assert(false);
+
+    // write inode_list to disk
+    unsigned char* inode_char = (unsigned char*)inode_list;
+    this->disk->write(0, inode_char);
+
+    // write free_list to disk
+    this->disk->write(1, free_list);
+
+    delete[] inode_list;
+    delete[] free_list;
+
+    Console::puts("---------- FileSystem Unmounted ----------\n");
 }
 
 
@@ -212,7 +223,14 @@ bool FileSystem::CreateFile(int _file_id) { //assigning a free inode to the _fil
     }
 
     // set inode and bitmap for new file
-    this->inode_list[inode_idx] = new Inode(_file_id, freelist_idx, 0, this);
+    //Inode* old_Inode = this->inode_list[inode_idx];
+    //this->inode_list[inode_idx] = new Inode(_file_id, freelist_idx, 0, this);
+    this->inode_list[inode_idx]->id = _file_id;
+    this->inode_list[inode_idx]->block_id = freelist_idx;
+    this->inode_list[inode_idx]->file_size = 0;
+    this->inode_list[inode_idx]->fs = this;
+
+
     this->free_list[freelist_idx] = 1; // set busy
 
     Console::puts("     -> CreateFile: new file inode idx=");    Console::puti(inode_idx);
@@ -222,6 +240,9 @@ bool FileSystem::CreateFile(int _file_id) { //assigning a free inode to the _fil
     Console::puts("\n");  
 
     Console::puts("     -> CreateFile: FILE CREATED\n");
+
+    //delete old_Inode;
+
     return true;
 }
 
