@@ -99,13 +99,29 @@ FileSystem * FILE_SYSTEM;
 /* CODE TO EXERCISE THE FILE SYSTEM */
 /*--------------------------------------------------------------------------*/
 
-void exercise_file_system(FileSystem * _file_system, const char* str1, const char* str2) {
+void exercise_file_system(FileSystem * _file_system) {
 
-    const char* STRING1 = str1;
-    const char* STRING2 = str2;
+    const char* str1 = "01234567890123456789";
+    const char* str2 = "abcdefghijabcdefghij";
+    const char* str3 = "999";
+    const char* str4 = "zzz";
+    const char* str5 = "1111111111111111111111111";
+    const char* str6 = "bbbbbbbbbbbbbbbbbbbbbbbb";
     
-    //const char * STRING1 = "01234567890123456789";
-    //const char * STRING2 = "abcdefghijabcdefghij";
+    for(int i = 0; i < 3, i++){
+
+    if(i==0){
+        const char * STRING1 = str1;
+        const char * STRING2 = str2;
+    }
+    if(i==1){
+        const char * STRING1 = str3;
+        const char * STRING2 = str4;
+    }
+    if(i==2){
+        const char * STRING1 = str5;
+        const char * STRING2 = str6;
+    }
     
     /* -- Create two files -- */
     Console::puts("++++++++++++++++++++++++++++++ WILL CREATE FILES ++++++++++++++++++++++++++++++\n");
@@ -189,7 +205,7 @@ void exercise_file_system(FileSystem * _file_system, const char* str1, const cha
     assert(_file_system->DeleteFile(1));
     assert(_file_system->DeleteFile(2));
     Console::puts("++++++++++++++++++++++++++++++ DELETED BOTH FILES +++++++++++++++++++++++++++++\n");
-
+    }
 }
 
 /*--------------------------------------------------------------------------*/
@@ -284,9 +300,9 @@ const
 
     for(int j = 0; j<1; j++) {
         Console::puts("\n\nITERATION["); Console::puti(j); Console::puts("]: START ==========================================================================================\n");
-        exercise_file_system(FILE_SYSTEM, str1, str2);
-        exercise_file_system(FILE_SYSTEM, str3, str4);
-        exercise_file_system(FILE_SYSTEM, str5, str6);
+        exercise_file_system(FILE_SYSTEM);
+        //exercise_file_system(FILE_SYSTEM, str3, str4);
+        //exercise_file_system(FILE_SYSTEM, str5, str6);
     }
 
     Console::puts("EXERCISE DONE==========================================================================================\n");
