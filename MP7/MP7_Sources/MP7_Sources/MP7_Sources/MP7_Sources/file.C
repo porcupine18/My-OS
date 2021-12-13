@@ -93,10 +93,10 @@ int File::Read(unsigned int _n, char *_buf) {
 
 
     Console::puts("File  -> Read: size="); Console::puti(this->file_inode->file_size);
-    Console::puts("  , seek="); Console::puti(this->seek_position);
-    Console::puts("  , max_read="); Console::puti(max_read);
-    Console::puts("  , can_read=");Console::puti(to_read);
-    Console::puts("  , asked_to_read="); Console::puti(_n); Console::puts("\n");
+    Console::puts(";  seek="); Console::puti(this->seek_position);
+    Console::puts(";  max_read="); Console::puti(max_read);
+    Console::puts(";  can_read=");Console::puti(to_read);
+    Console::puts(";  asked_to_read="); Console::puti(_n); Console::puts("\n");
 
     Console::puts("File  -> Read: DONE\n");
 
@@ -128,10 +128,10 @@ int File::Write(unsigned int _n, const char *_buf) {
     }
 
     Console::puts("File  -> Write: size="); Console::puti(this->file_inode->file_size);
-    Console::puts("; seek=");               Console::puti(this->seek_position); 
-    Console::puts("  , max_write="); Console::puti(max_write);
-    Console::puts("; will_write=");         Console::puti(to_write); \
-    Console::puts("; told to write=");      Console::puti(_n);Console::puts("\n");
+    Console::puts(";  seek=");               Console::puti(this->seek_position); 
+    Console::puts(";  max_write="); Console::puti(max_write);
+    Console::puts(";  will_write=");         Console::puti(to_write); \
+    Console::puts(";  told to write=");      Console::puti(_n);Console::puts("\n");
 
     // write to file , update size in inode, update seek position
     memcpy(this->block_cache+this->seek_position, _buf, to_write);
