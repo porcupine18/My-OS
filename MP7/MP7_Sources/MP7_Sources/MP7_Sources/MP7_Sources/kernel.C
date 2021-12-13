@@ -183,8 +183,8 @@ void exercise_file_system(FileSystem * _file_system) {
     }
 
     /* -- Delete both files -- */
-    //assert(_file_system->DeleteFile(1));
-    //assert(_file_system->DeleteFile(2));
+    assert(_file_system->DeleteFile(1));
+    assert(_file_system->DeleteFile(2));
     Console::puts("++++++++++++++++++++++++++++++ DELETED BOTH FILES +++++++++++++++++++++++++++++\n");
 
 }
@@ -196,8 +196,8 @@ void exercise_file_system2(FileSystem * _file_system) {
     
     /* -- Create two files -- */
     Console::puts("++++++++++++++++++++++++++++++ WILL CREATE FILES ++++++++++++++++++++++++++++++\n");
-    assert(_file_system->CreateFile(3));
-    assert(_file_system->CreateFile(4));
+    assert(_file_system->CreateFile(1));
+    assert(_file_system->CreateFile(2));
     Console::puts("++++++++++++++++++++++++++++++++ FILES CREATED ++++++++++++++++++++++++++++++++\n");
 
     /* -- "Open" the two files -- */
@@ -205,10 +205,10 @@ void exercise_file_system2(FileSystem * _file_system) {
     {
         Console::puts("+++++++++++++++++++++++++++++++ 1:WILL OPEN FILE 1 ++++++++++++++++++++++++++++\n");
 
-        File file1(_file_system, 3);
+        File file1(_file_system, 1);
 
         Console::puts("+++++++++++++++++++++++++++++++ 1:WILL OPEN FILE 2 ++++++++++++++++++++++++++++\n");
-        File file2(_file_system, 4);
+        File file2(_file_system, 2);
 
         /* -- Write into File 1 -- */
         Console::puts("+++++++++++++++++++++++++++++ WILL WRITE TO FILE 1 ++++++++++++++++++++++++++\n");
@@ -226,10 +226,10 @@ void exercise_file_system2(FileSystem * _file_system) {
     {
         Console::puts("+++++++++++++++++++++++++++++++ 2:WILL OPEN FILE 1 ++++++++++++++++++++++++++++\n");
 
-        File file1(_file_system, 3);
+        File file1(_file_system, 1);
 
         Console::puts("+++++++++++++++++++++++++++++++ 2:WILL OPEN FILE 2 ++++++++++++++++++++++++++++\n");
-        File file2(_file_system, 4);
+        File file2(_file_system, 2);
 
         /* -- Write into File 1 -- */
         Console::puts("+++++++++++++++++++++++++++++ 2:WILL WRITE TO FILE 1 ++++++++++++++++++++++++++\n");
@@ -245,8 +245,8 @@ void exercise_file_system2(FileSystem * _file_system) {
     {   
         /* -- "Open files again -- */
         Console::puts("++++++++++++++++++++++++++++++ OPENING BOTH FILES +++++++++++++++++++++++++++++\n");
-        File file1(_file_system, 3);
-        File file2(_file_system, 4);
+        File file1(_file_system, 1);
+        File file2(_file_system, 2);
         Console::puts("++++++++++++++++++++++++++++++ DONE OPENING FILES +++++++++++++++++++++++++++++\n");
 
 
@@ -273,8 +273,8 @@ void exercise_file_system2(FileSystem * _file_system) {
     }
 
     /* -- Delete both files -- */
-    //assert(_file_system->DeleteFile(3));
-    //assert(_file_system->DeleteFile(4));
+    assert(_file_system->DeleteFile(1));
+    assert(_file_system->DeleteFile(2));
     Console::puts("++++++++++++++++++++++++++++++ DELETED BOTH FILES +++++++++++++++++++++++++++++\n");
 
 }
@@ -286,8 +286,8 @@ void exercise_file_system3(FileSystem * _file_system) {
     
     /* -- Create two files -- */
     Console::puts("++++++++++++++++++++++++++++++ WILL CREATE FILES ++++++++++++++++++++++++++++++\n");
-    assert(_file_system->CreateFile(5));
-    assert(_file_system->CreateFile(6));
+    assert(_file_system->CreateFile(1));
+    assert(_file_system->CreateFile(2));
     Console::puts("++++++++++++++++++++++++++++++++ FILES CREATED ++++++++++++++++++++++++++++++++\n");
 
     /* -- "Open" the two files -- */
@@ -295,10 +295,10 @@ void exercise_file_system3(FileSystem * _file_system) {
     {
         Console::puts("+++++++++++++++++++++++++++++++ 1:WILL OPEN FILE 1 ++++++++++++++++++++++++++++\n");
 
-        File file1(_file_system, 5);
+        File file1(_file_system, 1);
 
         Console::puts("+++++++++++++++++++++++++++++++ 1:WILL OPEN FILE 2 ++++++++++++++++++++++++++++\n");
-        File file2(_file_system, 6);
+        File file2(_file_system, 2);
 
         /* -- Write into File 1 -- */
         Console::puts("+++++++++++++++++++++++++++++ WILL WRITE TO FILE 1 ++++++++++++++++++++++++++\n");
@@ -316,10 +316,10 @@ void exercise_file_system3(FileSystem * _file_system) {
     {
         Console::puts("+++++++++++++++++++++++++++++++ 2:WILL OPEN FILE 1 ++++++++++++++++++++++++++++\n");
 
-        File file1(_file_system, 5);
+        File file1(_file_system, 1);
 
         Console::puts("+++++++++++++++++++++++++++++++ 2:WILL OPEN FILE 2 ++++++++++++++++++++++++++++\n");
-        File file2(_file_system, 6);
+        File file2(_file_system, 2);
 
         /* -- Write into File 1 -- */
         Console::puts("+++++++++++++++++++++++++++++ 2:WILL WRITE TO FILE 1 ++++++++++++++++++++++++++\n");
@@ -335,8 +335,8 @@ void exercise_file_system3(FileSystem * _file_system) {
     {   
         /* -- "Open files again -- */
         Console::puts("++++++++++++++++++++++++++++++ OPENING BOTH FILES +++++++++++++++++++++++++++++\n");
-        File file1(_file_system, 5);
-        File file2(_file_system, 6);
+        File file1(_file_system, 1);
+        File file2(_file_system, 2);
         Console::puts("++++++++++++++++++++++++++++++ DONE OPENING FILES +++++++++++++++++++++++++++++\n");
 
 
@@ -363,8 +363,8 @@ void exercise_file_system3(FileSystem * _file_system) {
     }
 
     /* -- Delete both files -- */
-    //assert(_file_system->DeleteFile(5));
-    //assert(_file_system->DeleteFile(6));
+    assert(_file_system->DeleteFile(1));
+    assert(_file_system->DeleteFile(2));
     Console::puts("++++++++++++++++++++++++++++++ DELETED BOTH FILES +++++++++++++++++++++++++++++\n");
 
 }
