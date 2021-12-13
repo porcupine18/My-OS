@@ -82,10 +82,12 @@ bool FileSystem::Mount(SimpleDisk * _disk) {
         Console::puts("\n");
     }
 
+    Console::puts("     -> Mount: free_list-");
     for(int i=0; i<MAX_MAPPED_BLOCKS; i++){
-        Console::puts("     -> Mount: free_buf[");     Console::puti(i); 
+        Console::puts("[");     Console::puti(i); 
         Console::puts("]=");                            Console::puti((int)free_list[i]);
-        Console::puts("\n");
+        if(i%10)
+            Console::puts("\n");
     }
 
     Console::puts("++++++++++ Mounting DONE ++++++++++\n\n");
