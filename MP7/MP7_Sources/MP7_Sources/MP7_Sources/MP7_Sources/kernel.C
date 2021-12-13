@@ -263,7 +263,7 @@ int main() {
 
     assert(FILE_SYSTEM->Mount(SYSTEM_DISK)); // 'connect' disk to file system.
 
-    for(int j = 0; j<5; j++) {
+    for(int j = 0; j<1; j++) {
         exercise_file_system(FILE_SYSTEM, 3, 4);
     }
 
