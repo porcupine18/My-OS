@@ -99,8 +99,9 @@ bool FileSystem::Mount(SimpleDisk * _disk) {
         Console::puts("[");     Console::puti(i); 
         Console::puts("]=");                            Console::puti((int)free_list[i]);
         if(i%10 == 0 && i!=0)
-            Console::puts("\n");
+            Console::puts("                         \n");
     }
+
     Console::puts("\n");
 
     Console::puts("++++++++++ Mounting DONE ++++++++++\n\n");
@@ -232,7 +233,7 @@ bool FileSystem::CreateFile(int _file_id) { //assigning a free inode to the _fil
         Console::puts("[");     Console::puti(i); 
         Console::puts("]=");                            Console::puti((int)this->free_list[i]);
         if(i%10 == 0 && i!=0)
-            Console::puts("\n");
+            Console::puts("                             \n");
     }
     Console::puts("\n");
 
