@@ -88,7 +88,7 @@ int File::Read(unsigned int _n, char *_buf) {
 
     // read from the file cache, update seek position
     memcpy(_buf, this->block_cache+this->seek_position, to_read);
-
+    _buf[to_read+1]='\0';
     this->seek_position += to_read;
 
     Console::puts("File  -> Read: size=");  Console::puti(this->file_inode->file_size);
@@ -98,7 +98,7 @@ int File::Read(unsigned int _n, char *_buf) {
     Console::puts(";  asked_to_read=");     Console::puti(_n);                          
     Console::puts("\n");
 
-    Console::puts("File  -> Read: read from cache= \""); Console::puts(_buf); Console::puts("\n");
+    Console::puts("File  -> Read: read from cache= \""); Console::puts(_buf); Console::puts("\"\n");
 
     Console::puts("File  -> Read: DONE\n");
 
