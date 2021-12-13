@@ -45,6 +45,9 @@ File::File(FileSystem* _fs, int _id){
 }
 
 File::~File() {
+    // commit changes to file
+    this->filesystem->disk->write(this->file_inode->block_id, this->block_cache);
+    
     Console::puts("Closing file.\n");
     /* Make sure that you write any cached data to disk. */
     /* Also make sure that the inode in the inode list is updated. */
@@ -114,13 +117,12 @@ int File::Write(unsigned int _n, const char *_buf) {
 
     Console::puts("File  -> Write: size="); Console::puti(this->file_inode->file_size);
     Console::puts("; seek=");               Console::puti(this->seek_position); 
-    Console::puts("; write=");              Console::puti(to_write); \
+    Console::puts("; will_write=");         Console::puti(to_write); \
     Console::puts("; told to write=");      Console::puti(_n);Console::puts("\n");
     Console::puts("File  -> Write: DONE\n");
 
     // write to file , update size in inode
     memcpy(this->block_cache+this->seek_position, _buf, to_write);
-    this->filesystem->disk->write(this->file_inode->block_id, this->block_cache);
 
     this->file_inode->file_size += to_write;
 
