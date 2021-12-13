@@ -51,7 +51,7 @@ File::~File() {
     // clean cache
     memset(this->block_cache, '\0', SimpleDisk::BLOCK_SIZE);
 
-    Console::puts("File  -> Destructor: Closing file\n");
+    Console::puts("File  -> Destructor: Cleared cache, closing file\n");
     /* Make sure that you write any cached data to disk. */
     /* Also make sure that the inode in the inode list is updated. */
 }

@@ -122,12 +122,12 @@ void exercise_file_system(FileSystem * _file_system) {
 
         /* -- Write into File 1 -- */
         Console::puts("+++++++++++++++++++++++++++++ WILL WRITE TO FILE 1 ++++++++++++++++++++++++++\n");
-        file1.Write(20, "hello mere bande");
+        file1.Write(20, STRING1);
         Console::puts("++++++++++++++++++++++++++++ 1:DONE WRITING TO FILE 1 +++++++++++++++++++++++++\n");
 
         /* -- Write into File 2 -- */
         Console::puts("+++++++++++++++++++++++++++++ 1:WILL WRITE TO FILE 2 ++++++++++++++++++++++++++\n");
-        file2.Write(20, "bye mere bande");
+        file2.Write(20, STRING2);
         Console::puts("++++++++++++++++++++++++++++ 1:DONE WRITING TO FILE 2 +++++++++++++++++++++++++\n");
 
         /* -- Files will get automatically closed when we leave scope  -- */
@@ -143,12 +143,12 @@ void exercise_file_system(FileSystem * _file_system) {
 
         /* -- Write into File 1 -- */
         Console::puts("+++++++++++++++++++++++++++++ 2:WILL WRITE TO FILE 1 ++++++++++++++++++++++++++\n");
-        file1.Write(20, STRING1);
+        file1.Write(16, "hello mere bande");
         Console::puts("++++++++++++++++++++++++++++ 2:DONE WRITING TO FILE 1 +++++++++++++++++++++++++\n");
 
         /* -- Write into File 2 -- */
         Console::puts("+++++++++++++++++++++++++++++ 2:WILL WRITE TO FILE 2 ++++++++++++++++++++++++++\n");
-        file2.Write(20, STRING2);
+        file2.Write(14, "bye mere bande");
         Console::puts("++++++++++++++++++++++++++++ 2:DONE WRITING TO FILE 2 +++++++++++++++++++++++++\n");
     }
 
