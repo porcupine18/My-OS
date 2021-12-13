@@ -47,8 +47,11 @@ File::File(FileSystem* _fs, int _id){
 File::~File() {
     // commit changes to file
     this->filesystem->disk->write(this->file_inode->block_id, this->block_cache);
-    
-    Console::puts("Closing file.\n");
+
+    // clean cache
+    memset(this->block_cache, '\0', SimpleDisk::BLOCK_SIZE);
+
+    Console::puts("File  -> Constructor: Closing file\n");
     /* Make sure that you write any cached data to disk. */
     /* Also make sure that the inode in the inode list is updated. */
 }
