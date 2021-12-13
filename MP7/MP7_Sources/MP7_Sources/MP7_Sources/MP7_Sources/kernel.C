@@ -99,10 +99,10 @@ FileSystem * FILE_SYSTEM;
 /* CODE TO EXERCISE THE FILE SYSTEM */
 /*--------------------------------------------------------------------------*/
 
-void exercise_file_system(FileSystem * _file_system, char* str1, char* str2) {
+void exercise_file_system(FileSystem * _file_system, const char* str1, const char* str2) {
 
-    char * STRING1 = str1;
-    char * STRING2 = str2;
+    const char* STRING1 = str1;
+    const char* STRING2 = str2;
     
     //const char * STRING1 = "01234567890123456789";
     //const char * STRING2 = "abcdefghijabcdefghij";
@@ -235,7 +235,7 @@ int main() {
     /* -- MEMORY ALLOCATOR SET UP. WE CAN N01234567890123456789 have it to make sure that 
                  we enable interrupts correctly. If we forget to do it,
                  the timer "dies". */
-
+const 
     SimpleTimer timer(100); /* t"abcdefghijabcdefghij"
       virtual void handle_interrupt(REGS * _regs) {
         // we do nothing here. Just consume the interrupt
@@ -275,12 +275,12 @@ int main() {
 
     Console::puts("GOING TO EXERCISE\n");
 
-    char* str1 = "01234567890123456789";
-    char* str2 = "abcdefghijabcdefghij";
-    char* str3 = "999";
-    char* str4 = "zzz";
-    char* str5 = "1111111111111111111111111";
-    char* str6 = "bbbbbbbbbbbbbbbbbbbbbbbb";
+    const char* str1 = "01234567890123456789";
+    const char* str2 = "abcdefghijabcdefghij";
+    const char* str3 = "999";
+    const char* str4 = "zzz";
+    const char* str5 = "1111111111111111111111111";
+    const char* str6 = "bbbbbbbbbbbbbbbbbbbbbbbb";
 
     for(int j = 0; j<1; j++) {
         Console::puts("\n\nITERATION["); Console::puti(j); Console::puts("]: START ==========================================================================================\n");
