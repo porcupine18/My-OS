@@ -49,7 +49,6 @@ FileSystem::~FileSystem() {
     this->disk->write(0, inode_char);
 
     // write free_list to disk
-    this->disk->write(1, free_list);
 
     Console::puts("     -> Destructor: free_list-\n");
     for(int i=0; i<MAX_MAPPED_BLOCKS; i++){
@@ -59,6 +58,19 @@ FileSystem::~FileSystem() {
             Console::puts("\n");
     }
     Console::puts("\n");
+
+    this->disk->write(1, free_list);
+    this->disk->read(1, free_list);
+
+    Console::puts("     -> Destructor: free_list-\n");
+    for(int i=0; i<MAX_MAPPED_BLOCKS; i++){
+        Console::puts("[");     Console::puti(i); 
+        Console::puts("]=");                            Console::puti((int)free_list[i]);
+        if(i%10 == 0 && i!=0)
+            Console::puts("\n");
+    }
+    Console::puts("\n");
+
     delete[] inode_list;
     delete[] free_list;
 
