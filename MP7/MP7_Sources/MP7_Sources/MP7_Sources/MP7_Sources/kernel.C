@@ -151,8 +151,8 @@ void exercise_file_system(FileSystem * _file_system, int id1, int id2) {
     }
 
     /* -- Delete both files -- */
-    //assert(_file_system->DeleteFile(id1));
-    //assert(_file_system->DeleteFile(id2));
+    assert(_file_system->DeleteFile(id1));
+    assert(_file_system->DeleteFile(id2));
     
 }
 
@@ -253,6 +253,9 @@ int main() {
 
     /* -- AND ALL THE REST SHOULD FOLLOW ... */
  
+    FILE_SYSTEM2 = new FileSystem();
+
+
     assert(FILE_SYSTEM->Mount(SYSTEM_DISK)); // 'connect' disk to file system.
 
     for(int j = 0; j<5; j++) {
