@@ -119,13 +119,14 @@ int File::Write(unsigned int _n, const char *_buf) {
     Console::puts("; seek=");               Console::puti(this->seek_position); 
     Console::puts("; will_write=");         Console::puti(to_write); \
     Console::puts("; told to write=");      Console::puti(_n);Console::puts("\n");
-    Console::puts("File  -> Write: DONE\n");
 
     // write to file , update size in inode
     memcpy(this->block_cache+this->seek_position, _buf, to_write);
 
     this->file_inode->file_size += to_write;
+    Console::puts("Cache = \""); Console::puts(this->block_cache); Console::puts("\"");
 
+    Console::puts("File  -> Write: DONE\n");
     return to_write;    
 }
 
