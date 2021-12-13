@@ -99,15 +99,15 @@ FileSystem * FILE_SYSTEM;
 /* CODE TO EXERCISE THE FILE SYSTEM */
 /*--------------------------------------------------------------------------*/
 
-void exercise_file_system(FileSystem * _file_system) {
+void exercise_file_system(FileSystem * _file_system, int id1, int id2) {
     
     const char * STRING1 = "01234567890123456789";
     const char * STRING2 = "abcdefghijabcdefghij";
     
     /* -- Create two files -- */
     
-    assert(_file_system->CreateFile(1));
-    assert(_file_system->CreateFile(2));
+    assert(_file_system->CreateFile(id1));
+    assert(_file_system->CreateFile(id2));
     
     /* -- "Open" the two files -- */
     
@@ -248,7 +248,7 @@ int main() {
     assert(FILE_SYSTEM->Mount(SYSTEM_DISK)); // 'connect' disk to file system.
 
     for(int j = 0; j<5; j++) {
-        exercise_file_system(FILE_SYSTEM);
+        exercise_file_system(FILE_SYSTEM, 1, 2);
     }
 
     /* -- AND ALL THE REST SHOULD FOLLOW ... */
@@ -256,7 +256,7 @@ int main() {
     assert(FILE_SYSTEM->Mount(SYSTEM_DISK)); // 'connect' disk to file system.
 
     for(int j = 0; j<5; j++) {
-        exercise_file_system(FILE_SYSTEM);
+        exercise_file_system(FILE_SYSTEM, 3, 4);
     }
 
     Console::puts("Noice!\n");
