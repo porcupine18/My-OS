@@ -94,6 +94,8 @@ SimpleDisk * SYSTEM_DISK;
 
 /* -- A POINTER TO THE SYSTEM FILE SYSTEM */
 FileSystem * FILE_SYSTEM;
+FileSystem * FILE_SYSTEM2;
+
 
 /*--------------------------------------------------------------------------*/
 /* CODE TO EXERCISE THE FILE SYSTEM */
