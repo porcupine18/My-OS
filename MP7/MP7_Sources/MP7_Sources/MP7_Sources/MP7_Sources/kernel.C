@@ -255,7 +255,7 @@ int main() {
 
     /* -- AND ALL THE REST SHOULD FOLLOW ... */
  
-    delete FILE_SYSTEM
+    delete FILE_SYSTEM;
 
     FILE_SYSTEM2 = new FileSystem();
 
