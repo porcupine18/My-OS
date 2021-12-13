@@ -35,6 +35,8 @@ File::File(FileSystem* _fs, int _id){
     assert(this->file_inode);
 
     short block_id = this->file_inode->block_id;               // get block_id of current file
+
+    memset(this->block_cache, '\0', SimpleDisk::BLOCK_SIZE);   // clean cache before writing to it
     this->filesystem->disk->read(block_id, this->block_cache); // load data into cache
 
     this->seek_position = 0;                    // set seek position to the end of the file
