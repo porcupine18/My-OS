@@ -277,9 +277,9 @@ int main() {
 
     for(int j = 0; j<1; j++) {
         Console::puts("\n\nITERATION["); Console::puti(j); Console::puts("]: START ==========================================================================================\n");
-        exercise_file_system(FILE_SYSTEM, "01234567890123456789",  "abcdefghijabcdefghij");
-        exercise_file_system(FILE_SYSTEM, "999",  "zzz");
-        exercise_file_system(FILE_SYSTEM, "1111111111111111111111111",  "bbbbbbbbbbbbbbbbbbbbbbbb");
+        exercise_file_system(FILE_SYSTEM, (char*)"01234567890123456789",  (char*)"abcdefghijabcdefghij");
+        exercise_file_system(FILE_SYSTEM, (char*)"999",  (char*)"zzz");
+        exercise_file_system(FILE_SYSTEM, (char*)"1111111111111111111111111",  (char*)"bbbbbbbbbbbbbbbbbbbbbbbb");
     }
 
     Console::puts("EXERCISE DONE==========================================================================================\n");
