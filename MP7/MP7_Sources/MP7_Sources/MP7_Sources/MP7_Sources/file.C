@@ -39,8 +39,6 @@ File::File(FileSystem* _fs, int _id){
     memset(this->block_cache, '\0', SimpleDisk::BLOCK_SIZE);   // clean cache before writing to it
     this->filesystem->disk->read(block_id, this->block_cache); // load data into cache
 
-    this->seek_position = 0;                    // set seek position to the start of the file
-
     Console::puts("File  -> Constructor: intial Cache = \""); Console::puts((const char*)this->block_cache); Console::puts("\"\n");
     
     Console::puts("File  -> Constructor: size = "); Console::puti(this->file_inode->file_size); Console::puts("\n");
