@@ -50,26 +50,7 @@ FileSystem::~FileSystem() {
 
     // write free_list to disk
 
-    Console::puts("     -> Destructor: free_list-\n");
-    for(int i=0; i<MAX_MAPPED_BLOCKS; i++){
-        Console::puts("[");     Console::puti(i); 
-        Console::puts("]=");                            Console::puti((int)free_list[i]);
-        if(i%10 == 0 && i!=0)
-            Console::puts("\n");
-    }
-    Console::puts("\n");
-
     this->disk->write(1, free_list);
-    this->disk->read(1, free_list);
-
-    Console::puts("     -> Destructor: free_list-\n");
-    for(int i=0; i<MAX_MAPPED_BLOCKS; i++){
-        Console::puts("[");     Console::puti(i); 
-        Console::puts("]=");                            Console::puti((int)free_list[i]);
-        if(i%10 == 0 && i!=0)
-            Console::puts("\n");
-    }
-    Console::puts("\n");
 
     delete[] inode_list;
     delete[] free_list;
@@ -165,13 +146,6 @@ bool FileSystem::Format(SimpleDisk * _disk, unsigned int _size, FileSystem* _fs)
     free_buf[0] = 1; // 1 = BUSY, 0 = FREE
     free_buf[1] = 1; // 1 = BUSY, 0 = FREE
 
-    Console::puts("     -> Format: free_buf-\n");
-    for(int i=0; i<MAX_MAPPED_BLOCKS; i++){
-        Console::puts("[");     Console::puti(i); 
-        Console::puts("]=");                            Console::puti((int)free_buf[i]);
-        if(i%10 == 0 && i!=0)
-            Console::puts("\n");
-    }
     Console::puts("\n");
 
 
