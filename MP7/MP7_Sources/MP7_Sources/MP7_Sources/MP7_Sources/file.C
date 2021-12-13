@@ -134,7 +134,10 @@ int File::Write(unsigned int _n, const char *_buf) {
     Console::puts(";  told to write=");      Console::puti(_n);Console::puts("\n");
 
     // write to file , update size in inode, update seek position
-    memcpy(this->block_cache+this->seek_position, _buf, to_write);
+    for(int ct=0; ct<to_write; ct++){
+        this->block_cache[this->seek_position+ct] = _buf[ct];
+    }
+    //memcpy(this->block_cache+this->seek_position, _buf, to_write);
 
     this->seek_position += to_write;
     this->file_inode->file_size += to_write;
