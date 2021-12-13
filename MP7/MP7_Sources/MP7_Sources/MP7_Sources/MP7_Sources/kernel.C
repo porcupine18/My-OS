@@ -247,12 +247,21 @@ int main() {
     
     assert(FILE_SYSTEM->Mount(SYSTEM_DISK)); // 'connect' disk to file system.
 
-    for(int j = 0;; j++) {
+    for(int j = 0; j<5; j++) {
         exercise_file_system(FILE_SYSTEM);
     }
 
     /* -- AND ALL THE REST SHOULD FOLLOW ... */
  
+    assert(FILE_SYSTEM->Mount(SYSTEM_DISK)); // 'connect' disk to file system.
+
+    for(int j = 0; j<5; j++) {
+        exercise_file_system(FILE_SYSTEM);
+    }
+
+    Console::puts("Noice!\n");
+
+
     assert(false); /* WE SHOULD NEVER REACH THIS POINT. */
 
     /* -- WE DO THE FOLLOWING TO KEEP THE COMPILER HAPPY. */
