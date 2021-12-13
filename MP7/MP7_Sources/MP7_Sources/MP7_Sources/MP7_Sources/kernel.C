@@ -99,10 +99,13 @@ FileSystem * FILE_SYSTEM;
 /* CODE TO EXERCISE THE FILE SYSTEM */
 /*--------------------------------------------------------------------------*/
 
-void exercise_file_system(FileSystem * _file_system) {
+void exercise_file_system(FileSystem * _file_system, char* str1, char* str2) {
+
+    const char * STRING1 = str1;
+    const char * STRING2 = str2;
     
-    const char * STRING1 = "01234567890123456789";
-    const char * STRING2 = "abcdefghijabcdefghij";
+    //const char * STRING1 = "01234567890123456789";
+    //const char * STRING2 = "abcdefghijabcdefghij";
     
     /* -- Create two files -- */
     Console::puts("++++++++++++++++++++++++++++++ WILL CREATE FILES ++++++++++++++++++++++++++++++\n");
@@ -229,24 +232,11 @@ int main() {
     MemPool memory_pool(SYSTEM_FRAME_POOL, 256);
     MEMORY_POOL = &memory_pool;
 
-    /* -- MEMORY ALLOCATOR SET UP. WE CAN NOW USE NEW/DELETE! -- */
-    
-    /* -- INITIALIZE THE TIMER (we use a very simple timer).-- */
-
-    /* Question: Why do we want a timer? We have it to make sure that 
+    /* -- MEMORY ALLOCATOR SET UP. WE CAN N01234567890123456789 have it to make sure that 
                  we enable interrupts correctly. If we forget to do it,
                  the timer "dies". */
 
-    SimpleTimer timer(100); /* timer ticks every 10ms. */
-    InterruptHandler::register_handler(0, &timer);
-    /* The Timer is implemented as an interrupt handler. */
-
-    /* -- DISK DEVICE -- */
-
-    SYSTEM_DISK = new SimpleDisk(DISK_ID::MASTER, SYSTEM_DISK_SIZE);
-    
-    class Disk_Silencer : public InterruptHandler {
-      public:
+    SimpleTimer timer(100); /* t"abcdefghijabcdefghij"
       virtual void handle_interrupt(REGS * _regs) {
         // we do nothing here. Just consume the interrupt
       }
@@ -285,9 +275,11 @@ int main() {
 
     Console::puts("GOING TO EXERCISE\n");
 
-    for(int j = 0; j<3; j++) {
+    for(int j = 0; j<1; j++) {
         Console::puts("\n\nITERATION["); Console::puti(j); Console::puts("]: START ==========================================================================================\n");
-        exercise_file_system(FILE_SYSTEM);
+        exercise_file_system(FILE_SYSTEM, "01234567890123456789",  "abcdefghijabcdefghij");
+        exercise_file_system(FILE_SYSTEM, "999",  "zzz");
+        exercise_file_system(FILE_SYSTEM, "1111111111111111111111111",  "bbbbbbbbbbbbbbbbbbbbbbbb");
     }
 
     Console::puts("EXERCISE DONE==========================================================================================\n");
