@@ -125,10 +125,12 @@ int File::Write(unsigned int _n, const char *_buf) {
         to_write = _n;
     }
 
-    Console::puts("File  -> Write: size="); Console::puti(this->file_inode->file_size);
+    Console::puts("File  -> Write: Cache = \""); Console::puts((const char*)this->block_cache); Console::puts("\"\n");
+
+    Console::puts("File  -> Write: size=");  Console::puti(this->file_inode->file_size);
     Console::puts(";  seek=");               Console::puti(this->seek_position); 
-    Console::puts(";  max_write="); Console::puti(max_write);
-    Console::puts(";  will_write=");         Console::puti(to_write); \
+    Console::puts(";  max_write=");          Console::puti(max_write);
+    Console::puts(";  will_write=");         Console::puti(to_write);
     Console::puts(";  told to write=");      Console::puti(_n);Console::puts("\n");
 
     // write to file , update size in inode, update seek position
