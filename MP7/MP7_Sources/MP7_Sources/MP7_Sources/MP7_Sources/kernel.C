@@ -113,8 +113,11 @@ void exercise_file_system(FileSystem * _file_system) {
     /* -- "Open" the two files -- */
     
     {
+        Console::puts("+++++++++++++++++++++++++++++++ WILL OPEN FILE 1 ++++++++++++++++++++++++++++++\n");
+
         File file1(_file_system, 1);
-    
+
+        Console::puts("+++++++++++++++++++++++++++++++ WILL OPEN FILE 2 ++++++++++++++++++++++++++++++\n");
         File file2(_file_system, 2);
 
         /* -- Write into File 1 -- */
