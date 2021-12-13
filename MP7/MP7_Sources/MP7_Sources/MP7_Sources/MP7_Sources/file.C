@@ -37,10 +37,7 @@ File::File(FileSystem* _fs, int _id){
     short block_id = this->file_inode->block_id;               // get block_id of current file
 
     memset(this->block_cache, '\0', SimpleDisk::BLOCK_SIZE);   // clean cache before writing to it
-
-    unsigned char tmp_cache[512];
-    this->filesystem->disk->read(block_id, tmp_cache); // load data into cache
-    memcpy(this->block_cache, tmp_cache, this->file_inode->file_size); // prevent us from reading garbage from disk
+    this->filesystem->disk->read(block_id, this->block_cache); // load data into cache
 
     Console::puts("File  -> Constructor: intial Cache = \""); Console::puts((const char*)this->block_cache); Console::puts("\"\n");
     
