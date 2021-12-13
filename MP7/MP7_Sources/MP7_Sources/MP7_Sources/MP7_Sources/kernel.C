@@ -113,24 +113,43 @@ void exercise_file_system(FileSystem * _file_system) {
     /* -- "Open" the two files -- */
     
     {
-        Console::puts("+++++++++++++++++++++++++++++++ WILL OPEN FILE 1 ++++++++++++++++++++++++++++++\n");
+        Console::puts("+++++++++++++++++++++++++++++++ 1:WILL OPEN FILE 1 ++++++++++++++++++++++++++++\n");
 
         File file1(_file_system, 1);
 
-        Console::puts("+++++++++++++++++++++++++++++++ WILL OPEN FILE 2 ++++++++++++++++++++++++++++++\n");
+        Console::puts("+++++++++++++++++++++++++++++++ 1:WILL OPEN FILE 2 ++++++++++++++++++++++++++++\n");
         File file2(_file_system, 2);
 
         /* -- Write into File 1 -- */
-        Console::puts("+++++++++++++++++++++++++++++ WILL WRITE TO FILE 1 ++++++++++++++++++++++++++++\n");
+        Console::puts("+++++++++++++++++++++++++++++ WILL WRITE TO FILE 1 ++++++++++++++++++++++++++\n");
         file1.Write(20, STRING1);
-        Console::puts("++++++++++++++++++++++++++++ DONE WRITING TO FILE 1 +++++++++++++++++++++++++++\n");
+        Console::puts("++++++++++++++++++++++++++++ 1:DONE WRITING TO FILE 1 +++++++++++++++++++++++++\n");
 
         /* -- Write into File 2 -- */
-        Console::puts("+++++++++++++++++++++++++++++ WILL WRITE TO FILE 2 ++++++++++++++++++++++++++++\n");
+        Console::puts("+++++++++++++++++++++++++++++ 1:WILL WRITE TO FILE 2 ++++++++++++++++++++++++++\n");
         file2.Write(20, STRING2);
-        Console::puts("++++++++++++++++++++++++++++ DONE WRITING TO FILE 2 +++++++++++++++++++++++++++\n");
+        Console::puts("++++++++++++++++++++++++++++ 1:DONE WRITING TO FILE 2 +++++++++++++++++++++++++\n");
 
         /* -- Files will get automatically closed when we leave scope  -- */
+    }
+
+    {
+        Console::puts("+++++++++++++++++++++++++++++++ 2:WILL OPEN FILE 1 ++++++++++++++++++++++++++++\n");
+
+        File file1(_file_system, 1);
+
+        Console::puts("+++++++++++++++++++++++++++++++ 2:WILL OPEN FILE 2 ++++++++++++++++++++++++++++\n");
+        File file2(_file_system, 2);
+
+        /* -- Write into File 1 -- */
+        Console::puts("+++++++++++++++++++++++++++++ 2:WILL WRITE TO FILE 1 ++++++++++++++++++++++++++\n");
+        file1.Write(20, STRING1);
+        Console::puts("++++++++++++++++++++++++++++ 2:DONE WRITING TO FILE 1 +++++++++++++++++++++++++\n");
+
+        /* -- Write into File 2 -- */
+        Console::puts("+++++++++++++++++++++++++++++ 2:WILL WRITE TO FILE 2 ++++++++++++++++++++++++++\n");
+        file2.Write(20, STRING2);
+        Console::puts("++++++++++++++++++++++++++++ 2:DONE WRITING TO FILE 2 +++++++++++++++++++++++++\n");
     }
 
     {   

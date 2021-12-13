@@ -257,7 +257,7 @@ bool FileSystem::DeleteFile(int _file_id) {
 
     this->free_list[block_id] = 0; // set free
 
-    Console::puts("     -> CreateFile: FILE DELETED!\n");
+    Console::puts("     -> DeleteFile: FILE DELETED!\n");
     return true;
 }
 
