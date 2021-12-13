@@ -124,7 +124,7 @@ int File::Write(unsigned int _n, const char *_buf) {
     memcpy(this->block_cache+this->seek_position, _buf, to_write);
 
     this->file_inode->file_size += to_write;
-    Console::puts("Cache = \""); Console::puts(this->block_cache); Console::puts("\"");
+    Console::puts("Cache = \""); Console::puts((const char*)this->block_cache); Console::puts("\"");
 
     Console::puts("File  -> Write: DONE\n");
     return to_write;    
