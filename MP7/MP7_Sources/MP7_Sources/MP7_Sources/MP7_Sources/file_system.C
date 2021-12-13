@@ -86,7 +86,7 @@ bool FileSystem::Mount(SimpleDisk * _disk) {
     for(int i=0; i<MAX_MAPPED_BLOCKS; i++){
         Console::puts("[");     Console::puti(i); 
         Console::puts("]=");                            Console::puti((int)free_list[i]);
-        if(i%10)
+        if(i%10 == 0)
             Console::puts("\n");
     }
 
@@ -137,7 +137,7 @@ bool FileSystem::Format(SimpleDisk * _disk, unsigned int _size, FileSystem* _fs)
     for(int i=0; i<MAX_MAPPED_BLOCKS; i++){
         Console::puts("[");     Console::puti(i); 
         Console::puts("]=");                            Console::puti((int)free_buf[i]);
-        if(i%10)
+        if(i%10 == 0)
             Console::puts("\n");
     }
 
