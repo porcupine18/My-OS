@@ -51,6 +51,14 @@ FileSystem::~FileSystem() {
     // write free_list to disk
     this->disk->write(1, free_list);
 
+    Console::puts("     -> Destructor: free_list-\n");
+    for(int i=0; i<MAX_MAPPED_BLOCKS; i++){
+        Console::puts("[");     Console::puti(i); 
+        Console::puts("]=");                            Console::puti((int)free_list[i]);
+        if(i%10 == 0 && i!=0)
+            Console::puts("\n");
+    }
+    Console::puts("\n");
     delete[] inode_list;
     delete[] free_list;
 
@@ -232,6 +240,15 @@ bool FileSystem::CreateFile(int _file_id) { //assigning a free inode to the _fil
 
 
     this->free_list[freelist_idx] = 1; // set busy
+
+    Console::puts("     -> CreateFile: free_buf-\n");
+    for(int i=0; i<MAX_MAPPED_BLOCKS; i++){
+        Console::puts("[");     Console::puti(i); 
+        Console::puts("]=");                            Console::puti((int)this->free_list[i]);
+        if(i%10 == 0 && i!=0)
+            Console::puts("\n");
+    }
+    Console::puts("\n");
 
     Console::puts("     -> CreateFile: new file inode idx=");    Console::puti(inode_idx);
     Console::puts("; file_id=");                                 Console::puti(this->inode_list[inode_idx]->id);
