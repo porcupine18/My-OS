@@ -153,8 +153,8 @@ void exercise_file_system(FileSystem * _file_system, int id1, int id2) {
     }
 
     /* -- Delete both files -- */
-    //assert(_file_system->DeleteFile(id1));
-    //assert(_file_system->DeleteFile(id2));
+    assert(_file_system->DeleteFile(id1));
+    assert(_file_system->DeleteFile(id2));
     
 }
 
