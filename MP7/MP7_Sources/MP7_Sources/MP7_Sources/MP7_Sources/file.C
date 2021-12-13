@@ -39,7 +39,7 @@ File::File(FileSystem* _fs, int _id){
     memset(this->block_cache, '\0', SimpleDisk::BLOCK_SIZE);   // clean cache before writing to it
     this->filesystem->disk->read(block_id, this->block_cache); // load data into cache
 
-    this->seek_position = 0;                    // set seek position to the end of the file
+    this->seek_position = 0;                    // set seek position to the start of the file
 
     Console::puts("File  -> Constructor: size = "); Console::puti(this->file_inode->file_size); Console::puts("\n");
 
@@ -92,6 +92,7 @@ int File::Read(unsigned int _n, char *_buf) {
 
     Console::puts("File  -> Read: size="); Console::puti(this->file_inode->file_size);
     Console::puts("  , seek="); Console::puti(this->seek_position);
+    Console::puts("  , max_read="); Console::puti(max_read);
     Console::puts("  , can_read=");Console::puti(to_read);
     Console::puts("  , asked_to_read="); Console::puti(_n); Console::puts("\n");
 
@@ -128,14 +129,15 @@ int File::Write(unsigned int _n, const char *_buf) {
 
     Console::puts("File  -> Write: size="); Console::puti(this->file_inode->file_size);
     Console::puts("; seek=");               Console::puti(this->seek_position); 
+    Console::puts("  , max_write="); Console::puti(max_write);
     Console::puts("; will_write=");         Console::puti(to_write); \
     Console::puts("; told to write=");      Console::puti(_n);Console::puts("\n");
 
     // write to file , update size in inode, update seek position
     memcpy(this->block_cache+this->seek_position, _buf, to_write);
 
-    this->file_inode->file_size += to_write;
     this->seek_position += to_write;
+    this->file_inode->file_size += to_write;
 
 
     Console::puts("File  -> Write: Cache = \""); Console::puts((const char*)this->block_cache); Console::puts("\"\n");
