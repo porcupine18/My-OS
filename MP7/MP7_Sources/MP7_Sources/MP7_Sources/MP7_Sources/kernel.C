@@ -275,11 +275,18 @@ int main() {
 
     Console::puts("GOING TO EXERCISE\n");
 
+    char* str1 = "01234567890123456789";
+    char* str2 = "abcdefghijabcdefghij";
+    char* str3 = "999";
+    char* str4 = "zzz";
+    char* str5 = "1111111111111111111111111";
+    char* str6 = "bbbbbbbbbbbbbbbbbbbbbbbb";
+
     for(int j = 0; j<1; j++) {
         Console::puts("\n\nITERATION["); Console::puti(j); Console::puts("]: START ==========================================================================================\n");
-        exercise_file_system(FILE_SYSTEM, (char*)"01234567890123456789",  (char*)"abcdefghijabcdefghij");
-        exercise_file_system(FILE_SYSTEM, (char*)"999",  (char*)"zzz");
-        exercise_file_system(FILE_SYSTEM, (char*)"1111111111111111111111111",  (char*)"bbbbbbbbbbbbbbbbbbbbbbbb");
+        exercise_file_system(FILE_SYSTEM, str1, str2);
+        exercise_file_system(FILE_SYSTEM, str3, str4);
+        exercise_file_system(FILE_SYSTEM, str5, str6);
     }
 
     Console::puts("EXERCISE DONE==========================================================================================\n");
