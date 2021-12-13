@@ -82,8 +82,10 @@ int File::Read(unsigned int _n, char *_buf) {
         to_read = _n;
     }
 
-    // read from the file cache
+    // read from the file cache, update seek position
     memcpy(_buf, this->block_cache+this->seek_position, to_read);
+
+    this->seek_position += to_read;
 
 
     Console::puts("File  -> Read: size="); Console::puti(this->file_inode->file_size);
@@ -127,10 +129,13 @@ int File::Write(unsigned int _n, const char *_buf) {
     Console::puts("; will_write=");         Console::puti(to_write); \
     Console::puts("; told to write=");      Console::puti(_n);Console::puts("\n");
 
-    // write to file , update size in inode
+    // write to file , update size in inode, update seek position
     memcpy(this->block_cache+this->seek_position, _buf, to_write);
 
     this->file_inode->file_size += to_write;
+    this->seek_position += to_write;
+
+
     Console::puts("File  -> Write: Cache = \""); Console::puts((const char*)this->block_cache); Console::puts("\"\n");
 
     Console::puts("File  -> Write: DONE\n");
