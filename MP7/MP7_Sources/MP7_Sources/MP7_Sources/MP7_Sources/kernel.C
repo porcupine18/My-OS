@@ -100,31 +100,9 @@ FileSystem * FILE_SYSTEM;
 /*--------------------------------------------------------------------------*/
 
 void exercise_file_system(FileSystem * _file_system) {
-
-    const char* str1 = "01234567890123456789";
-    const char* str2 = "abcdefghijabcdefghij";
-    const char* str3 = "999";
-    const char* str4 = "zzz";
-    const char* str5 = "11111111111111";
-    const char* str6 = "bbbbbbbbbbbbbb";
     
-    const char * STRING1;
-    const char * STRING2;
-
-    for(int i = 0; i < 3; i++){
-
-    if(i==0){
-        STRING1 = str1;
-        STRING2 = str2;
-    }
-    if(i==1){
-        STRING1 = str3;
-        STRING2 = str4;
-    }
-    if(i==2){
-        STRING1 = str5;
-        STRING2 = str6;
-    }
+    const char * STRING1 = "01234567890123456789";
+    const char * STRING2 = "abcdefghijabcdefghij";
     
     /* -- Create two files -- */
     Console::puts("++++++++++++++++++++++++++++++ WILL CREATE FILES ++++++++++++++++++++++++++++++\n");
@@ -208,7 +186,7 @@ void exercise_file_system(FileSystem * _file_system) {
     assert(_file_system->DeleteFile(1));
     assert(_file_system->DeleteFile(2));
     Console::puts("++++++++++++++++++++++++++++++ DELETED BOTH FILES +++++++++++++++++++++++++++++\n");
-    }
+
 }
 
 /*--------------------------------------------------------------------------*/
@@ -251,11 +229,24 @@ int main() {
     MemPool memory_pool(SYSTEM_FRAME_POOL, 256);
     MEMORY_POOL = &memory_pool;
 
-    /* -- MEMORY ALLOCATOR SET UP. WE CAN N01234567890123456789 have it to make sure that 
+    /* -- MEMORY ALLOCATOR SET UP. WE CAN NOW USE NEW/DELETE! -- */
+    
+    /* -- INITIALIZE THE TIMER (we use a very simple timer).-- */
+
+    /* Question: Why do we want a timer? We have it to make sure that 
                  we enable interrupts correctly. If we forget to do it,
                  the timer "dies". */
-const 
-    SimpleTimer timer(100); /* t"abcdefghijabcdefghij"
+
+    SimpleTimer timer(100); /* timer ticks every 10ms. */
+    InterruptHandler::register_handler(0, &timer);
+    /* The Timer is implemented as an interrupt handler. */
+
+    /* -- DISK DEVICE -- */
+
+    SYSTEM_DISK = new SimpleDisk(DISK_ID::MASTER, SYSTEM_DISK_SIZE);
+    
+    class Disk_Silencer : public InterruptHandler {
+      public:
       virtual void handle_interrupt(REGS * _regs) {
         // we do nothing here. Just consume the interrupt
       }
@@ -294,18 +285,9 @@ const
 
     Console::puts("GOING TO EXERCISE\n");
 
-    const char* str1 = "01234567890123456789";
-    const char* str2 = "abcdefghijabcdefghij";
-    const char* str3 = "999";
-    const char* str4 = "zzz";
-    const char* str5 = "1111111111111111111111111";
-    const char* str6 = "bbbbbbbbbbbbbbbbbbbbbbbb";
-
-    for(int j = 0; j<1; j++) {
+    for(int j = 0; j<3; j++) {
         Console::puts("\n\nITERATION["); Console::puti(j); Console::puts("]: START ==========================================================================================\n");
         exercise_file_system(FILE_SYSTEM);
-        //exercise_file_system(FILE_SYSTEM, str3, str4);
-        //exercise_file_system(FILE_SYSTEM, str5, str6);
     }
 
     Console::puts("EXERCISE DONE==========================================================================================\n");
