@@ -212,12 +212,12 @@ void exercise_file_system2(FileSystem * _file_system) {
 
         /* -- Write into File 1 -- */
         Console::puts("+++++++++++++++++++++++++++++ WILL WRITE TO FILE 1 ++++++++++++++++++++++++++\n");
-        file1.Write(20, STRING1);
+        file1.Write(3, STRING1);
         Console::puts("++++++++++++++++++++++++++++ 1:DONE WRITING TO FILE 1 +++++++++++++++++++++++++\n");
 
         /* -- Write into File 2 -- */
         Console::puts("+++++++++++++++++++++++++++++ 1:WILL WRITE TO FILE 2 ++++++++++++++++++++++++++\n");
-        file2.Write(20, STRING2);
+        file2.Write(3, STRING2);
         Console::puts("++++++++++++++++++++++++++++ 1:DONE WRITING TO FILE 2 +++++++++++++++++++++++++\n");
 
         /* -- Files will get automatically closed when we leave scope  -- */
@@ -253,8 +253,8 @@ void exercise_file_system2(FileSystem * _file_system) {
         /* -- Read from File 1 and check result -- */
         file1.Reset();
         char result1[30];
-        assert(file1.Read(20, result1) == 20);
-        for(int i = 0; i < 20; i++) {
+        assert(file1.Read(3, result1) == 3);
+        for(int i = 0; i < 3; i++) {
              assert(result1[i] == STRING1[i]);
         }
         Console::puts("++++++++++++++++++++++++++++++++ FILE 1 TESTED ++++++++++++++++++++++++++++++++\n");
@@ -262,8 +262,8 @@ void exercise_file_system2(FileSystem * _file_system) {
         /* -- Read from File 2 and check result -- */
         file2.Reset();
         char result2[30];
-        assert(file2.Read(20, result2) == 20);
-        for(int i = 0; i < 20; i++) {
+        assert(file2.Read(3, result2) == 3);
+        for(int i = 0; i < 3; i++) {
             assert(result2[i] == STRING2[i]);
         }
         Console::puts("++++++++++++++++++++++++++++++++ FILE 2 TESTED ++++++++++++++++++++++++++++++++\n");
@@ -282,7 +282,7 @@ void exercise_file_system2(FileSystem * _file_system) {
 void exercise_file_system3(FileSystem * _file_system) {
     
     const char * STRING1 = "0101010101010101011010101011010101";
-    const char * STRING2 = "uiuiuiuiuiuiuiuiiiwiwiwiwiwiwiwwiwiiw";
+    const char * STRING2 = "uiuiuiuiuiuiuiuiiiwiwiwiwiwiwiwwiw";
     
     /* -- Create two files -- */
     Console::puts("++++++++++++++++++++++++++++++ WILL CREATE FILES ++++++++++++++++++++++++++++++\n");
@@ -302,12 +302,12 @@ void exercise_file_system3(FileSystem * _file_system) {
 
         /* -- Write into File 1 -- */
         Console::puts("+++++++++++++++++++++++++++++ WILL WRITE TO FILE 1 ++++++++++++++++++++++++++\n");
-        file1.Write(20, STRING1);
+        file1.Write(35, STRING1);
         Console::puts("++++++++++++++++++++++++++++ 1:DONE WRITING TO FILE 1 +++++++++++++++++++++++++\n");
 
         /* -- Write into File 2 -- */
         Console::puts("+++++++++++++++++++++++++++++ 1:WILL WRITE TO FILE 2 ++++++++++++++++++++++++++\n");
-        file2.Write(20, STRING2);
+        file2.Write(35, STRING2);
         Console::puts("++++++++++++++++++++++++++++ 1:DONE WRITING TO FILE 2 +++++++++++++++++++++++++\n");
 
         /* -- Files will get automatically closed when we leave scope  -- */
@@ -342,18 +342,18 @@ void exercise_file_system3(FileSystem * _file_system) {
 
         /* -- Read from File 1 and check result -- */
         file1.Reset();
-        char result1[30];
-        assert(file1.Read(20, result1) == 20);
-        for(int i = 0; i < 20; i++) {
+        char result1[50];
+        assert(file1.Read(35, result1) == 35);
+        for(int i = 0; i < 35; i++) {
              assert(result1[i] == STRING1[i]);
         }
         Console::puts("++++++++++++++++++++++++++++++++ FILE 1 TESTED ++++++++++++++++++++++++++++++++\n");
     
         /* -- Read from File 2 and check result -- */
         file2.Reset();
-        char result2[30];
-        assert(file2.Read(20, result2) == 20);
-        for(int i = 0; i < 20; i++) {
+        char result2[50];
+        assert(file2.Read(35, result2) == 35);
+        for(int i = 0; i < 35; i++) {
             assert(result2[i] == STRING2[i]);
         }
         Console::puts("++++++++++++++++++++++++++++++++ FILE 2 TESTED ++++++++++++++++++++++++++++++++\n");
