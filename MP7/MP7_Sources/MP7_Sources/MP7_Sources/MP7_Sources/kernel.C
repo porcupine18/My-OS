@@ -94,45 +94,72 @@ SimpleDisk * SYSTEM_DISK;
 
 /* -- A POINTER TO THE SYSTEM FILE SYSTEM */
 FileSystem * FILE_SYSTEM;
-FileSystem * FILE_SYSTEM2;
-
 
 /*--------------------------------------------------------------------------*/
 /* CODE TO EXERCISE THE FILE SYSTEM */
 /*--------------------------------------------------------------------------*/
 
-void exercise_file_system(FileSystem * _file_system, int id1, int id2) {
+void exercise_file_system(FileSystem * _file_system) {
     
     const char * STRING1 = "01234567890123456789";
     const char * STRING2 = "abcdefghijabcdefghij";
     
     /* -- Create two files -- */
-    
-    assert(_file_system->CreateFile(id1));
-    assert(_file_system->CreateFile(id2));
-    
+    Console::puts("++++++++++++++++++++++++++++++ WILL CREATE FILES ++++++++++++++++++++++++++++++\n");
+    assert(_file_system->CreateFile(1));
+    assert(_file_system->CreateFile(2));
+    Console::puts("++++++++++++++++++++++++++++++++ FILES CREATED ++++++++++++++++++++++++++++++++\n");
+
     /* -- "Open" the two files -- */
     
     {
-        File file1(_file_system, id1);
-    
-        File file2(_file_system, id2);
-    
+        Console::puts("+++++++++++++++++++++++++++++++ 1:WILL OPEN FILE 1 ++++++++++++++++++++++++++++\n");
+
+        File file1(_file_system, 1);
+
+        Console::puts("+++++++++++++++++++++++++++++++ 1:WILL OPEN FILE 2 ++++++++++++++++++++++++++++\n");
+        File file2(_file_system, 2);
+
         /* -- Write into File 1 -- */
+        Console::puts("+++++++++++++++++++++++++++++ WILL WRITE TO FILE 1 ++++++++++++++++++++++++++\n");
         file1.Write(20, STRING1);
-    
+        Console::puts("++++++++++++++++++++++++++++ 1:DONE WRITING TO FILE 1 +++++++++++++++++++++++++\n");
+
         /* -- Write into File 2 -- */
-    
+        Console::puts("+++++++++++++++++++++++++++++ 1:WILL WRITE TO FILE 2 ++++++++++++++++++++++++++\n");
         file2.Write(20, STRING2);
-    
+        Console::puts("++++++++++++++++++++++++++++ 1:DONE WRITING TO FILE 2 +++++++++++++++++++++++++\n");
+
         /* -- Files will get automatically closed when we leave scope  -- */
+    }
+
+    {
+        Console::puts("+++++++++++++++++++++++++++++++ 2:WILL OPEN FILE 1 ++++++++++++++++++++++++++++\n");
+
+        File file1(_file_system, 1);
+
+        Console::puts("+++++++++++++++++++++++++++++++ 2:WILL OPEN FILE 2 ++++++++++++++++++++++++++++\n");
+        File file2(_file_system, 2);
+
+        /* -- Write into File 1 -- */
+        Console::puts("+++++++++++++++++++++++++++++ 2:WILL WRITE TO FILE 1 ++++++++++++++++++++++++++\n");
+        file1.Write(16, "hello mere bande");
+        Console::puts("++++++++++++++++++++++++++++ 2:DONE WRITING TO FILE 1 +++++++++++++++++++++++++\n");
+
+        /* -- Write into File 2 -- */
+        Console::puts("+++++++++++++++++++++++++++++ 2:WILL WRITE TO FILE 2 ++++++++++++++++++++++++++\n");
+        file2.Write(14, "bye mere bande");
+        Console::puts("++++++++++++++++++++++++++++ 2:DONE WRITING TO FILE 2 +++++++++++++++++++++++++\n");
     }
 
     {   
         /* -- "Open files again -- */
-        File file1(_file_system, id1);
-        File file2(_file_system, id2);
-    
+        Console::puts("++++++++++++++++++++++++++++++ OPENING BOTH FILES +++++++++++++++++++++++++++++\n");
+        File file1(_file_system, 1);
+        File file2(_file_system, 2);
+        Console::puts("++++++++++++++++++++++++++++++ DONE OPENING FILES +++++++++++++++++++++++++++++\n");
+
+
         /* -- Read from File 1 and check result -- */
         file1.Reset();
         char result1[30];
@@ -140,6 +167,7 @@ void exercise_file_system(FileSystem * _file_system, int id1, int id2) {
         for(int i = 0; i < 20; i++) {
              assert(result1[i] == STRING1[i]);
         }
+        Console::puts("++++++++++++++++++++++++++++++++ FILE 1 TESTED ++++++++++++++++++++++++++++++++\n");
     
         /* -- Read from File 2 and check result -- */
         file2.Reset();
@@ -148,14 +176,197 @@ void exercise_file_system(FileSystem * _file_system, int id1, int id2) {
         for(int i = 0; i < 20; i++) {
             assert(result2[i] == STRING2[i]);
         }
+        Console::puts("++++++++++++++++++++++++++++++++ FILE 2 TESTED ++++++++++++++++++++++++++++++++\n");
+
     
         /* -- "Close" files again -- */
     }
 
     /* -- Delete both files -- */
-    //assert(_file_system->DeleteFile(id1));
-    //assert(_file_system->DeleteFile(id2));
+    assert(_file_system->DeleteFile(1));
+    assert(_file_system->DeleteFile(2));
+    Console::puts("++++++++++++++++++++++++++++++ DELETED BOTH FILES +++++++++++++++++++++++++++++\n");
+
+}
+
+void exercise_file_system2(FileSystem * _file_system) {
     
+    const char * STRING1 = "999";
+    const char * STRING2 = "zxz";
+    
+    /* -- Create two files -- */
+    Console::puts("++++++++++++++++++++++++++++++ WILL CREATE FILES ++++++++++++++++++++++++++++++\n");
+    assert(_file_system->CreateFile(1));
+    assert(_file_system->CreateFile(2));
+    Console::puts("++++++++++++++++++++++++++++++++ FILES CREATED ++++++++++++++++++++++++++++++++\n");
+
+    /* -- "Open" the two files -- */
+    
+    {
+        Console::puts("+++++++++++++++++++++++++++++++ 1:WILL OPEN FILE 1 ++++++++++++++++++++++++++++\n");
+
+        File file1(_file_system, 1);
+
+        Console::puts("+++++++++++++++++++++++++++++++ 1:WILL OPEN FILE 2 ++++++++++++++++++++++++++++\n");
+        File file2(_file_system, 2);
+
+        /* -- Write into File 1 -- */
+        Console::puts("+++++++++++++++++++++++++++++ WILL WRITE TO FILE 1 ++++++++++++++++++++++++++\n");
+        file1.Write(20, STRING1);
+        Console::puts("++++++++++++++++++++++++++++ 1:DONE WRITING TO FILE 1 +++++++++++++++++++++++++\n");
+
+        /* -- Write into File 2 -- */
+        Console::puts("+++++++++++++++++++++++++++++ 1:WILL WRITE TO FILE 2 ++++++++++++++++++++++++++\n");
+        file2.Write(20, STRING2);
+        Console::puts("++++++++++++++++++++++++++++ 1:DONE WRITING TO FILE 2 +++++++++++++++++++++++++\n");
+
+        /* -- Files will get automatically closed when we leave scope  -- */
+    }
+
+    {
+        Console::puts("+++++++++++++++++++++++++++++++ 2:WILL OPEN FILE 1 ++++++++++++++++++++++++++++\n");
+
+        File file1(_file_system, 1);
+
+        Console::puts("+++++++++++++++++++++++++++++++ 2:WILL OPEN FILE 2 ++++++++++++++++++++++++++++\n");
+        File file2(_file_system, 2);
+
+        /* -- Write into File 1 -- */
+        Console::puts("+++++++++++++++++++++++++++++ 2:WILL WRITE TO FILE 1 ++++++++++++++++++++++++++\n");
+        file1.Write(16, "hello mere bande");
+        Console::puts("++++++++++++++++++++++++++++ 2:DONE WRITING TO FILE 1 +++++++++++++++++++++++++\n");
+
+        /* -- Write into File 2 -- */
+        Console::puts("+++++++++++++++++++++++++++++ 2:WILL WRITE TO FILE 2 ++++++++++++++++++++++++++\n");
+        file2.Write(14, "bye mere bande");
+        Console::puts("++++++++++++++++++++++++++++ 2:DONE WRITING TO FILE 2 +++++++++++++++++++++++++\n");
+    }
+
+    {   
+        /* -- "Open files again -- */
+        Console::puts("++++++++++++++++++++++++++++++ OPENING BOTH FILES +++++++++++++++++++++++++++++\n");
+        File file1(_file_system, 1);
+        File file2(_file_system, 2);
+        Console::puts("++++++++++++++++++++++++++++++ DONE OPENING FILES +++++++++++++++++++++++++++++\n");
+
+
+        /* -- Read from File 1 and check result -- */
+        file1.Reset();
+        char result1[30];
+        assert(file1.Read(20, result1) == 20);
+        for(int i = 0; i < 20; i++) {
+             assert(result1[i] == STRING1[i]);
+        }
+        Console::puts("++++++++++++++++++++++++++++++++ FILE 1 TESTED ++++++++++++++++++++++++++++++++\n");
+    
+        /* -- Read from File 2 and check result -- */
+        file2.Reset();
+        char result2[30];
+        assert(file2.Read(20, result2) == 20);
+        for(int i = 0; i < 20; i++) {
+            assert(result2[i] == STRING2[i]);
+        }
+        Console::puts("++++++++++++++++++++++++++++++++ FILE 2 TESTED ++++++++++++++++++++++++++++++++\n");
+
+    
+        /* -- "Close" files again -- */
+    }
+
+    /* -- Delete both files -- */
+    assert(_file_system->DeleteFile(1));
+    assert(_file_system->DeleteFile(2));
+    Console::puts("++++++++++++++++++++++++++++++ DELETED BOTH FILES +++++++++++++++++++++++++++++\n");
+
+}
+
+void exercise_file_system3(FileSystem * _file_system) {
+    
+    const char * STRING1 = "0101010101010101011010101011010101";
+    const char * STRING2 = "uiuiuiuiuiuiuiuiiiwiwiwiwiwiwiwwiwiiw";
+    
+    /* -- Create two files -- */
+    Console::puts("++++++++++++++++++++++++++++++ WILL CREATE FILES ++++++++++++++++++++++++++++++\n");
+    assert(_file_system->CreateFile(1));
+    assert(_file_system->CreateFile(2));
+    Console::puts("++++++++++++++++++++++++++++++++ FILES CREATED ++++++++++++++++++++++++++++++++\n");
+
+    /* -- "Open" the two files -- */
+    
+    {
+        Console::puts("+++++++++++++++++++++++++++++++ 1:WILL OPEN FILE 1 ++++++++++++++++++++++++++++\n");
+
+        File file1(_file_system, 1);
+
+        Console::puts("+++++++++++++++++++++++++++++++ 1:WILL OPEN FILE 2 ++++++++++++++++++++++++++++\n");
+        File file2(_file_system, 2);
+
+        /* -- Write into File 1 -- */
+        Console::puts("+++++++++++++++++++++++++++++ WILL WRITE TO FILE 1 ++++++++++++++++++++++++++\n");
+        file1.Write(20, STRING1);
+        Console::puts("++++++++++++++++++++++++++++ 1:DONE WRITING TO FILE 1 +++++++++++++++++++++++++\n");
+
+        /* -- Write into File 2 -- */
+        Console::puts("+++++++++++++++++++++++++++++ 1:WILL WRITE TO FILE 2 ++++++++++++++++++++++++++\n");
+        file2.Write(20, STRING2);
+        Console::puts("++++++++++++++++++++++++++++ 1:DONE WRITING TO FILE 2 +++++++++++++++++++++++++\n");
+
+        /* -- Files will get automatically closed when we leave scope  -- */
+    }
+
+    {
+        Console::puts("+++++++++++++++++++++++++++++++ 2:WILL OPEN FILE 1 ++++++++++++++++++++++++++++\n");
+
+        File file1(_file_system, 1);
+
+        Console::puts("+++++++++++++++++++++++++++++++ 2:WILL OPEN FILE 2 ++++++++++++++++++++++++++++\n");
+        File file2(_file_system, 2);
+
+        /* -- Write into File 1 -- */
+        Console::puts("+++++++++++++++++++++++++++++ 2:WILL WRITE TO FILE 1 ++++++++++++++++++++++++++\n");
+        file1.Write(16, "hello mere bande");
+        Console::puts("++++++++++++++++++++++++++++ 2:DONE WRITING TO FILE 1 +++++++++++++++++++++++++\n");
+
+        /* -- Write into File 2 -- */
+        Console::puts("+++++++++++++++++++++++++++++ 2:WILL WRITE TO FILE 2 ++++++++++++++++++++++++++\n");
+        file2.Write(14, "bye mere bande");
+        Console::puts("++++++++++++++++++++++++++++ 2:DONE WRITING TO FILE 2 +++++++++++++++++++++++++\n");
+    }
+
+    {   
+        /* -- "Open files again -- */
+        Console::puts("++++++++++++++++++++++++++++++ OPENING BOTH FILES +++++++++++++++++++++++++++++\n");
+        File file1(_file_system, 1);
+        File file2(_file_system, 2);
+        Console::puts("++++++++++++++++++++++++++++++ DONE OPENING FILES +++++++++++++++++++++++++++++\n");
+
+
+        /* -- Read from File 1 and check result -- */
+        file1.Reset();
+        char result1[30];
+        assert(file1.Read(20, result1) == 20);
+        for(int i = 0; i < 20; i++) {
+             assert(result1[i] == STRING1[i]);
+        }
+        Console::puts("++++++++++++++++++++++++++++++++ FILE 1 TESTED ++++++++++++++++++++++++++++++++\n");
+    
+        /* -- Read from File 2 and check result -- */
+        file2.Reset();
+        char result2[30];
+        assert(file2.Read(20, result2) == 20);
+        for(int i = 0; i < 20; i++) {
+            assert(result2[i] == STRING2[i]);
+        }
+        Console::puts("++++++++++++++++++++++++++++++++ FILE 2 TESTED ++++++++++++++++++++++++++++++++\n");
+
+    
+        /* -- "Close" files again -- */
+    }
+
+    /* -- Delete both files -- */
+    assert(_file_system->DeleteFile(1));
+    assert(_file_system->DeleteFile(2));
+    Console::puts("++++++++++++++++++++++++++++++ DELETED BOTH FILES +++++++++++++++++++++++++++++\n");
+
 }
 
 /*--------------------------------------------------------------------------*/
@@ -188,7 +399,7 @@ int main() {
     /* -- INITIALIZE MEMORY -- */
     /*    NOTE: We don't have paging enabled in this MP. */
     /*    NOTE2: This is not an exercise in memory management. The implementation
-                of the memory management is accordingly *very* primitive! */
+                of the memory management is accordingly very primitive! */
 
     /* ---- Initialize a frame pool; details are in its implementation */
     FramePool system_frame_pool;
@@ -239,38 +450,38 @@ int main() {
 
     /* -- MOST OF WHAT WE NEED IS SETUP. THE KERNEL CAN START. */
 
-    Console::puts("Hello World!\n");
+    Console::puts("START\n");
 
     /* -- HERE WE STRESS TEST THE FILE SYSTEM -- */
 
     assert(FileSystem::Format(SYSTEM_DISK, (128 KB), FILE_SYSTEM)); // Don't try this at home!
+    Console::puts("FORMAT DONE\n");
+
     /* This is a really small file system. This allows you to use a very crude
        implementation for the free block list. */
     
     assert(FILE_SYSTEM->Mount(SYSTEM_DISK)); // 'connect' disk to file system.
+    Console::puts("MOUNT DONE\n");
 
-    for(int j = 0; j<1; j++) {
-        exercise_file_system(FILE_SYSTEM, 1, 2);
+    Console::puts("GOING TO EXERCISE\n");
+
+    exercise_file_system(FILE_SYSTEM);
+    exercise_file_system2(FILE_SYSTEM);
+    exercise_file_system3(FILE_SYSTEM);
+
+    /*
+
+    for(int j = 0; j<3; j++) {
+        Console::puts("\n\nITERATION["); Console::puti(j); Console::puts("]: START ==========================================================================================\n");
+        exercise_file_system(FILE_SYSTEM);
     }
+    */
+    Console::puts("EXERCISE DONE==========================================================================================\n");
+
 
     /* -- AND ALL THE REST SHOULD FOLLOW ... */
  
-    delete FILE_SYSTEM;
-
-    FILE_SYSTEM2 = new FileSystem();
-
-    
-
-    assert(FILE_SYSTEM->Mount(SYSTEM_DISK)); // 'connect' disk to file system.
-
-    for(int j = 0; j<1; j++) {
-        exercise_file_system(FILE_SYSTEM, 3, 4);
-    }
-
-    Console::puts("Noice!\n");
-
-
-    assert(false); /* WE SHOULD NEVER REACH THIS POINT. */
+    //assert(false); /* WE SHOULD NEVER REACH THIS POINT. */
 
     /* -- WE DO THE FOLLOWING TO KEEP THE COMPILER HAPPY. */
     return 1;
