@@ -90,7 +90,7 @@ int File::Read(unsigned int _n, char *_buf) {
 
 int File::Write(unsigned int _n, const char *_buf) {
     Console::puts("File  -> Write: start\n");
-
+    
     // input checking
     if(_n < 1 || _n > 512){
         Console::puts("File  -> Write: invalid number of bytes asked to write\n");
@@ -100,6 +100,8 @@ int File::Write(unsigned int _n, const char *_buf) {
         Console::puts("File  -> Write: NULL pointer passed\n");
         return 0;
     }
+
+    Console::puts("File  -> Write: to write=\"\n"); Console::puts(_buf); Console::puts("\"\n");
 
     // check how many bytes to write without buffer overflow
     int to_write;
@@ -111,9 +113,9 @@ int File::Write(unsigned int _n, const char *_buf) {
     }
 
     Console::puts("File  -> Write: size="); Console::puti(this->file_inode->file_size);
-    Console::puts("  , seek=");  Console::puti(this->seek_position); 
-    Console::puts("  , to_read="); Console::puti(to_write); Console::puts("  , _n="); 
-    Console::puti(_n);Console::puts("\n");
+    Console::puts("; seek=");               Console::puti(this->seek_position); 
+    Console::puts("; write=");              Console::puti(to_write); \
+    Console::puts("; told to write=");      Console::puti(_n);Console::puts("\n");
     Console::puts("File  -> Write: DONE\n");
 
     // write to file , update size in inode
