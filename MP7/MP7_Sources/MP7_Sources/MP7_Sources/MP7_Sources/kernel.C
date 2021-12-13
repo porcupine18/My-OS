@@ -255,8 +255,11 @@ int main() {
 
     /* -- AND ALL THE REST SHOULD FOLLOW ... */
  
+    delete FILE_SYSTEM
+
     FILE_SYSTEM2 = new FileSystem();
 
+    
 
     assert(FILE_SYSTEM->Mount(SYSTEM_DISK)); // 'connect' disk to file system.
 
