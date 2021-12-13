@@ -138,6 +138,8 @@ int File::Write(unsigned int _n, const char *_buf) {
         Console::puts("["); Console::puti(ct);   Console::puts("],"); 
         this->block_cache[this->seek_position+ct] = _buf[ct];
     }
+
+    Console::puts("]\n"); 
     //memcpy(this->block_cache+this->seek_position, _buf, to_write);
 
     this->seek_position += to_write;
