@@ -112,25 +112,32 @@ void exercise_file_system(FileSystem * _file_system) {
     /* -- "Open" the two files -- */
     
     {
+        Console::puts("WILL CREATE FILES\n");
         File file1(_file_system, 1);
     
         File file2(_file_system, 2);
-    
+        Console::puts("FILES CREATED\n");
+
         /* -- Write into File 1 -- */
+        Console::puts("WILL WRITE TO FILE 1\n");
         file1.Write(20, STRING1);
-    
+        Console::puts("DONE WRITING TO FILE 1\n");
+
         /* -- Write into File 2 -- */
-    
+        Console::puts("WILL WRITE TO FILE 2\n");
         file2.Write(20, STRING2);
-    
+        Console::puts("DONE WRITING TO FILE 1\n");
+
         /* -- Files will get automatically closed when we leave scope  -- */
     }
 
     {   
         /* -- "Open files again -- */
+        Console::puts("OPENING BOTH FILES\n");
         File file1(_file_system, 1);
         File file2(_file_system, 2);
-    
+        Console::puts("DONE OPENING FILES\n");
+
         /* -- Read from File 1 and check result -- */
         file1.Reset();
         char result1[30];
@@ -138,6 +145,7 @@ void exercise_file_system(FileSystem * _file_system) {
         for(int i = 0; i < 20; i++) {
              assert(result1[i] == STRING1[i]);
         }
+        Console::puts("FILE 1 TESTED\n");
     
         /* -- Read from File 2 and check result -- */
         file2.Reset();
@@ -146,6 +154,8 @@ void exercise_file_system(FileSystem * _file_system) {
         for(int i = 0; i < 20; i++) {
             assert(result2[i] == STRING2[i]);
         }
+        Console::puts("FILE 2 TESTED\n");
+
     
         /* -- "Close" files again -- */
     }
@@ -154,6 +164,8 @@ void exercise_file_system(FileSystem * _file_system) {
     assert(_file_system->DeleteFile(1));
     assert(_file_system->DeleteFile(2));
     
+    Console::puts("DELETED BOTH FILES\n");
+
 }
 
 /*--------------------------------------------------------------------------*/
@@ -252,13 +264,18 @@ int main() {
 
     Console::puts("GOING TO EXERCISE\n");
 
-    for(int j = 0;; j++) {
+    exercise_file_system(FILE_SYSTEM);
+
+    for(int j = 0; j<3; j++) {
         exercise_file_system(FILE_SYSTEM);
     }
 
+    Console::puts("EXERCISE DONE\n");
+
+
     /* -- AND ALL THE REST SHOULD FOLLOW ... */
  
-    assert(false); /* WE SHOULD NEVER REACH THIS POINT. */
+    //assert(false); /* WE SHOULD NEVER REACH THIS POINT. */
 
     /* -- WE DO THE FOLLOWING TO KEEP THE COMPILER HAPPY. */
     return 1;
