@@ -112,9 +112,9 @@ void exercise_file_system(FileSystem * _file_system, int id1, int id2) {
     /* -- "Open" the two files -- */
     
     {
-        File file1(_file_system, 1);
+        File file1(_file_system, id1);
     
-        File file2(_file_system, 2);
+        File file2(_file_system, id2);
     
         /* -- Write into File 1 -- */
         file1.Write(20, STRING1);
@@ -128,8 +128,8 @@ void exercise_file_system(FileSystem * _file_system, int id1, int id2) {
 
     {   
         /* -- "Open files again -- */
-        File file1(_file_system, 1);
-        File file2(_file_system, 2);
+        File file1(_file_system, id1);
+        File file2(_file_system, id2);
     
         /* -- Read from File 1 and check result -- */
         file1.Reset();
@@ -151,8 +151,8 @@ void exercise_file_system(FileSystem * _file_system, int id1, int id2) {
     }
 
     /* -- Delete both files -- */
-    //assert(_file_system->DeleteFile(1));
-    //assert(_file_system->DeleteFile(2));
+    //assert(_file_system->DeleteFile(id1));
+    //assert(_file_system->DeleteFile(id2));
     
 }
 
