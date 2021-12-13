@@ -105,8 +105,8 @@ void exercise_file_system(FileSystem * _file_system) {
     const char* str2 = "abcdefghijabcdefghij";
     const char* str3 = "999";
     const char* str4 = "zzz";
-    const char* str5 = "1111111111111111111111111";
-    const char* str6 = "bbbbbbbbbbbbbbbbbbbbbbbb";
+    const char* str5 = "11111111111111";
+    const char* str6 = "bbbbbbbbbbbbbb";
     
     const char * STRING1;
     const char * STRING2;
