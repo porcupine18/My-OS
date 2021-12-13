@@ -121,7 +121,6 @@ bool FileSystem::Format(SimpleDisk * _disk, unsigned int _size, FileSystem* _fs)
         Console::puts("; file_id=");                    Console::puti(inode_buf[i]->id);
         Console::puts("; block_id=");                   Console::puti(inode_buf[i]->block_id);
         Console::puts("; size=");                       Console::puti(inode_buf[i]->file_size);
-        Console::puts("; fs(size)=");                   Console::puti((int)inode_buf[i]->fs->size);
         Console::puts("\n");
     }
 
@@ -169,7 +168,6 @@ Inode* FileSystem::LookupFile(int _file_id) {
             Console::puts("         -> LookupFile: FOUND FILE! inode: block_id="); Console::puti(this->inode_list[i]->block_id);
             Console::puts("; name_id=");                                           Console::puti(this->inode_list[i]->id); 
             Console::puts("; size=");                                              Console::puti(this->inode_list[i]->file_size); 
-            Console::puts("; fs(size)=");                                          Console::puti((unsigned int)this->inode_list[i]->fs->size); 
             Console::puts("\n");
             return (this->inode_list[i]);
         }
@@ -216,7 +214,6 @@ bool FileSystem::CreateFile(int _file_id) { //assigning a free inode to the _fil
     Console::puts("; file_id=");                                 Console::puti(this->inode_list[inode_idx]->id);
     Console::puts("; block_id=");                                Console::puti(this->inode_list[inode_idx]->block_id);
     Console::puts("; size=");                                    Console::puti(this->inode_list[inode_idx]->file_size);
-    Console::puts("; fs(size)=");                                Console::puti((int)this->inode_list[inode_idx]->fs->size);
     Console::puts("\n");  
 
     Console::puts("     -> CreateFile: FILE CREATED\n");
@@ -249,9 +246,9 @@ bool FileSystem::DeleteFile(int _file_id) {
     assert(inode_idx != -1); // cannot delete a file that doesn't belong to a inode, FATAL ERROR
 
     // resetting inode list and freelist
-    this->inode_list[inode_idx]->id       = -1;
-    this->inode_list[inode_idx]->block_id = -1;
-    this->inode_list[inode_idx]->file_size     = -1;
+    this->inode_list[inode_idx]->id         = -1;
+    this->inode_list[inode_idx]->block_id   = -1;
+    this->inode_list[inode_idx]->file_size  = -1;
 
     this->free_list[block_id] = 0; // set free
 
