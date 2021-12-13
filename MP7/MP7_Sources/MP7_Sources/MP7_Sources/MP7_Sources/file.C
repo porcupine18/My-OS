@@ -37,7 +37,6 @@ File::File(FileSystem* _fs, int _id){
     short block_id = this->file_inode->block_id;               // get block_id of current file
     this->filesystem->disk->read(block_id, this->block_cache); // load data into cache
 
-    this->file_inode->file_size = strlen((const char*)this->block_cache); // get current size of file
     this->seek_position = 0;                    // set seek position to the end of the file
 
     Console::puts("File  -> Constructor: size = "); Console::puti(this->file_inode->file_size); Console::puts("\n");
