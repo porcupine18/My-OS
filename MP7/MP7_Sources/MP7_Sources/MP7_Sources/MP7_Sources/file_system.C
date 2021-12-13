@@ -170,8 +170,8 @@ Inode* FileSystem::LookupFile(int _file_id) {
     // iterate through inode list and return inode if file_id matches
     for(int i=0; i<MAX_INODES; i++){
         if(this->inode_list[i]->id == _file_id){
-            Console::puts("         -> LookupFile: FOUND FILE! inode: block_id="); Console::puti(this->inode_list[i]->block_id);
-            Console::puts("; name_id=");                                           Console::puti(this->inode_list[i]->id); 
+            Console::puts("         -> LookupFile: FOUND FILE! inode: id="); Console::puti(this->inode_list[i]->id);
+            Console::puts("; block_id=");                                           Console::puti(this->inode_list[i]->block_id); 
             Console::puts("; size=");                                              Console::puti(this->inode_list[i]->file_size); 
             Console::puts("\n");
             return (this->inode_list[i]);
